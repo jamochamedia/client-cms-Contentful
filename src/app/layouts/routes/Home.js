@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import * as contentful from "contentful";
 
-// Import React Table
-import ReactTable from "react-table";
+import ContentTracker from "../components/Tables/ContentTracker";
 
 const SPACE_ID = "le3jnclmcpxu";
 const ACCESS_TOKEN =
@@ -37,6 +36,7 @@ class Home extends Component {
         {this.state.posts.map(({ fields }, i) => (
           <pre key={i}>{JSON.stringify(fields, null, 2)}</pre>
         ))}
+        <ContentTracker />
       </div>
     );
   }
