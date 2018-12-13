@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
+import Layout from './app/Layout';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Jamocha Client CMS
-          </p>
-        </header>
-      </div>
+      <Layout />
     );
   }
 }
