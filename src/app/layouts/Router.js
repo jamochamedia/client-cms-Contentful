@@ -5,6 +5,7 @@ import Home from "./routes/Home";
 const Router = () => (
   <Switch>
     <Route exact path="/" component={Home} />
+    {/* <Route exact path='/linkedinpost' component={LinkedIn}/> */}
   </Switch>
 );
 
