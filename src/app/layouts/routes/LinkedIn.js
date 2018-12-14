@@ -1,5 +1,6 @@
 import React from "react";
 import * as contentful from "contentful";
+import LinkedInItem from "../components/LinkedIn/LinkedInItem";
 
 //Contentful ID's
 const SPACE_ID = "le3jnclmcpxu";
@@ -16,15 +17,15 @@ class LinkedIn extends React.Component {
     accessToken: ACCESS_TOKEN
   });
 
- componentDidMount() {
+  componentDidMount() {
     this.fetchPosts().then(this.setPosts);
   }
-  fetchPosts = () => this.client.getEntries()
+  fetchPosts = () => this.client.getEntries();
   setPosts = response => {
     this.setState({
       posts: response.items
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -32,7 +33,7 @@ class LinkedIn extends React.Component {
         <p>LinkedIn Posts Page</p>
         <br />
         {this.state.posts.map(({ fields }, i) => (
-          <pre key={i}>{JSON.stringify(fields, null, 2)}</pre>
+          <LinkedInItem key={i} {...fields} />
         ))}
       </div>
     );
