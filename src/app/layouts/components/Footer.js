@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row } from "reactstrap";
 
 const FooterWrapper = styled.div`
   background-color: #131313;
