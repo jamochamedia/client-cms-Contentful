@@ -35,7 +35,7 @@ class ContentTracker extends Component {
 
   render() {
     const { posts } = this.state;
-    console.log(posts);
+    // console.log(posts);
     return (
       <div>
         <ReactTable
@@ -43,7 +43,15 @@ class ContentTracker extends Component {
           columns={[
             {
               Header: "Client",
-              accessor: "clientName"
+              id: "clientName",
+              accessor: row => {
+                if (row.clientName.fields !== undefined) {
+                  return row.clientName.fields.clientName;
+                }
+                return "Not content"
+              },
+              //TODO Link Client Page
+              Cell: cell => <a href="/linkedin">{cell.value}</a>
             },
             {
               Header: "Status",
