@@ -1,18 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import StyledLink from "../Typography/TextStyles";
 
 const LinkedInItem = (props) => (
   <div className="content">
     <h1>{props.postTitle}</h1>
     <p>{props.status}</p>
     <p>{props.linkedInPostBody}</p>
-    <Link to={{
+    <StyledLink to={{
       pathname: `/linkedin/${props.path}`,
       state: { props }
     }}
     >
     Go to post
-    </Link>
+    </StyledLink>
   </div>
 );
 

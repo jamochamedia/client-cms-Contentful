@@ -1,4 +1,6 @@
 import React from "react";
+import StyledLink from "../components/Typography/TextStyles";
+
 import styled from "styled-components";
 import { Container, Row, Col } from "reactstrap";
 import { H3 } from "../../ui/Typography/HeaderText";
@@ -17,7 +19,9 @@ class Header extends React.Component {
         <Container fluid>
           <Row noGutters>
             <Col xs="12">
-              <H3>Jamocha Writer Home</H3>
+              <StyledLink to="/">
+                <H3>Jamocha Writer Home</H3>
+              </StyledLink>
             </Col>
           </Row>
         </Container>
