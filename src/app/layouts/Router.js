@@ -4,6 +4,7 @@ import Home from "./routes/Home";
 import LinkedIn from "./routes/LinkedIn";
 import LinkedInPost from "../layouts/components/LinkedIn/LinkedInPost";
 import Clients from "./routes/Clients";
+import ClientProfile from "../layouts/components/Clients/ClientProfile";
 
 const Router = () => (
   <Switch>
@@ -11,6 +12,7 @@ const Router = () => (
     <Route exact path="/linkedin" component={LinkedIn} />
     <Route path="/linkedin/:linkedInPost" component={LinkedInPost} />
     <Route exact path="/clients" component={Clients} />
+    <Route exact path="/clients/:clientprofile" component={ClientProfile} />
   </Switch>
 );
 

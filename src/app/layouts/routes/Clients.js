@@ -22,7 +22,9 @@ class ClientProfile extends React.Component {
   }
 
   fetchPosts = () =>
-    this.client.getEntries({ content_type: "clientIdentifier" });
+    this.client.getEntries({
+      content_type: "clientIdentifier"
+    });
 
   setPosts = response => {
     console.log(response.items);
@@ -36,7 +38,7 @@ class ClientProfile extends React.Component {
       <div>
         <p>Our Clients</p>
         {this.state.clients.map(({ fields }, i) => (
-          <pre key={i}>{JSON.stringify(fields, null, 2)}</pre>
+          <ClientItem key={i} {...fields} />
         ))}
         <br />
       </div>

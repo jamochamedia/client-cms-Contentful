@@ -3,7 +3,7 @@ import StyledLink from "../Typography/LinkStyles";
 
 const LinkedInItem = props => (
   <div className="content">
-    <h1>{props.clientName.fields.clientName}</h1>
+    <h3>{props.clientName}</h3>
     <StyledLink
       to={{
         pathname: `/clients/${props.path}`,
