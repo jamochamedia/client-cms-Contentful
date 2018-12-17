@@ -36,22 +36,22 @@ class ContentTracker extends Component {
   render() {
     const { posts } = this.state;
     // console.log(posts);
+
+    const filterPosts = posts.filter(
+      post => post.clientName.fields !== undefined
+    );
+
     return (
       <div>
         <ReactTable
-          data={posts}
+          data={filterPosts}
           columns={[
             {
               Header: "Client",
               id: "clientName",
-              accessor: row => {
-                if (row.clientName.fields !== undefined) {
-                  return row.clientName.fields.clientName;
-                }
-                return "Not content";
-              },
+              accessor: "clientName.fields.clientName",
               //TODO Link Client Page
-              Cell: cell => <a href="/linkedin">{cell.value}</a>
+              Cell: cell => <a href="/clients">{cell.value}</a>
             },
             {
               Header: "Status",

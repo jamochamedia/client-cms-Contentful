@@ -1,15 +1,15 @@
 import React from "react";
 import * as contentful from "contentful";
-import LinkedInItem from "../components/LinkedIn/LinkedInItem";
+import ClientItem from "../components/Clients/ClientItem";
 
 //Contentful ID's
 const SPACE_ID = "le3jnclmcpxu";
 const ACCESS_TOKEN =
   "995a6dca6f0f6cd6e2fdb805d631c96af1cda58513b55ba824668d8fdfa18966";
 
-class LinkedIn extends React.Component {
+class ClientProfile extends React.Component {
   state = {
-    posts: []
+    clients: []
   };
 
   client = contentful.createClient({
@@ -21,25 +21,27 @@ class LinkedIn extends React.Component {
     this.fetchPosts().then(this.setPosts);
   }
 
-  fetchPosts = () => this.client.getEntries();
+  fetchPosts = () =>
+    this.client.getEntries({ content_type: "clientIdentifier" });
 
   setPosts = response => {
+    console.log(response.items);
     this.setState({
-      posts: response.items
+      clients: response.items
     });
   };
 
   render() {
     return (
       <div>
-        <p>LinkedIn Posts Page</p>
-        <br />
-        {this.state.posts.map(({ fields }, i) => (
-          <LinkedInItem key={i} {...fields} />
+        <p>Our Clients</p>
+        {this.state.clients.map(({ fields }, i) => (
+          <pre key={i}>{JSON.stringify(fields, null, 2)}</pre>
         ))}
+        <br />
       </div>
     );
   }
 }
 
-export default LinkedIn;
+export default ClientProfile;
