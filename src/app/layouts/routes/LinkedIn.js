@@ -21,7 +21,10 @@ class LinkedIn extends React.Component {
     this.fetchPosts().then(this.setPosts);
   }
 
-  fetchPosts = () => this.client.getEntries();
+  fetchPosts = () =>
+    this.client.getEntries({
+      content_type: "linkedInTextPost"
+    });
 
   setPosts = response => {
     this.setState({
