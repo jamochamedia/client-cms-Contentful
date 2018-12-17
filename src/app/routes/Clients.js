@@ -1,6 +1,6 @@
 import React from "react";
 import * as contentful from "contentful";
-import ClientItem from "../components/Clients/ClientItem";
+import ClientItem from "../routes/Clients/ClientItem";
 
 //Contentful ID's
 const SPACE_ID = "le3jnclmcpxu";

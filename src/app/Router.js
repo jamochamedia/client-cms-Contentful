@@ -2,9 +2,9 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./routes/Home";
 import LinkedIn from "./routes/LinkedIn";
-import LinkedInPost from "../layouts/components/LinkedIn/LinkedInPost";
+import LinkedInPost from "./routes/LinkedIn/LinkedInPost";
 import Clients from "./routes/Clients";
-import ClientProfile from "../layouts/components/Clients/ClientProfile";
+import ClientProfile from "./routes/Clients/ClientProfile";
 
 const Router = () => (
   <Switch>

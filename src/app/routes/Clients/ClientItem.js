@@ -1,18 +1,16 @@
 import React from "react";
-import StyledLink from "../Typography/LinkStyles";
+import StyledLink from "../../components/Typography/LinkStyles";
 
 const LinkedInItem = props => (
   <div className="content">
-    <h1>{props.postTitle}</h1>
-    <p>{props.status}</p>
-    <p>{props.linkedInPostBody}</p>
+    <h3>{props.clientName}</h3>
     <StyledLink
       to={{
-        pathname: `/linkedin/${props.path}`,
+        pathname: `/clients/${props.path}`,
         state: { props }
       }}
     >
-      Go to post
+      Go to profile
     </StyledLink>
   </div>
 );

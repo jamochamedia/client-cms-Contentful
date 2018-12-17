@@ -2,7 +2,7 @@ import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 
-import Router from "./layouts/Router";
+import Router from "./Router";
 
 import Header from "./layouts/components/Header";
 import Footer from "./layouts/components/Footer";

@@ -1,6 +1,6 @@
 import React from "react";
 import * as contentful from "contentful";
-import LinkedInItem from "../components/LinkedIn/LinkedInItem";
+import LinkedInItem from "../routes/LinkedIn/LinkedInItem";
 
 //Contentful ID's
 const SPACE_ID = "le3jnclmcpxu";
