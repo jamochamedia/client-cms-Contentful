@@ -1,5 +1,5 @@
 import React from "react";
-import StyledLink from "../Typography/TextStyles";
+import StyledLink from "../Typography/LinkStyles";
 
 const LinkedInItem = (props) => (
   <div className="content">
