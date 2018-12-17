@@ -48,7 +48,7 @@ class ContentTracker extends Component {
                 if (row.clientName.fields !== undefined) {
                   return row.clientName.fields.clientName;
                 }
-                return "Not content"
+                return "Not content";
               },
               //TODO Link Client Page
               Cell: cell => <a href="/linkedin">{cell.value}</a>
@@ -70,23 +70,23 @@ class ContentTracker extends Component {
             {
               Header: "Question URL",
               accessor: "questionUrl",
-              Cell: cell =><a href={cell.value}>{cell.value}</a> 
+              Cell: cell => <a href={cell.value}>{cell.value}</a>
             },
             {
               Header: "Writer",
-              accessor: "writer",
+              accessor: "writer"
             },
             {
               Header: "Editor",
-              accessor: "editor",
+              accessor: "editor"
             },
             {
               Header: "LinkedIn URL",
               accessor: "linkedInUrl",
-              Cell: cell =><a href={cell.value}>{cell.value}</a> 
-            },
+              Cell: cell => <a href={cell.value}>{cell.value}</a>
+            }
           ]}
-          defaultPageSize={10}
+          defaultPageSize={5}
         />
       </div>
     );
