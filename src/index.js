@@ -5,10 +5,20 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 
+// Redux Store
+import { Provider } from "react-redux";
+import { configureStore } from "./store";
+import { loadContent } from "./store/Content";
+
+const store = configureStore();
+store.dispatch(loadContent());
+
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
 
