@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 
 import Router from "./Router";
 
-import Header from "./layouts/components/Header";
-import Footer from "./layouts/components/Footer";
-import Content from "./layouts/components/Content";
-import Site from "./layouts/components/Site";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Content from "./components/Content";
+import Site from "./components/Site";
 
 const Layout = ({ children }) => (
   <Site>
