@@ -15,7 +15,9 @@ export function loadContent() {
   return dispatch => {
     dispatch(actions.contentLoading());
     return client
-      .getEntries()
+      .getEntries({
+        content_type: "linkedInTextPost"
+      })
       .then(({ items }) => {
         dispatch(actions.loadContentSuccess(items));
         dispatch(actions.contentLoading(false));
