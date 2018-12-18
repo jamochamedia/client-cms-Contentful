@@ -11,14 +11,18 @@ const client = contentful.createClient({
   accessToken: ACCESS_TOKEN
 });
 
-const error = err => console.log(err);
-
 export function loadContent() {
-  return dispatch =>
-    client
+  return dispatch => {
+    dispatch(actions.contentLoading());
+    return client
       .getEntries()
       .then(({ items }) => {
         dispatch(actions.loadContentSuccess(items));
+        dispatch(actions.contentLoading(false));
       })
-      .catch(error);
+      .catch(error => {
+        console.log(error);
+        dispatch(actions.contentLoading(false));
+      });
+  };
 }

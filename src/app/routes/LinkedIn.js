@@ -8,9 +8,15 @@ class LinkedIn extends React.Component {
       <div>
         <p>LinkedIn Posts Page</p>
         <br />
-        {this.props.content.posts.map(({ fields }, i) => (
-          <LinkedInItem key={i} {...fields} />
-        ))}
+        {this.props.content.loading ? (
+          <div>LOADING</div>
+        ) : (
+          <div>
+            {this.props.content.posts.map(({ fields }, i) => (
+              <LinkedInItem key={i} {...fields} />
+            ))}
+          </div>
+        )}
       </div>
     );
   }
