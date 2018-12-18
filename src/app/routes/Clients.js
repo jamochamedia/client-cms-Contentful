@@ -7,7 +7,7 @@ const SPACE_ID = "le3jnclmcpxu";
 const ACCESS_TOKEN =
   "995a6dca6f0f6cd6e2fdb805d631c96af1cda58513b55ba824668d8fdfa18966";
 
-class ClientProfile extends React.Component {
+class Clients extends React.Component {
   state = {
     clients: []
   };
@@ -27,7 +27,7 @@ class ClientProfile extends React.Component {
     });
 
   setPosts = response => {
-    console.log(response.items);
+    // console.log(response.items);
     this.setState({
       clients: response.items
     });
@@ -46,4 +46,4 @@ class ClientProfile extends React.Component {
   }
 }
 
-export default ClientProfile;
+export default Clients;

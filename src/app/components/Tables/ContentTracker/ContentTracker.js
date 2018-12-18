@@ -5,6 +5,9 @@ import * as contentful from "contentful";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
+//Import Components
+import ClientProfile from "../../../routes/Clients/ClientProfile";
+
 //Contentful ID's
 const SPACE_ID = "le3jnclmcpxu";
 const ACCESS_TOKEN =
@@ -35,7 +38,7 @@ class ContentTracker extends Component {
 
   render() {
     const { posts } = this.state;
-    // console.log(posts);
+    console.log(posts);
 
     const filterPosts = posts.filter(
       post => post.clientName.fields !== undefined
@@ -51,12 +54,57 @@ class ContentTracker extends Component {
               id: "clientName",
               accessor: "clientName.fields.clientName",
               //TODO Link Client Page
-              Cell: cell => <a href="/clients">{cell.value}</a>
+              Cell: cell => (
+                <a href={`/clients/${cell.original.clientName.fields.path}`}>
+                  {cell.value}
+                </a>
+              )
             },
             {
               Header: "Status",
               id: "status",
-              accessor: "status"
+              accessor: "status",
+              Cell: row => (
+                <span>
+                  <span
+                    style={{
+                      color:
+                        row.value === "Question Sent"
+                          ? "#9106e8"
+                          : row.value === "In Writing"
+                          ? "#00db62"
+                          : row.value === "In Editing"
+                          ? "#fce302"
+                          : row.value === "In Client Review"
+                          ? "#e03404"
+                          : row.value === "Ready for Post"
+                          ? "#01a6ff"
+                          : row.value === "Posted"
+                          ? "#ff9900"
+                          : row.value === "Not Posting"
+                          ? "#000000"
+                          : "#5a5f66"
+                    }}
+                  >
+                    &#x25C9;
+                  </span>
+                  {row.value === "Question Sent"
+                    ? " Question Sent"
+                    : row.value === "In Writing"
+                    ? " In Writing"
+                    : row.value === "In Editing"
+                    ? " In Editing"
+                    : row.value === "In Client Review"
+                    ? " In Client Review"
+                    : row.value === "Ready for Post"
+                    ? " Ready for Post"
+                    : row.value === "Posted"
+                    ? " Posted"
+                    : row.value === "Not Posting"
+                    ? " Not Posting"
+                    : " Not Set"}
+                </span>
+              )
             },
             {
               Header: "Post Title",

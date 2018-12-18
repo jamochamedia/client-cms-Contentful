@@ -1,7 +1,7 @@
 import React from "react";
 import StyledLink from "../../components/Typography/LinkStyles";
 
-const LinkedInItem = props => (
+const ClientItem = props => (
   <div className="content">
     <h3>{props.clientName}</h3>
     <StyledLink
@@ -15,4 +15,4 @@ const LinkedInItem = props => (
   </div>
 );
 
-export default LinkedInItem;
+export default ClientItem;
