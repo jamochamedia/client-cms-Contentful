@@ -2,15 +2,25 @@ import React from "react";
 import * as Markdown from "react-markdown";
 
 import { H3 } from "../../components/Typography/HeaderText";
+import { Href } from "../../components/Typography/LinkStyles";
+
+import { Col, Row } from "reactstrap";
 import styled from "styled-components";
+import { faUser, FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ProfileHeader = styled.div`
   min-height: 100px;
-  background-color: #00038ee6;
+  background-color: #222;
 `;
 
 const Container = styled.div`
   padding: 20px;
+`;
+
+const CategoriesBox = styled.div`
+  width: 100%;
+  height: 400px;
+  background-color: #adadad;
 `;
 
 const white = {
@@ -27,32 +37,42 @@ const ClientProfile = ({
       <ProfileHeader>
         <Container>
           <H3 style={white}>{props.clientName}</H3>
-          <p style={white}>
-            <b>Company:</b> {props.companyName}
-          </p>
-          <p style={white}>
-            <b>Role:</b> {props.clientRole}
-          </p>
-          <p style={white}>
-            <b>Profile URL:</b> {props.linkedInUrl}
-          </p>
         </Container>
       </ProfileHeader>
       <Container>
-        <p>
-          <b>Profile Re-Write: </b>
-          {props.profileAuditLink}
-        </p>
-        <p>
-          <b>Description:</b> <br />
-          <Markdown
-            source={
-              props.clientDescription
-                ? props.clientDescription
-                : "No Description Available"
-            }
-          />
-        </p>
+        <Row>
+          <Col md="9">
+            <p>
+              <b>Role:</b> {props.clientRole}
+            </p>
+            <p>
+              <b>Company Name:</b> {props.companyName}
+            </p>
+            <p>
+              <b>Profile URL: </b>
+              <Href href={`${props.profileAuditLink}`}>
+                {props.linkedInUrl}
+              </Href>
+            </p>
+            <p>
+              <b>Profile Re-Write: </b> <br />
+              <Href href={`${props.profileAuditLink}`}>
+                {props.profileAuditLink}
+              </Href>
+            </p>
+            <p>
+              <b>Description:</b> <br />
+              <Markdown
+                source={
+                  props.clientDescription
+                    ? props.clientDescription
+                    : "No Description Available"
+                }
+              />
+            </p>
+          </Col>
+          <Col md="3" />
+        </Row>
       </Container>
     </div>
   );
