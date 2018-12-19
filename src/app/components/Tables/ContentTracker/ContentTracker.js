@@ -55,7 +55,7 @@ class ContentTracker extends Component {
               accessor: "clientName.fields.clientName",
               //TODO Link Client Page
               Cell: cell => (
-                <a href={`/clients/${cell.original.clientName.fields.path}`}>
+                <a href={`/clients/${cell.original.clientName.sys.id}`}>
                   {cell.value}
                 </a>
               )

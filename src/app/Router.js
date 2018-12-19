@@ -12,7 +12,7 @@ const Router = () => (
     <Route exact path="/linkedin" component={LinkedIn} />
     <Route path="/linkedin/:linkedInPost" component={LinkedInPost} />
     <Route exact path="/clients" component={Clients} />
-    <Route exact path="/clients/:clientprofile" component={ClientProfile} />
+    <Route exact path="/clients/:clientprofileid" component={ClientProfile} />
   </Switch>
 );
 

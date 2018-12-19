@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as Markdown from "react-markdown";
+import { withRouter } from "react-router-dom";
+
+import { client } from "../../../utils/client";
 
 import { H3 } from "../../components/Typography/HeaderText";
 import { Href } from "../../components/Typography/LinkStyles";
@@ -20,45 +23,54 @@ const white = {
   color: "white"
 };
 
-const ClientProfile = ({
-  location: {
-    state: { props }
-  }
-}) => {
+const ClientProfile = props => {
+  const [profile, setProfile] = useState({});
+
+  useEffect(() => {
+    fetchProfile();
+  }, {});
+
+  const fetchProfile = async () => {
+    const res = await client.getEntry(props.match.params.clientprofileid);
+    setProfile(res);
+  };
+
+  console.log(profile);
+  const { fields = {} } = profile;
   return (
-    <div>
+    <>
       <ProfileHeader>
         <Container>
-          <H3 style={white}>{props.clientName}</H3>
+          <H3 style={white}>{fields.clientName}</H3>
         </Container>
       </ProfileHeader>
       <Container>
         <Row>
           <Col md="9">
             <p>
-              <b>Role:</b> {props.clientRole}
+              <b>Role:</b> {fields.clientRole}
             </p>
             <p>
-              <b>Company Name:</b> {props.companyName}
+              <b>Company Name:</b> {fields.companyName}
             </p>
             <p>
               <b>Profile URL: </b>
-              <Href href={`${props.profileAuditLink}`}>
-                {props.linkedInUrl}
+              <Href href={`${fields.profileAuditLink}`}>
+                {fields.linkedInUrl}
               </Href>
             </p>
             <p>
               <b>Profile Re-Write: </b> <br />
-              <Href href={`${props.profileAuditLink}`}>
-                {props.profileAuditLink}
+              <Href href={`${fields.profileAuditLink}`}>
+                {fields.profileAuditLink}
               </Href>
             </p>
             <p>
               <b>Description:</b> <br />
               <Markdown
                 source={
-                  props.clientDescription
-                    ? props.clientDescription
+                  fields.clientDescription
+                    ? fields.clientDescription
                     : "No Description Available"
                 }
               />
@@ -67,8 +79,8 @@ const ClientProfile = ({
           <Col md="3" />
         </Row>
       </Container>
-    </div>
+    </>
   );
 };
 
-export default ClientProfile;
+export default withRouter(ClientProfile);

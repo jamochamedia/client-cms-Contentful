@@ -1,21 +1,13 @@
 import React from "react";
-import * as contentful from "contentful";
 import ClientItem from "../routes/Clients/ClientItem";
-
-//Contentful ID's
-const SPACE_ID = "le3jnclmcpxu";
-const ACCESS_TOKEN =
-  "995a6dca6f0f6cd6e2fdb805d631c96af1cda58513b55ba824668d8fdfa18966";
+import { client } from "../../utils/client";
 
 class Clients extends React.Component {
   state = {
     clients: []
   };
 
-  client = contentful.createClient({
-    space: SPACE_ID,
-    accessToken: ACCESS_TOKEN
-  });
+  client = client;
 
   componentDidMount() {
     this.fetchPosts().then(this.setPosts);
@@ -27,7 +19,6 @@ class Clients extends React.Component {
     });
 
   setPosts = response => {
-    // console.log(response.items);
     this.setState({
       clients: response.items
     });
