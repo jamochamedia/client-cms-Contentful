@@ -6,7 +6,7 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 
 //Import Components
-import ClientProfile from "../../../routes/Clients/ClientProfile";
+// import ClientProfile from "../../../routes/Clients/ClientProfile";
 
 //Contentful ID's
 const SPACE_ID = "le3jnclmcpxu";

@@ -1,5 +1,5 @@
 import * as contentful from "contentful";
-import * as actions from "./content/actions";
+import * as actions from "../content/actions";
 
 //Contentful ID's
 const SPACE_ID = "le3jnclmcpxu";
@@ -15,9 +15,7 @@ export function loadContent() {
   return dispatch => {
     dispatch(actions.contentLoading());
     return client
-      .getEntries({
-        content_type: "linkedInTextPost"
-      })
+      .getEntries()
       .then(({ items }) => {
         dispatch(actions.loadContentSuccess(items));
         dispatch(actions.contentLoading(false));

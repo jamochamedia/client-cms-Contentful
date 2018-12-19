@@ -6,7 +6,6 @@ import { Href } from "../../components/Typography/LinkStyles";
 
 import { Col, Row } from "reactstrap";
 import styled from "styled-components";
-import { faUser, FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ProfileHeader = styled.div`
   min-height: 100px;
@@ -15,12 +14,6 @@ const ProfileHeader = styled.div`
 
 const Container = styled.div`
   padding: 20px;
-`;
-
-const CategoriesBox = styled.div`
-  width: 100%;
-  height: 400px;
-  background-color: #adadad;
 `;
 
 const white = {

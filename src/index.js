@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.css";
 // Redux Store
 import { Provider } from "react-redux";
 import { configureStore } from "./store";
-import { loadContent } from "./store/Content";
+import { loadContent } from "./store/data/Content";
 
 // Font awesome
 import { library } from "@fortawesome/fontawesome-svg-core";

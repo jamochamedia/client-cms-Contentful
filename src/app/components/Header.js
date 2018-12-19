@@ -1,11 +1,25 @@
 import React from "react";
-import StyledLink, { Href } from "./Typography/LinkStyles";
 import { Container, Row, NavbarBrand, Navbar, NavLink } from "reactstrap";
-import styled from "styled-components";
 
-const TextStyle = styled.div`
-  color: white;
-`;
+const textStyle = {
+  color: "white",
+  textDecoration: "none",
+  "& a:focus": {
+    textDecoration: "none"
+  },
+  "& a:hover": {
+    textDecoration: "none"
+  },
+  "& a:visited": {
+    textDecoration: "none"
+  },
+  "& a:link": {
+    textDecoration: "none"
+  },
+  "& a:active": {
+    textDecoration: "none"
+  }
+};
 
 class Header extends React.Component {
   render() {
@@ -13,21 +27,15 @@ class Header extends React.Component {
       <Navbar style={{ backgroundColor: "#292f36" }}>
         <Container fluid>
           <Row noGutters>
-            <StyledLink to="/">
-              <TextStyle>
-                <NavbarBrand>Jamocha Writer Home</NavbarBrand>
-              </TextStyle>
-            </StyledLink>
-            <Href href="https://app.contentful.com/spaces/le3jnclmcpxu/home">
-              <TextStyle>
-                <NavLink>Write</NavLink>
-              </TextStyle>
-            </Href>
-            <StyledLink to="/">
-              <TextStyle>
-                <NavLink>Analytics</NavLink>
-              </TextStyle>
-            </StyledLink>
+            <NavbarBrand style={textStyle} href="/">
+              Jamocha Writer Home
+            </NavbarBrand>
+            <NavLink style={textStyle} href="">
+              Write
+            </NavLink>
+            <NavLink style={textStyle} href="#">
+              Analytics
+            </NavLink>
           </Row>
         </Container>
       </Navbar>

@@ -1,11 +1,7 @@
 import React from "react";
 import * as Markdown from "react-markdown";
 
-const LinkedInPost = ({
-  location: {
-    state: { props }
-  }
-}) => {
+const LinkedInPost = props => {
   return (
     <div>
       <h1>{props.postTitle}</h1>

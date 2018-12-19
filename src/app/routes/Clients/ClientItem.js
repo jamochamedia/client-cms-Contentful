@@ -1,17 +1,17 @@
 import React from "react";
-import StyledLink from "../../components/Typography/LinkStyles";
+import { Link } from "react-router-dom";
 
 const ClientItem = props => (
   <div className="content">
     <h3>{props.clientName}</h3>
-    <StyledLink
+    <Link
       to={{
         pathname: `/clients/${props.path}`,
         state: { props }
       }}
     >
       Go to profile
-    </StyledLink>
+    </Link>
   </div>
 );
 
