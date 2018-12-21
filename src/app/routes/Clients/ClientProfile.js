@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom";
 import { client } from "../../../utils/client";
 
 import { H3 } from "../../components/Typography/HeaderText";
-import { Href } from "../../components/Typography/LinkStyles";
 
 import { Col, Row } from "reactstrap";
 import styled from "styled-components";
@@ -55,15 +54,13 @@ const ClientProfile = props => {
             </p>
             <p>
               <b>Profile URL: </b>
-              <Href href={`${fields.profileAuditLink}`}>
-                {fields.linkedInUrl}
-              </Href>
+              <a href={`${fields.profileAuditLink}`}>{fields.linkedInUrl}</a>
             </p>
             <p>
               <b>Profile Re-Write: </b> <br />
-              <Href href={`${fields.profileAuditLink}`}>
+              <a href={`${fields.profileAuditLink}`}>
                 {fields.profileAuditLink}
-              </Href>
+              </a>
             </p>
             <p>
               <b>Description:</b> <br />
