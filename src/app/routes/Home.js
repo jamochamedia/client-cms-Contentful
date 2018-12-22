@@ -9,9 +9,9 @@ const ContentWrapper = styled.div`
 const BgPrimary = styled.div`
   background: linear-gradient(
     to bottom,
-    #566373 0%,
-    #566373 50%,
-    #566373 50%,
+    #09bc8a 0%,
+    #09bc8a 50%,
+    #09bc8a 50%,
     #fcfcfc 50%,
     #fcfcfc 100%
   );
