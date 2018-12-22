@@ -40,15 +40,19 @@ a {
   flex-direction: column;
   justify-content: center;
   padding: 15px;
+  background: white;
 }
 
 .ReactTable .rt-table {
   border-radius: 0.375rem !important;
 }
 
+.ReactTable .rt-tbody .rt-tr-group {
+  border-bottom: solid 1px #efefef !important;
+}
+
 .ReactTable {
   box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
   border: none !important;
-  width: 50%;
   border-radius: 0.375rem !important;
 }
