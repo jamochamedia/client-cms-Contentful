@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import * as contentful from "contentful";
+import "../../../../App.css";
+import { H3 } from "../../Typography/HeaderText";
 
 // Import React Table
 import ReactTable from "react-table";
@@ -50,88 +52,95 @@ class ContentTracker extends Component {
           data={filterPosts}
           columns={[
             {
-              Header: "Client",
-              id: "clientName",
-              accessor: "clientName.fields.clientName",
-              //TODO Link Client Page
-              Cell: cell => (
-                <a href={`/clients/${cell.original.clientName.sys.id}`}>
-                  {cell.value}
-                </a>
-              )
-            },
-            {
-              Header: "Status",
-              id: "status",
-              accessor: "status",
-              Cell: row => (
-                <span>
-                  <span
-                    style={{
-                      color:
-                        row.value === "Question Sent"
-                          ? "#9106e8"
-                          : row.value === "In Writing"
-                          ? "#00db62"
-                          : row.value === "In Editing"
-                          ? "#fce302"
-                          : row.value === "In Client Review"
-                          ? "#e03404"
-                          : row.value === "Ready for Post"
-                          ? "#01a6ff"
-                          : row.value === "Posted"
-                          ? "#ff9900"
-                          : row.value === "Not Posting"
-                          ? "#000000"
-                          : "#5a5f66"
-                    }}
-                  >
-                    &#x25C9;
-                  </span>
-                  {row.value === "Question Sent"
-                    ? " Question Sent"
-                    : row.value === "In Writing"
-                    ? " In Writing"
-                    : row.value === "In Editing"
-                    ? " In Editing"
-                    : row.value === "In Client Review"
-                    ? " In Client Review"
-                    : row.value === "Ready for Post"
-                    ? " Ready for Post"
-                    : row.value === "Posted"
-                    ? " Posted"
-                    : row.value === "Not Posting"
-                    ? " Not Posting"
-                    : " Not Set"}
-                </span>
-              )
-            },
-            {
-              Header: "Post Title",
-              accessor: "postTitle"
-            },
-            {
-              Header: "Post Date",
-              accessor: "postDate",
-              Cell: cell => <div>{new Date(cell.value).toLocaleString()}</div>
-            },
-            {
-              Header: "Question URL",
-              accessor: "questionUrl",
-              Cell: cell => <a href={cell.value}>{cell.value}</a>
-            },
-            {
-              Header: "Writer",
-              accessor: "writer"
-            },
-            {
-              Header: "Editor",
-              accessor: "editor"
-            },
-            {
-              Header: "LinkedIn URL",
-              accessor: "linkedInUrl",
-              Cell: cell => <a href={cell.value}>{cell.value}</a>
+              Header: <H3>Client Content Tracker</H3>,
+              headerClassName: "table-header",
+              columns: [
+                {
+                  Header: "Client",
+                  id: "clientName",
+                  accessor: "clientName.fields.clientName",
+                  Cell: cell => (
+                    <a href={`/clients/${cell.original.clientName.sys.id}`}>
+                      {cell.value}
+                    </a>
+                  )
+                },
+                {
+                  Header: "Status",
+                  id: "status",
+                  accessor: "status",
+                  Cell: row => (
+                    <span>
+                      <span
+                        style={{
+                          color:
+                            row.value === "Question Sent"
+                              ? "#9106e8"
+                              : row.value === "In Writing"
+                              ? "#00db62"
+                              : row.value === "In Editing"
+                              ? "#fce302"
+                              : row.value === "In Client Review"
+                              ? "#e03404"
+                              : row.value === "Ready for Post"
+                              ? "#01a6ff"
+                              : row.value === "Posted"
+                              ? "#ff9900"
+                              : row.value === "Not Posting"
+                              ? "#000000"
+                              : "#5a5f66"
+                        }}
+                      >
+                        &#x25C9;
+                      </span>
+                      {row.value === "Question Sent"
+                        ? " Question Sent"
+                        : row.value === "In Writing"
+                        ? " In Writing"
+                        : row.value === "In Editing"
+                        ? " In Editing"
+                        : row.value === "In Client Review"
+                        ? " In Client Review"
+                        : row.value === "Ready for Post"
+                        ? " Ready for Post"
+                        : row.value === "Posted"
+                        ? " Posted"
+                        : row.value === "Not Posting"
+                        ? " Not Posting"
+                        : " Not Set"}
+                    </span>
+                  )
+                },
+                {
+                  Header: "Post Title",
+                  accessor: "postTitle"
+                },
+                {
+                  Header: "Post Date",
+                  accessor: "postDate",
+                  Cell: cell => (
+                    <div>{new Date(cell.value).toLocaleString()}</div>
+                  )
+                },
+                {
+                  Header: "Question URL",
+                  accessor: "questionUrl",
+                  Cell: cell => <a href={cell.value}>{cell.value}</a>
+                },
+                {
+                  Header: "Writer",
+                  accessor: "writer"
+                },
+                {
+                  Header: "Editor",
+                  accessor: "editor"
+                },
+                {
+                  Header: "LinkedIn URL",
+                  accessor: "linkedInUrl",
+                  Cell: cell => <a href={cell.value}>{cell.value}</a>
+                }
+              ]
             }
           ]}
           defaultPageSize={5}

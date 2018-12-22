@@ -21,10 +21,14 @@ const textStyle = {
   }
 };
 
+const NavStyle = {
+  backgroundColor: "#292f36"
+};
+
 class Header extends React.Component {
   render() {
     return (
-      <Navbar style={{ backgroundColor: "#292f36" }}>
+      <Navbar style={NavStyle}>
         <Container fluid>
           <Row noGutters>
             <NavbarBrand style={textStyle} href="/">

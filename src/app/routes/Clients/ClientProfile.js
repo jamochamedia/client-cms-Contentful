@@ -4,7 +4,8 @@ import { withRouter } from "react-router-dom";
 
 import { client } from "../../../utils/client";
 
-import { H3 } from "../../components/Typography/HeaderText";
+import { H1 } from "../../components/Typography/HeaderText";
+import { Paragraph } from "../../components/Typography/ParapgraphText";
 
 import { Col, Row } from "reactstrap";
 import styled from "styled-components";
@@ -40,29 +41,29 @@ const ClientProfile = props => {
     <>
       <ProfileHeader>
         <Container>
-          <H3 style={white}>{fields.clientName}</H3>
+          <H1 style={white}>{fields.clientName}</H1>
         </Container>
       </ProfileHeader>
       <Container>
         <Row>
           <Col md="9">
-            <p>
+            <Paragraph>
               <b>Role:</b> {fields.clientRole}
-            </p>
-            <p>
+            </Paragraph>
+            <Paragraph>
               <b>Company Name:</b> {fields.companyName}
-            </p>
-            <p>
+            </Paragraph>
+            <Paragraph>
               <b>Profile URL: </b>
               <a href={`${fields.profileAuditLink}`}>{fields.linkedInUrl}</a>
-            </p>
-            <p>
+            </Paragraph>
+            <Paragraph>
               <b>Profile Re-Write: </b> <br />
               <a href={`${fields.profileAuditLink}`}>
                 {fields.profileAuditLink}
               </a>
-            </p>
-            <p>
+            </Paragraph>
+            <Paragraph>
               <b>Description:</b> <br />
               <Markdown
                 source={
@@ -71,7 +72,7 @@ const ClientProfile = props => {
                     : "No Description Available"
                 }
               />
-            </p>
+            </Paragraph>
           </Col>
           <Col md="3" />
         </Row>

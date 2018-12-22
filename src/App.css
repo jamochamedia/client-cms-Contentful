@@ -4,3 +4,9 @@ body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
 }
+
+/* Content Table CSS */
+.table-header {
+  background-color: white;
+  text-align: left;
+}

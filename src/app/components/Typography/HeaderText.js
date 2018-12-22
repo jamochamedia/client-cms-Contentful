@@ -24,8 +24,6 @@ export const H3 = styled.h3`
   color: #292f36;
   font-size: 1.06rem;
   font-weight: 600;
-  padding: 10px 10px 10px 0;
   text-align: ${props => props.textAlign};
-  margin-bottom: 0;
   line-height: 1.5;
 `;
