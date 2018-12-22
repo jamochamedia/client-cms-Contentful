@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 export const Paragraph = styled.p`
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 300;
   line-height: 1.7;
-  margin-top: 0;
-  margin-bottom: 1rem;
+  margin: 0;
   display: block;
 `;
 

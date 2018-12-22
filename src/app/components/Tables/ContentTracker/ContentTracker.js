@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import * as contentful from "contentful";
 import "../../../../App.css";
-import { H3 } from "../../Typography/HeaderText";
+import { H3, H4, H5 } from "../../Typography/HeaderText";
+import { Paragraph } from "../../Typography/ParapgraphText";
+import styled from "styled-components";
 
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-
-//Import Components
-// import ClientProfile from "../../../routes/Clients/ClientProfile";
 
 //Contentful ID's
 const SPACE_ID = "le3jnclmcpxu";
@@ -56,90 +55,115 @@ class ContentTracker extends Component {
               headerClassName: "table-header",
               columns: [
                 {
-                  Header: "Client",
+                  Header: <H5>CLIENT</H5>,
+                  headerClassName: "table-subheader",
                   id: "clientName",
                   accessor: "clientName.fields.clientName",
                   Cell: cell => (
                     <a href={`/clients/${cell.original.clientName.sys.id}`}>
-                      {cell.value}
+                      <H4>{cell.value}</H4>
                     </a>
                   )
                 },
                 {
-                  Header: "Status",
+                  Header: <H5>STATUS</H5>,
+                  headerClassName: "table-subheader",
                   id: "status",
                   accessor: "status",
                   Cell: row => (
-                    <span>
-                      <span
-                        style={{
-                          color:
-                            row.value === "Question Sent"
-                              ? "#9106e8"
-                              : row.value === "In Writing"
-                              ? "#00db62"
-                              : row.value === "In Editing"
-                              ? "#fce302"
-                              : row.value === "In Client Review"
-                              ? "#e03404"
-                              : row.value === "Ready for Post"
-                              ? "#01a6ff"
-                              : row.value === "Posted"
-                              ? "#ff9900"
-                              : row.value === "Not Posting"
-                              ? "#000000"
-                              : "#5a5f66"
-                        }}
-                      >
-                        &#x25C9;
+                    <Paragraph>
+                      <span>
+                        <span
+                          style={{
+                            color:
+                              row.value === "Question Sent"
+                                ? "#9106e8"
+                                : row.value === "In Writing"
+                                ? "#00db62"
+                                : row.value === "In Editing"
+                                ? "#fce302"
+                                : row.value === "In Client Review"
+                                ? "#e03404"
+                                : row.value === "Ready for Post"
+                                ? "#01a6ff"
+                                : row.value === "Posted"
+                                ? "#ff9900"
+                                : row.value === "Not Posting"
+                                ? "#000000"
+                                : "#5a5f66"
+                          }}
+                        >
+                          &#x25C9;
+                        </span>
+                        {row.value === "Question Sent"
+                          ? " Question Sent"
+                          : row.value === "In Writing"
+                          ? " In Writing"
+                          : row.value === "In Editing"
+                          ? " In Editing"
+                          : row.value === "In Client Review"
+                          ? " In Client Review"
+                          : row.value === "Ready for Post"
+                          ? " Ready for Post"
+                          : row.value === "Posted"
+                          ? " Posted"
+                          : row.value === "Not Posting"
+                          ? " Not Posting"
+                          : " Not Set"}
                       </span>
-                      {row.value === "Question Sent"
-                        ? " Question Sent"
-                        : row.value === "In Writing"
-                        ? " In Writing"
-                        : row.value === "In Editing"
-                        ? " In Editing"
-                        : row.value === "In Client Review"
-                        ? " In Client Review"
-                        : row.value === "Ready for Post"
-                        ? " Ready for Post"
-                        : row.value === "Posted"
-                        ? " Posted"
-                        : row.value === "Not Posting"
-                        ? " Not Posting"
-                        : " Not Set"}
-                    </span>
+                    </Paragraph>
                   )
                 },
                 {
-                  Header: "Post Title",
-                  accessor: "postTitle"
+                  Header: <H5>POST TITLE</H5>,
+                  headerClassName: "table-subheader",
+                  accessor: "postTitle",
+                  Cell: cell => <Paragraph>{cell.value}</Paragraph>
                 },
                 {
-                  Header: "Post Date",
+                  Header: <H5>POST DATE</H5>,
+                  headerClassName: "table-subheader",
                   accessor: "postDate",
                   Cell: cell => (
-                    <div>{new Date(cell.value).toLocaleString()}</div>
+                    <div>
+                      <Paragraph>
+                        {new Date(cell.value).toLocaleString()}
+                      </Paragraph>
+                    </div>
                   )
                 },
+                // {
+                //   Header: <H5>QUESTION URL</H5>,
+                //   headerClassName: "table-subheader",
+                //   accessor: "questionUrl",
+                //   Cell: cell => (
+                //     <Paragraph>
+                //       <a href={cell.value}>{cell.value}</a>
+                //     </Paragraph>
+                //   )
+                // },
                 {
-                  Header: "Question URL",
-                  accessor: "questionUrl",
-                  Cell: cell => <a href={cell.value}>{cell.value}</a>
-                },
-                {
-                  Header: "Writer",
-                  accessor: "writer"
-                },
-                {
-                  Header: "Editor",
-                  accessor: "editor"
-                },
-                {
-                  Header: "LinkedIn URL",
-                  accessor: "linkedInUrl",
-                  Cell: cell => <a href={cell.value}>{cell.value}</a>
+                  Header: <H5>WRITER</H5>,
+                  headerClassName: "table-subheader",
+                  accessor: "writer",
+                  Cell: cell => <Paragraph>{cell.value}</Paragraph>
                 }
+                // {
+                //   Header: <H5>EDITOR</H5>,
+                //   headerClassName: "table-subheader",
+                //   accessor: "editor",
+                //   Cell: cell => <Paragraph>{cell.value}</Paragraph>
+                // }
+                // {
+                //   Header: <H5>LINKEDIN URL</H5>,
+                //   headerClassName: "table-subheader",
+                //   accessor: "linkedInUrl",
+                //   Cell: cell => (
+                //     <Paragraph>
+                //       <a href={cell.value}>{cell.value}</a>
+                //     </Paragraph>
+                //   )
+                // }
               ]
             }
           ]}
