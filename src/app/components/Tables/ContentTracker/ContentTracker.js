@@ -22,20 +22,26 @@ class ContentTracker extends Component {
 
   fetch = () => this.client.getEntries();
 
+  // setPosts = response => {
+  //   this.setState({
+  //     posts: response.items.map(item => item.fields)
+  //   });
+  // };
+
   setPosts = response => {
     this.setState({
-      posts: response.items.map(item => item.fields)
+      posts: response.items.map(item => item)
     });
   };
 
   render() {
     const { posts } = this.state;
-    // console.log(posts);
 
     const filterPosts = posts.filter(
-      post => post.clientName.fields !== undefined
+      post => post.fields.clientName.fields !== undefined
     );
 
+    console.log(posts);
     return (
       <div>
         <ReactTable
@@ -48,10 +54,14 @@ class ContentTracker extends Component {
                 {
                   Header: <H5>CLIENT</H5>,
                   headerClassName: "table-subheader",
-                  id: "clientName",
-                  accessor: "clientName.fields.clientName",
+                  id: "fields.clientName",
+                  accessor: "fields.clientName.fields.clientName",
                   Cell: cell => (
-                    <a href={`/clients/${cell.original.clientName.sys.id}`}>
+                    <a
+                      href={`/clients/${
+                        cell.original.fields.clientName.sys.id
+                      }`}
+                    >
                       <H4>{cell.value}</H4>
                     </a>
                   )
@@ -60,7 +70,7 @@ class ContentTracker extends Component {
                   Header: <H5>STATUS</H5>,
                   headerClassName: "table-subheader",
                   id: "status",
-                  accessor: "status",
+                  accessor: "fields.status",
                   Cell: row => (
                     <Paragraph>
                       <span>
@@ -108,9 +118,9 @@ class ContentTracker extends Component {
                 {
                   Header: <H5>POST TITLE</H5>,
                   headerClassName: "table-subheader",
-                  accessor: "postTitle",
+                  accessor: "fields.postTitle",
                   Cell: cell => (
-                    <a href={`/linkedin/${cell.original.path}`}>
+                    <a href={`/linkedin/${cell.original.sys.id}`}>
                       <Paragraph>{cell.value}</Paragraph>
                     </a>
                   )
@@ -118,7 +128,7 @@ class ContentTracker extends Component {
                 {
                   Header: <H5>POST DATE</H5>,
                   headerClassName: "table-subheader",
-                  accessor: "postDate",
+                  accessor: "fields.postDate",
                   Cell: cell => (
                     <div>
                       <Paragraph>
@@ -130,7 +140,7 @@ class ContentTracker extends Component {
                 {
                   Header: <H5>WRITER</H5>,
                   headerClassName: "table-subheader",
-                  accessor: "writer",
+                  accessor: "fields.writer",
                   Cell: cell => <Paragraph>{cell.value}</Paragraph>
                 }
               ]

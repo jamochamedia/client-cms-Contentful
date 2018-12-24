@@ -65,11 +65,11 @@ const ClientProfile = props => {
   const fetchProfile = async () => {
     const res = await client.getEntry(props.match.params.clientprofileid);
     setProfile(res);
-    // console.log(res);
+    console.log(res);
   };
 
   const { fields = {} } = profile;
-  // console.log(profile);
+  console.log(profile);
   return (
     <div>
       <div style={BackgroundHead}>

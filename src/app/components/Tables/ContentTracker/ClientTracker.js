@@ -8,33 +8,6 @@ import { client } from "../../../../utils/client";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-// componentWillReceiveProps(nextProps) {
-//   const { client_name } = nextProps;
-//   const newClientName = FilteredPosts(client_name);
-//   this.setState({
-//     clientName: newClientName,
-//   })
-// }
-
-// componentDidMount() {
-//   const (client_name) = this.props
-//     const newClientName = clientName
-// }
-
-// const FilteredPosts = clientName => {
-//   const post = filterUndef.filter(post => {
-//     if (post.clientName.fields.clientName === clientName) {
-//       return true;
-//     }
-//     return false;
-//   });
-
-//   if (post) {
-//     return post.clientName;
-//   }
-//   return post;
-// };
-
 //Create component
 class ClientTracker extends Component {
   state = {
@@ -173,3 +146,30 @@ class ClientTracker extends Component {
 }
 
 export default ClientTracker;
+
+// componentWillReceiveProps(nextProps) {
+//   const { client_name } = nextProps;
+//   const newClientName = FilteredPosts(client_name);
+//   this.setState({
+//     clientName: newClientName,
+//   })
+// }
+
+// componentDidMount() {
+//   const (client_name) = this.props
+//     const newClientName = clientName
+// }
+
+// const FilteredPosts = clientName => {
+//   const post = filterUndef.filter(post => {
+//     if (post.clientName.fields.clientName === clientName) {
+//       return true;
+//     }
+//     return false;
+//   });
+
+//   if (post) {
+//     return post.clientName;
+//   }
+//   return post;
+// };
