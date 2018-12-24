@@ -24,24 +24,24 @@ class ClientTracker extends Component {
 
   setPosts = response => {
     this.setState({
-      posts: response.items.map(item => item.fields)
+      posts: response.items.map(item => item)
     });
   };
 
-  render() {
+  render(props) {
     const { posts } = this.state;
 
-    //TODO FILTER FOR NAME
-    const filteredPosts = posts.filter(
+    //TODO: FILTER FOR NAME
+    const filterPosts = posts.filter(
       post =>
-        post.clientName.fields !== undefined &&
-        post.clientName.fields.clientName === "Shane Metcalf"
+        post.fields.clientName.fields !== undefined &&
+        post.fields.clientName.fields.clientName === "Shane Metcalf"
     );
 
     return (
       <div>
         <ReactTable
-          data={filteredPosts}
+          data={filterPosts}
           columns={[
             {
               Header: <H3>Client Content Tracker</H3>,
@@ -50,10 +50,14 @@ class ClientTracker extends Component {
                 {
                   Header: <H5>CLIENT</H5>,
                   headerClassName: "table-subheader",
-                  id: "clientName",
-                  accessor: "clientName.fields.clientName",
+                  id: "fields.clientName",
+                  accessor: "fields.clientName.fields.clientName",
                   Cell: cell => (
-                    <a href={`/clients/${cell.original.clientName.sys.id}`}>
+                    <a
+                      href={`/clients/${
+                        cell.original.fields.clientName.sys.id
+                      }`}
+                    >
                       <H4>{cell.value}</H4>
                     </a>
                   )
@@ -62,7 +66,7 @@ class ClientTracker extends Component {
                   Header: <H5>STATUS</H5>,
                   headerClassName: "table-subheader",
                   id: "status",
-                  accessor: "status",
+                  accessor: "fields.status",
                   Cell: row => (
                     <Paragraph>
                       <span>
@@ -110,9 +114,9 @@ class ClientTracker extends Component {
                 {
                   Header: <H5>POST TITLE</H5>,
                   headerClassName: "table-subheader",
-                  accessor: "postTitle",
+                  accessor: "fields.postTitle",
                   Cell: cell => (
-                    <a href={`/linkedin/${cell.original.path}`}>
+                    <a href={`/linkedin/${cell.original.sys.id}`}>
                       <Paragraph>{cell.value}</Paragraph>
                     </a>
                   )
@@ -120,7 +124,7 @@ class ClientTracker extends Component {
                 {
                   Header: <H5>POST DATE</H5>,
                   headerClassName: "table-subheader",
-                  accessor: "postDate",
+                  accessor: "fields.postDate",
                   Cell: cell => (
                     <div>
                       <Paragraph>
@@ -132,7 +136,7 @@ class ClientTracker extends Component {
                 {
                   Header: <H5>WRITER</H5>,
                   headerClassName: "table-subheader",
-                  accessor: "writer",
+                  accessor: "fields.writer",
                   Cell: cell => <Paragraph>{cell.value}</Paragraph>
                 }
               ]
@@ -146,30 +150,3 @@ class ClientTracker extends Component {
 }
 
 export default ClientTracker;
-
-// componentWillReceiveProps(nextProps) {
-//   const { client_name } = nextProps;
-//   const newClientName = FilteredPosts(client_name);
-//   this.setState({
-//     clientName: newClientName,
-//   })
-// }
-
-// componentDidMount() {
-//   const (client_name) = this.props
-//     const newClientName = clientName
-// }
-
-// const FilteredPosts = clientName => {
-//   const post = filterUndef.filter(post => {
-//     if (post.clientName.fields.clientName === clientName) {
-//       return true;
-//     }
-//     return false;
-//   });
-
-//   if (post) {
-//     return post.clientName;
-//   }
-//   return post;
-// };

@@ -65,11 +65,10 @@ const ClientProfile = props => {
   const fetchProfile = async () => {
     const res = await client.getEntry(props.match.params.clientprofileid);
     setProfile(res);
-    console.log(res);
   };
 
   const { fields = {} } = profile;
-
+  console.log(fields);
   return (
     <div>
       <div style={BackgroundHead}>
@@ -114,7 +113,8 @@ const ClientProfile = props => {
           <Row>
             <Col md="8">
               <TrackerContainer>
-                <ClientTracker />
+                {/* TODO: Add child props */}
+                <ClientTracker {...props} />
               </TrackerContainer>
             </Col>
             <Col md="2" />
