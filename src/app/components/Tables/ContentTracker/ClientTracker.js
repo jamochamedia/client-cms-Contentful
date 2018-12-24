@@ -57,8 +57,8 @@ class ClientTracker extends Component {
 
   render() {
     const { posts } = this.state;
-    // console.log(posts);
 
+    //TODO FILTER FOR NAME
     const filteredPosts = posts.filter(
       post =>
         post.clientName.fields !== undefined &&
