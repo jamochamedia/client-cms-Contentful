@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 
+import { Col, Row, Button } from "reactstrap";
+import styled from "styled-components";
+
+import { client } from "../../../utils/client";
+
 import { D3 } from "../../components/Typography/DisplayText";
 import { Paragraph } from "../../components/Typography/ParapgraphText";
 
@@ -8,11 +13,7 @@ import { DefaultCard, SecondaryCard } from "../../components/Cards/Stats";
 import ProfileCard from "../../components/Cards/ProfileCard";
 import Background from "../../img/profile-background.jpg";
 
-import { client } from "../../../utils/client";
-
-import { Col, Row, Button } from "reactstrap";
-import styled from "styled-components";
-
+//Styles
 const Container = styled.div`
   padding: 20px;
 `;
@@ -29,11 +30,13 @@ const BlockContainer = styled.div`
   width: 100%;
 `;
 
+//White text style
 const white = {
   color: "white"
 };
 
 const BackgroundHead = {
+  //Creates double color background effect
   background:
     "linear-gradient( to bottom, #292f36ad 100%, #292f36ad 100%), url(" +
     Background +
@@ -53,10 +56,11 @@ const ClientProfile = props => {
   const fetchProfile = async () => {
     const res = await client.getEntry(props.match.params.clientprofileid);
     setProfile(res);
+    // console.log(res);
   };
 
-  console.log(profile);
   const { fields = {} } = profile;
+  console.log(profile);
   return (
     <div>
       <div style={BackgroundHead}>

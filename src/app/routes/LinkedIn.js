@@ -1,22 +1,13 @@
 import React from "react";
-import { connect } from "react-redux";
-import * as contentful from "contentful";
 import LinkedInItem from "../routes/LinkedIn/LinkedInItem";
-
-//Contentful ID's
-const SPACE_ID = "le3jnclmcpxu";
-const ACCESS_TOKEN =
-  "995a6dca6f0f6cd6e2fdb805d631c96af1cda58513b55ba824668d8fdfa18966";
+import { client } from "../../utils/client";
 
 class LinkedIn extends React.Component {
   state = {
     posts: []
   };
 
-  client = contentful.createClient({
-    space: SPACE_ID,
-    accessToken: ACCESS_TOKEN
-  });
+  client = client;
 
   componentDidMount() {
     this.fetchPosts().then(this.setPosts);
@@ -37,25 +28,14 @@ class LinkedIn extends React.Component {
     return (
       <div>
         <p>LinkedIn Posts Page</p>
-        <br />
-        {this.props.content.loading ? (
-          <div>LOADING</div>
-        ) : (
-          <div>
-            {this.state.posts.map(({ fields }, i) => (
-              <LinkedInItem key={i} {...fields} />
-            ))}
-          </div>
-        )}
+        <div>
+          {this.state.posts.map(({ fields }, i) => (
+            <LinkedInItem key={i} {...fields} />
+          ))}
+        </div>
       </div>
     );
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  return {
-    content: state.content
-  };
-}
-
-export default connect(mapStateToProps)(LinkedIn);
+export default LinkedIn;

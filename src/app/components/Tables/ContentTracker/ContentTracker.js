@@ -1,17 +1,12 @@
 import React, { Component } from "react";
-import * as contentful from "contentful";
 import "../../../../App.css";
 import { H3, H4, H5 } from "../../Typography/HeaderText";
 import { Paragraph } from "../../Typography/ParapgraphText";
+import { client } from "../../../../utils/client";
 
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-
-//Contentful ID's
-const SPACE_ID = "le3jnclmcpxu";
-const ACCESS_TOKEN =
-  "995a6dca6f0f6cd6e2fdb805d631c96af1cda58513b55ba824668d8fdfa18966";
 
 //Create component
 class ContentTracker extends Component {
@@ -19,10 +14,7 @@ class ContentTracker extends Component {
     posts: []
   };
 
-  client = contentful.createClient({
-    space: SPACE_ID,
-    accessToken: ACCESS_TOKEN
-  });
+  client = client;
 
   componentDidMount() {
     this.fetch().then(this.setPosts);
@@ -117,7 +109,11 @@ class ContentTracker extends Component {
                   Header: <H5>POST TITLE</H5>,
                   headerClassName: "table-subheader",
                   accessor: "postTitle",
-                  Cell: cell => <Paragraph>{cell.value}</Paragraph>
+                  Cell: cell => (
+                    <a href={`/linkedin/${cell.original.path}`}>
+                      <Paragraph>{cell.value}</Paragraph>
+                    </a>
+                  )
                 },
                 {
                   Header: <H5>POST DATE</H5>,
@@ -131,38 +127,12 @@ class ContentTracker extends Component {
                     </div>
                   )
                 },
-                // {
-                //   Header: <H5>QUESTION URL</H5>,
-                //   headerClassName: "table-subheader",
-                //   accessor: "questionUrl",
-                //   Cell: cell => (
-                //     <Paragraph>
-                //       <a href={cell.value}>{cell.value}</a>
-                //     </Paragraph>
-                //   )
-                // },
                 {
                   Header: <H5>WRITER</H5>,
                   headerClassName: "table-subheader",
                   accessor: "writer",
                   Cell: cell => <Paragraph>{cell.value}</Paragraph>
                 }
-                // {
-                //   Header: <H5>EDITOR</H5>,
-                //   headerClassName: "table-subheader",
-                //   accessor: "editor",
-                //   Cell: cell => <Paragraph>{cell.value}</Paragraph>
-                // }
-                // {
-                //   Header: <H5>LINKEDIN URL</H5>,
-                //   headerClassName: "table-subheader",
-                //   accessor: "linkedInUrl",
-                //   Cell: cell => (
-                //     <Paragraph>
-                //       <a href={cell.value}>{cell.value}</a>
-                //     </Paragraph>
-                //   )
-                // }
               ]
             }
           ]}
