@@ -25,12 +25,14 @@ class LinkedIn extends React.Component {
   };
 
   render() {
+    const { posts } = this.state;
+    console.log(posts);
     return (
       <div>
         <p>LinkedIn Posts Page</p>
         <div>
-          {this.state.posts.map(({ fields }, i) => (
-            <LinkedInItem key={i} {...fields} />
+          {posts.map((posts, i) => (
+            <LinkedInItem key={i} {...posts} />
           ))}
         </div>
       </div>

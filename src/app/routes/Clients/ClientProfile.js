@@ -69,7 +69,7 @@ const ClientProfile = props => {
   };
 
   const { fields = {} } = profile;
-  console.log(profile);
+
   return (
     <div>
       <div style={BackgroundHead}>

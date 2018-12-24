@@ -22,12 +22,6 @@ class ContentTracker extends Component {
 
   fetch = () => this.client.getEntries();
 
-  // setPosts = response => {
-  //   this.setState({
-  //     posts: response.items.map(item => item.fields)
-  //   });
-  // };
-
   setPosts = response => {
     this.setState({
       posts: response.items.map(item => item)
@@ -41,7 +35,6 @@ class ContentTracker extends Component {
       post => post.fields.clientName.fields !== undefined
     );
 
-    console.log(posts);
     return (
       <div>
         <ReactTable
