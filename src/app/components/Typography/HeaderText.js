@@ -31,7 +31,7 @@ export const H3 = styled.h3`
 
 export const H4 = styled.h4`
   color: #292f36;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 600;
   text-align: ${props => props.textAlign};
   line-height: 1.5;

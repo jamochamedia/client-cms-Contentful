@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import * as Markdown from "react-markdown";
 import { withRouter } from "react-router-dom";
 
 import { D3 } from "../../components/Typography/DisplayText";
 import { Paragraph } from "../../components/Typography/ParapgraphText";
+
+import { DefaultCard, SecondaryCard } from "../../components/Cards/Stats";
+import ProfileCard from "../../components/Cards/ProfileCard";
 import Background from "../../img/profile-background.jpg";
 
 import { client } from "../../../utils/client";
@@ -19,6 +21,14 @@ const Header = styled.div`
   padding: 3%;
 `;
 
+const BlockContainer = styled.div`
+  margin-top: 20px;
+  padding-left: 3%;
+  position: relative;
+  float: left;
+  width: 100%;
+`;
+
 const white = {
   color: "white"
 };
@@ -29,7 +39,8 @@ const BackgroundHead = {
     Background +
     ")",
   backgroundSize: "cover",
-  backgroundPosition: "center"
+  backgroundPosition: "center",
+  minHeight: "275px"
 };
 
 const ClientProfile = props => {
@@ -52,38 +63,45 @@ const ClientProfile = props => {
         <Container>
           <Header>
             <D3 style={white}>{fields.clientName}</D3>
-            <Button href={`${fields.linkedInUrl}`}>Go To Profile</Button>
+            <Button href={`${fields.linkedInUrl}`}>
+              Go To LinkedIn Profile
+            </Button>
           </Header>
+          <Row>
+            <Col sm="12" lg="4">
+              <BlockContainer>
+                <DefaultCard />
+              </BlockContainer>
+            </Col>
+            <Col sm="12" lg="4">
+              <BlockContainer>
+                <SecondaryCard />
+              </BlockContainer>
+            </Col>
+            <Col sm="12" lg="4">
+              <BlockContainer>
+                <ProfileCard
+                  role={fields.clientRole}
+                  company={fields.companyName}
+                  description={
+                    fields.clientDescription
+                      ? fields.clientDescription
+                      : "No Description Available"
+                  }
+                />
+              </BlockContainer>
+            </Col>
+          </Row>
         </Container>
       </div>
       <Container>
         <Row>
           <Col md="9">
             <Paragraph>
-              <b>Role:</b> {fields.clientRole}
-            </Paragraph>
-            <Paragraph>
-              <b>Company Name:</b> {fields.companyName}
-            </Paragraph>
-            <Paragraph>
-              <b>Profile URL: </b>
-              <a href={`${fields.linkedInUrl}`}>{fields.linkedInUrl}</a>
-            </Paragraph>
-            <Paragraph>
               <b>Profile Re-Write: </b> <br />
               <a href={`${fields.profileAuditLink}`}>
                 {fields.profileAuditLink}
               </a>
-            </Paragraph>
-            <Paragraph>
-              <b>Description:</b> <br />
-              <Markdown
-                source={
-                  fields.clientDescription
-                    ? fields.clientDescription
-                    : "No Description Available"
-                }
-              />
             </Paragraph>
           </Col>
           <Col md="3" />
