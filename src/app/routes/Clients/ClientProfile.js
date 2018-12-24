@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 
-import { Col, Row, Button } from "reactstrap";
-import styled from "styled-components";
-
 import { client } from "../../../utils/client";
 
-import { D3 } from "../../components/Typography/DisplayText";
-import { Paragraph } from "../../components/Typography/ParapgraphText";
+import styled from "styled-components";
+import { Col, Row, Button } from "reactstrap";
 
+import { D3 } from "../../components/Typography/DisplayText";
 import { DefaultCard, SecondaryCard } from "../../components/Cards/Stats";
 import ProfileCard from "../../components/Cards/ProfileCard";
+import ClientTracker from "../../components/Tables/ContentTracker/ClientTracker";
 import Background from "../../img/profile-background.jpg";
 
 //Styles
 const Container = styled.div`
   padding: 20px;
+`;
+
+const Content = styled.div`
+  margin-left: 3%;
 `;
 
 const Header = styled.div`
@@ -24,7 +27,13 @@ const Header = styled.div`
 
 const BlockContainer = styled.div`
   margin-top: 20px;
-  padding-left: 3%;
+  position: relative;
+  float: left;
+  width: 100%;
+`;
+
+const TrackerContainer = styled.div`
+  margin-top: 50px;
   position: relative;
   float: left;
   width: 100%;
@@ -60,7 +69,7 @@ const ClientProfile = props => {
   };
 
   const { fields = {} } = profile;
-  console.log(profile);
+  // console.log(profile);
   return (
     <div>
       <div style={BackgroundHead}>
@@ -71,45 +80,46 @@ const ClientProfile = props => {
               Go To LinkedIn Profile
             </Button>
           </Header>
-          <Row>
-            <Col sm="12" lg="4">
-              <BlockContainer>
-                <DefaultCard />
-              </BlockContainer>
-            </Col>
-            <Col sm="12" lg="4">
-              <BlockContainer>
-                <SecondaryCard />
-              </BlockContainer>
-            </Col>
-            <Col sm="12" lg="4">
-              <BlockContainer>
-                <ProfileCard
-                  role={fields.clientRole}
-                  company={fields.companyName}
-                  description={
-                    fields.clientDescription
-                      ? fields.clientDescription
-                      : "No Description Available"
-                  }
-                />
-              </BlockContainer>
-            </Col>
-          </Row>
+          <Content>
+            <Row>
+              <Col sm="6" lg="4">
+                <BlockContainer>
+                  <DefaultCard />
+                </BlockContainer>
+              </Col>
+              <Col sm="6" lg="4">
+                <BlockContainer>
+                  <SecondaryCard />
+                </BlockContainer>
+              </Col>
+              <Col sm="12" lg="4">
+                <BlockContainer>
+                  <ProfileCard
+                    role={fields.clientRole}
+                    company={fields.companyName}
+                    description={
+                      fields.clientDescription
+                        ? fields.clientDescription
+                        : "No Description Available"
+                    }
+                  />
+                </BlockContainer>
+              </Col>
+            </Row>
+          </Content>
         </Container>
       </div>
       <Container>
-        <Row>
-          <Col md="9">
-            <Paragraph>
-              <b>Profile Re-Write: </b> <br />
-              <a href={`${fields.profileAuditLink}`}>
-                {fields.profileAuditLink}
-              </a>
-            </Paragraph>
-          </Col>
-          <Col md="3" />
-        </Row>
+        <Content>
+          <Row>
+            <Col md="8">
+              <TrackerContainer>
+                <ClientTracker />
+              </TrackerContainer>
+            </Col>
+            <Col md="2" />
+          </Row>
+        </Content>
       </Container>
     </div>
   );

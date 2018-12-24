@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
-import * as Markdown from "react-markdown";
+// import React, { useState, useEffect } from "react";
+// import { withRouter } from "react-router-dom";
+// import * as Markdown from "react-markdown";
 
-import { client } from "../../../utils/client";
+// import { client } from "../../../utils/client";
 
 // const LinkedInPost = props => {
 //   const [post, setPost] = useState({});
@@ -33,6 +33,8 @@ import { client } from "../../../utils/client";
 // export default withRouter(LinkedInPost);
 
 //Blog page without Hooks
+
+import React from "react";
 
 const LinkedInPost = ({
   location: {

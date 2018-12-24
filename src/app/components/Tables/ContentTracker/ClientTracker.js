@@ -8,8 +8,35 @@ import { client } from "../../../../utils/client";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
+// componentWillReceiveProps(nextProps) {
+//   const { client_name } = nextProps;
+//   const newClientName = FilteredPosts(client_name);
+//   this.setState({
+//     clientName: newClientName,
+//   })
+// }
+
+// componentDidMount() {
+//   const (client_name) = this.props
+//     const newClientName = clientName
+// }
+
+// const FilteredPosts = clientName => {
+//   const post = filterUndef.filter(post => {
+//     if (post.clientName.fields.clientName === clientName) {
+//       return true;
+//     }
+//     return false;
+//   });
+
+//   if (post) {
+//     return post.clientName;
+//   }
+//   return post;
+// };
+
 //Create component
-class ContentTracker extends Component {
+class ClientTracker extends Component {
   state = {
     posts: []
   };
@@ -32,14 +59,16 @@ class ContentTracker extends Component {
     const { posts } = this.state;
     // console.log(posts);
 
-    const filterPosts = posts.filter(
-      post => post.clientName.fields !== undefined
+    const filteredPosts = posts.filter(
+      post =>
+        post.clientName.fields !== undefined &&
+        post.clientName.fields.clientName === "Shane Metcalf"
     );
 
     return (
       <div>
         <ReactTable
-          data={filterPosts}
+          data={filteredPosts}
           columns={[
             {
               Header: <H3>Client Content Tracker</H3>,
@@ -143,4 +172,4 @@ class ContentTracker extends Component {
   }
 }
 
-export default ContentTracker;
+export default ClientTracker;
