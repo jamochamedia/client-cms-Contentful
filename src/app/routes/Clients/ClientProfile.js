@@ -53,28 +53,17 @@ const BackgroundHead = {
 
 const ClientProfile = props => {
   const [profile, setProfile] = useState({});
-  // const [image, setProImage] = useState({});
 
   useEffect(() => {
     fetchProfile();
   }, {});
-
-  // useEffect(() => {
-  //   fetchImage();
-  // }, {});
 
   const fetchProfile = async () => {
     const res = await client.getEntry(props.match.params.clientprofileid);
     setProfile(res);
   };
 
-  // const fetchImage = async () => {
-  //   const imgRes = await client.getAsset(props.match.params.clientprofileid);
-  //   setProImage(imgRes);
-  // };
-
   const { fields = {} } = profile;
-  // console.log(image);
   return (
     <div>
       <div style={BackgroundHead}>

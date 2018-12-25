@@ -26,6 +26,7 @@ class Clients extends React.Component {
     });
   };
 
+  //Fetch all client profile images
   fetchImages = () => this.client.getAssets();
 
   setImages = response => {
@@ -36,8 +37,6 @@ class Clients extends React.Component {
 
   render() {
     const { clients } = this.state;
-    const { images } = this.state;
-    console.log(images);
     return (
       <div>
         <p>Our Clients</p>
