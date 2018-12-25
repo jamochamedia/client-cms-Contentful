@@ -1,5 +1,6 @@
 import React from "react";
-import { Container, Row, NavbarBrand, Navbar, NavLink } from "reactstrap";
+//Todo add NavLink when ready
+import { Container, Row, NavbarBrand, Navbar } from "reactstrap";
 
 const textStyle = {
   color: "white",
@@ -32,14 +33,8 @@ class Header extends React.Component {
         <Container fluid>
           <Row noGutters>
             <NavbarBrand style={textStyle} href="/">
-              Jamocha Writer Home
+              Jamocha Content
             </NavbarBrand>
-            <NavLink style={textStyle} href="">
-              Write
-            </NavLink>
-            <NavLink style={textStyle} href="#">
-              Analytics
-            </NavLink>
           </Row>
         </Container>
       </Navbar>

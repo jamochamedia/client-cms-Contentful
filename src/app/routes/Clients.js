@@ -4,13 +4,15 @@ import { client } from "../../utils/client";
 
 class Clients extends React.Component {
   state = {
-    clients: []
+    clients: [],
+    images: []
   };
 
   client = client;
 
   componentDidMount() {
     this.fetchPosts().then(this.setPosts);
+    this.fetchImages().then(this.setImages);
   }
 
   fetchPosts = () =>
@@ -24,7 +26,16 @@ class Clients extends React.Component {
     });
   };
 
+  fetchImages = () => this.client.getAssets();
+
+  setImages = response => {
+    this.setState({
+      images: response.items
+    });
+  };
+
   render() {
+    console.log(this.state.images);
     return (
       <div>
         <p>Our Clients</p>
