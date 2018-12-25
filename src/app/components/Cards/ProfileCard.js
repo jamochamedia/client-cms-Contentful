@@ -4,7 +4,7 @@ import { H3, H4 } from "../../components/Typography/HeaderText";
 import { Paragraph } from "../Typography/ParapgraphText";
 
 const ProfileContainer = styled.div`
-  width: 90%;
+  width: 100%;
   min-height: 375px;
   background: linear-gradient(
     to bottom,
@@ -14,7 +14,6 @@ const ProfileContainer = styled.div`
     #fff 50%,
     #fff 100%
   );
-  position: absolute;
   border-radius: 0.375rem;
   box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
   padding-top: 20px;
@@ -31,7 +30,7 @@ const ProfileImage = styled.div`
 `;
 
 const TextContainer = styled.div`
-  padding: 7px 30px 0 30px;
+  padding: 10px 30px 15px 30px;
 `;
 
 const DescriptionContainer = styled.div`

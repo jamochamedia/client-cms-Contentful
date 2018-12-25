@@ -9,7 +9,7 @@ body {
 .table-header {
   background-color: white;
   text-align: left;
-  padding: 15px !important;
+  padding: 20px !important;
 }
 
 .table-subheader {
@@ -18,7 +18,7 @@ body {
   color: #292f36e8;
   border: none !important;
   text-align: left;
-  padding: 10px 0 10px 15px !important;
+  padding: 10px 0 10px 20px !important;
 }
 
 .ReactTable .rt-thead.-header {
@@ -39,7 +39,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 15px;
+  padding: 15px 15px 15px 20px;
   background: white;
 }
 

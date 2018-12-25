@@ -7,7 +7,6 @@ import styled from "styled-components";
 import { Col, Row, Button } from "reactstrap";
 
 import { D3 } from "../../components/Typography/DisplayText";
-import { DefaultCard, SecondaryCard } from "../../components/Cards/Stats";
 import ProfileCard from "../../components/Cards/ProfileCard";
 import ClientTracker from "../../components/Tables/ContentTracker/ClientTracker";
 import Background from "../../img/profile-background.jpg";
@@ -19,6 +18,7 @@ const Container = styled.div`
 
 const Content = styled.div`
   margin-left: 3%;
+  margin-right: 3%;
 `;
 
 const Header = styled.div`
@@ -27,25 +27,21 @@ const Header = styled.div`
 
 const BlockContainer = styled.div`
   margin-top: 20px;
-  position: relative;
   float: left;
   width: 100%;
 `;
 
 const TrackerContainer = styled.div`
-  margin-top: 50px;
-  position: relative;
+  margin-top: 20px;
   float: left;
   width: 100%;
 `;
 
-//White text style
 const white = {
   color: "white"
 };
 
 const BackgroundHead = {
-  //Creates double color background effect
   background:
     "linear-gradient( to bottom, #292f36ad 100%, #292f36ad 100%), url(" +
     Background +
@@ -79,44 +75,29 @@ const ClientProfile = props => {
               Go To LinkedIn Profile
             </Button>
           </Header>
-          <Content>
-            <Row>
-              <Col sm="6" lg="4">
-                <BlockContainer>
-                  <DefaultCard />
-                </BlockContainer>
-              </Col>
-              <Col sm="6" lg="4">
-                <BlockContainer>
-                  <SecondaryCard />
-                </BlockContainer>
-              </Col>
-              <Col sm="12" lg="4">
-                <BlockContainer>
-                  <ProfileCard
-                    role={fields.clientRole}
-                    company={fields.companyName}
-                    description={
-                      fields.clientDescription
-                        ? fields.clientDescription
-                        : "No Description Available"
-                    }
-                  />
-                </BlockContainer>
-              </Col>
-            </Row>
-          </Content>
         </Container>
       </div>
       <Container>
         <Content>
           <Row>
-            <Col md="8">
+            <Col lg="4" md="6" sm="12">
+              <BlockContainer>
+                <ProfileCard
+                  role={fields.clientRole}
+                  company={fields.companyName}
+                  description={
+                    fields.clientDescription
+                      ? fields.clientDescription
+                      : "No Description Available"
+                  }
+                />
+              </BlockContainer>
+            </Col>
+            <Col lg="8" md="6" sm="12">
               <TrackerContainer>
                 <ClientTracker clientName={fields.clientName} />
               </TrackerContainer>
             </Col>
-            <Col md="2" />
           </Row>
         </Content>
       </Container>
