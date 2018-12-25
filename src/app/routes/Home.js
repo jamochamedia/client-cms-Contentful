@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import ContentTracker from "../components/Tables/ContentTracker/ContentTracker";
 import styled from "styled-components";
 
+import { H2 } from "../components/Typography/HeaderText";
+
 const ContentWrapper = styled.div`
   padding: 20px;
 `;
@@ -17,12 +19,17 @@ const BgPrimary = styled.div`
   );
 `;
 
+const white = {
+  color: "white"
+};
+
 class Home extends Component {
   render() {
     return (
       <div>
         <BgPrimary>
           <ContentWrapper>
+            <H2 style={white}>Content Home</H2>
             <ContentTracker />
           </ContentWrapper>
         </BgPrimary>

@@ -8,6 +8,10 @@ import { client } from "../../../../utils/client";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
+const Green = {
+  color: "#508991"
+};
+
 //Create component
 class ClientTracker extends Component {
   state = {
@@ -52,8 +56,10 @@ class ClientTracker extends Component {
                   headerClassName: "table-subheader",
                   accessor: "fields.postTitle",
                   Cell: cell => (
-                    <a href={`/linkedin/${cell.original.sys.id}`}>
-                      <Paragraph>{cell.value}</Paragraph>
+                    <a style={Green} href={`/linkedin/${cell.original.sys.id}`}>
+                      <Paragraph>
+                        <b>{cell.value}</b>
+                      </Paragraph>
                     </a>
                   )
                 },
