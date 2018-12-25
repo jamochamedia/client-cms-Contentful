@@ -26,7 +26,6 @@ class LinkedIn extends React.Component {
 
   render() {
     const { posts } = this.state;
-    console.log(posts);
     return (
       <div>
         <p>LinkedIn Posts Page</p>

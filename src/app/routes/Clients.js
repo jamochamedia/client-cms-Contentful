@@ -35,12 +35,14 @@ class Clients extends React.Component {
   };
 
   render() {
-    console.log(this.state.images);
+    const { clients } = this.state;
+    const { images } = this.state;
+    console.log(images);
     return (
       <div>
         <p>Our Clients</p>
-        {this.state.clients.map(({ fields }, i) => (
-          <ClientItem key={i} {...fields} />
+        {clients.map((clients, i) => (
+          <ClientItem key={i} {...clients} />
         ))}
         <br />
       </div>
