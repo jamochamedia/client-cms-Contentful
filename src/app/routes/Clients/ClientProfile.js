@@ -68,7 +68,7 @@ const ClientProfile = props => {
   };
 
   const { fields = {} } = profile;
-  console.log(fields);
+
   return (
     <div>
       <div style={BackgroundHead}>
@@ -113,7 +113,6 @@ const ClientProfile = props => {
           <Row>
             <Col md="8">
               <TrackerContainer>
-                {/* TODO: Add child props */}
                 <ClientTracker clientName={fields.clientName} />
               </TrackerContainer>
             </Col>
