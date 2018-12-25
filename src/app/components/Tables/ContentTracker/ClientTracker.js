@@ -37,27 +37,23 @@ class ClientTracker extends Component {
         post.fields.clientName.fields.clientName === this.props.clientName
     );
 
+    console.log(filterPosts);
     return (
       <div>
         <ReactTable
           data={filterPosts}
           columns={[
             {
-              Header: <H3>Client Content Tracker</H3>,
+              Header: <H3>Content Tracker</H3>,
               headerClassName: "table-header",
               columns: [
                 {
-                  Header: <H5>CLIENT</H5>,
+                  Header: <H5>POST TITLE</H5>,
                   headerClassName: "table-subheader",
-                  id: "fields.clientName",
-                  accessor: "fields.clientName.fields.clientName",
+                  accessor: "fields.postTitle",
                   Cell: cell => (
-                    <a
-                      href={`/clients/${
-                        cell.original.fields.clientName.sys.id
-                      }`}
-                    >
-                      <H4>{cell.value}</H4>
+                    <a href={`/linkedin/${cell.original.sys.id}`}>
+                      <Paragraph>{cell.value}</Paragraph>
                     </a>
                   )
                 },
@@ -111,16 +107,6 @@ class ClientTracker extends Component {
                   )
                 },
                 {
-                  Header: <H5>POST TITLE</H5>,
-                  headerClassName: "table-subheader",
-                  accessor: "fields.postTitle",
-                  Cell: cell => (
-                    <a href={`/linkedin/${cell.original.sys.id}`}>
-                      <Paragraph>{cell.value}</Paragraph>
-                    </a>
-                  )
-                },
-                {
                   Header: <H5>POST DATE</H5>,
                   headerClassName: "table-subheader",
                   accessor: "fields.postDate",
@@ -136,6 +122,12 @@ class ClientTracker extends Component {
                   Header: <H5>WRITER</H5>,
                   headerClassName: "table-subheader",
                   accessor: "fields.writer",
+                  Cell: cell => <Paragraph>{cell.value}</Paragraph>
+                },
+                {
+                  Header: <H5>Editor</H5>,
+                  headerClassName: "table-subheader",
+                  accessor: "fields.editor",
                   Cell: cell => <Paragraph>{cell.value}</Paragraph>
                 }
               ]
