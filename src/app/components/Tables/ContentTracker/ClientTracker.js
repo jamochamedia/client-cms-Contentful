@@ -35,7 +35,7 @@ class ClientTracker extends Component {
     const filterPosts = posts.filter(
       post =>
         post.fields.clientName.fields !== undefined &&
-        post.fields.clientName.fields.clientName === "Shane Metcalf"
+        post.fields.clientName.fields.clientName === this.props.clientName
     );
 
     return (

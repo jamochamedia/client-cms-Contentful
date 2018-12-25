@@ -114,7 +114,7 @@ const ClientProfile = props => {
             <Col md="8">
               <TrackerContainer>
                 {/* TODO: Add child props */}
-                <ClientTracker {...props} />
+                <ClientTracker clientName={fields.clientName} />
               </TrackerContainer>
             </Col>
             <Col md="2" />
