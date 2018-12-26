@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import { D2 } from "../../components/Typography/DisplayText";
-import { H3, H4 } from "../../components/Typography/HeaderText";
+import { H3 } from "../../components/Typography/HeaderText";
 import { Paragraph } from "../Typography/ParapgraphText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -18,7 +18,7 @@ const ProfileContainer = styled.div`
   );
   border-radius: 0.375rem;
   box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
-  padding-top: 20px;
+  padding-top: 30px;
   text-align: center;
 `;
 
@@ -33,11 +33,12 @@ const ProfileImage = styled.div`
 `;
 
 const TextContainer = styled.div`
+  margin-top: 15px;
   padding: 10px 30px 15px 30px;
 `;
 
 const DescriptionContainer = styled.div`
-  margin-top: 40px;
+  margin-top: 50px;
 `;
 
 const white = {
@@ -55,7 +56,6 @@ function ProfileCard(props) {
         </ProfileImage>
         <TextContainer>
           <H3 style={white}>{props.role}</H3>
-          <H4 style={white}>{props.company}</H4>
           <DescriptionContainer>
             <Paragraph>{props.description}</Paragraph>
           </DescriptionContainer>

@@ -7,13 +7,14 @@ import styled from "styled-components";
 import { Col, Row, Button } from "reactstrap";
 
 import { D3 } from "../../components/Typography/DisplayText";
+import { H3 } from "../../components/Typography/HeaderText";
 import ProfileCard from "../../components/Cards/ProfileCard";
 import ClientTracker from "../../components/Tables/ContentTracker/ClientTracker";
 import Background from "../../img/profile-background.jpg";
 
 //Styles
 const Container = styled.div`
-  padding: 20px;
+  padding: 20px 20px 30px 20px;
 `;
 
 const Content = styled.div`
@@ -22,7 +23,7 @@ const Content = styled.div`
 `;
 
 const Header = styled.div`
-  padding: 3%;
+  padding: 4% 3% 3% 3%;
 `;
 
 const BlockContainer = styled.div`
@@ -41,6 +42,25 @@ const white = {
   color: "white"
 };
 
+const linkedIn = {
+  backgroundColor: "#75dddd",
+  marginBottom: "20px",
+  width: "100%",
+  backgroundColor: "#292f36",
+  color: "white",
+  border: "none",
+  boxShadow: "0 0 2rem 0 rgba(136, 152, 170, 0.15)"
+};
+
+const invoice = {
+  marginBottom: "20px",
+  width: "100%",
+  backgroundColor: "#0ad198",
+  color: "#292f36",
+  border: "none",
+  boxShadow: "0 0 2rem 0 rgba(136, 152, 170, 0.15)"
+};
+
 const BackgroundHead = {
   background:
     "linear-gradient( to bottom, #292f36ad 100%, #292f36ad 100%), url(" +
@@ -48,7 +68,7 @@ const BackgroundHead = {
     ")",
   backgroundSize: "cover",
   backgroundPosition: "center",
-  minHeight: "275px"
+  minHeight: "210px"
 };
 
 const ClientProfile = props => {
@@ -64,15 +84,14 @@ const ClientProfile = props => {
   };
 
   const { fields = {} } = profile;
+  console.log(fields);
   return (
     <div>
       <div style={BackgroundHead}>
         <Container>
           <Header>
             <D3 style={white}>{fields.clientName}</D3>
-            <Button href={`${fields.linkedInUrl}`}>
-              Go To LinkedIn Profile
-            </Button>
+            <H3 style={white}>{fields.companyName}</H3>
           </Header>
         </Container>
       </div>
@@ -81,8 +100,17 @@ const ClientProfile = props => {
           <Row>
             <Col lg="4" md="6" sm="12">
               <BlockContainer>
+                <Row>
+                  <Col>
+                    <Button style={invoice}>Invoices</Button>
+                  </Col>
+                  <Col>
+                    <Button style={linkedIn} href={`${fields.linkedInUrl}`}>
+                      LinkedIn Profile
+                    </Button>
+                  </Col>
+                </Row>
                 <ProfileCard
-                  // profileImage={fields.profileImage}
                   role={fields.clientRole}
                   company={fields.companyName}
                   description={

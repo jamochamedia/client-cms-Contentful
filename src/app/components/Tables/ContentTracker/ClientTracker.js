@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../../../App.css";
-import { H3, H4, H5 } from "../../Typography/HeaderText";
+import { H3, H5 } from "../../Typography/HeaderText";
 import { Paragraph } from "../../Typography/ParapgraphText";
 import { client } from "../../../../utils/client";
 
@@ -8,8 +8,8 @@ import { client } from "../../../../utils/client";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-const Green = {
-  color: "#508991"
+const Post = {
+  color: "#292f36"
 };
 
 //Create component
@@ -56,7 +56,7 @@ class ClientTracker extends Component {
                   headerClassName: "table-subheader",
                   accessor: "fields.postTitle",
                   Cell: cell => (
-                    <a style={Green} href={`/linkedin/${cell.original.sys.id}`}>
+                    <a style={Post} href={`/linkedin/${cell.original.sys.id}`}>
                       <Paragraph>
                         <b>{cell.value}</b>
                       </Paragraph>
