@@ -43,7 +43,6 @@ const white = {
 };
 
 const linkedIn = {
-  backgroundColor: "#75dddd",
   marginBottom: "20px",
   width: "100%",
   backgroundColor: "#292f36",
