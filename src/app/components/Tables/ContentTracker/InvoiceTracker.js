@@ -93,6 +93,39 @@ class InvoiceTracker extends Component {
                       <Paragraph>{cell.value}</Paragraph>
                     </div>
                   )
+                },
+                {
+                  Header: <H5>STATUS</H5>,
+                  headerClassName: "table-subheader",
+                  id: "status",
+                  accessor: "fields.status",
+                  Cell: cell => (
+                    <Paragraph>
+                      <span>
+                        <span
+                          style={{
+                            color:
+                              cell.value === "Paid"
+                                ? "#ff9900"
+                                : cell.value === "Not Paid"
+                                ? "#00db62"
+                                : cell.value === "Late"
+                                ? "#e03404"
+                                : "#5a5f66"
+                          }}
+                        >
+                          &#x25C9;
+                        </span>
+                        {cell.value === "Paid"
+                          ? " Paid"
+                          : cell.value === "Not Paid"
+                          ? " Not Paid"
+                          : cell.value === "Late"
+                          ? " Late"
+                          : " Not Set"}
+                      </span>
+                    </Paragraph>
+                  )
                 }
               ]
             }
