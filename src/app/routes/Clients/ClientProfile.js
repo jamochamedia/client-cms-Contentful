@@ -11,6 +11,7 @@ import { H3 } from "../../components/Typography/HeaderText";
 import ProfileCard from "../../components/Cards/ProfileCard";
 import ClientTracker from "../../components/Tables/ContentTracker/ClientTracker";
 import Background from "../../img/profile-background.jpg";
+import InvoiceTracker from "../../components/Tables/ContentTracker/InvoiceTracker";
 
 //Styles
 const Container = styled.div`
@@ -83,7 +84,8 @@ const ClientProfile = props => {
   };
 
   const { fields = {} } = profile;
-  console.log(fields);
+
+  console.log(profile);
   return (
     <div>
       <div style={BackgroundHead}>
@@ -101,7 +103,9 @@ const ClientProfile = props => {
               <BlockContainer>
                 <Row>
                   <Col>
-                    <Button style={invoice}>Invoices</Button>
+                    <Button style={invoice} href={`#`}>
+                      Invoices
+                    </Button>
                   </Col>
                   <Col>
                     <Button style={linkedIn} href={`${fields.linkedInUrl}`}>
@@ -123,6 +127,7 @@ const ClientProfile = props => {
             <Col lg="8" md="6" sm="12">
               <TrackerContainer>
                 <ClientTracker clientName={fields.clientName} />
+                <InvoiceTracker clientName={fields.clientName} />
               </TrackerContainer>
             </Col>
           </Row>

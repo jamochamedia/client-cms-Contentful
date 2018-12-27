@@ -24,7 +24,10 @@ class ClientTracker extends Component {
     this.fetch().then(this.setPosts);
   }
 
-  fetch = () => this.client.getEntries();
+  fetch = () =>
+    this.client.getEntries({
+      content_type: "linkedInTextPost"
+    });
 
   setPosts = response => {
     this.setState({
@@ -41,7 +44,6 @@ class ClientTracker extends Component {
         post.fields.clientName.fields.clientName === this.props.clientName
     );
 
-    console.log(filterPosts);
     return (
       <div>
         <ReactTable

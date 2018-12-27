@@ -18,7 +18,11 @@ const InvoicePage = props => {
   console.log(invoice);
   return (
     <div>
-      <div>Invoice Page</div>
+      <p>{invoice.invoiceId}</p>
+      <h3>Subject: {invoice.subject}</h3>
+      <h3>{invoice.clientName}</h3>
+      <h6>Due: {invoice.dueDate}</h6>
+      <h6>Issued: {invoice.issueDate}</h6>
     </div>
   );
 };
