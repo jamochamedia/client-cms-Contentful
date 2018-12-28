@@ -17,6 +17,7 @@ const Router = () => (
     <Route exact path="/clients/:clientprofileid" component={ClientProfile} />
     <Route exact path="/invoices" component={Invoices} />
     <Route exact path="/invoices/:invoiceid" component={InvoicePage} />
+    <Route exact path="/client-invoices/:invoiceid" component={InvoicePage} />
   </Switch>
 );
 

@@ -43,6 +43,8 @@ class InvoiceTracker extends Component {
         invoice.fields.client.fields.clientName === this.props.clientName
     );
 
+    console.log(filterInvoices);
+
     return (
       <div className="Tracker">
         <ReactTable
@@ -58,8 +60,13 @@ class InvoiceTracker extends Component {
                   accessor: "fields.invoiceId",
                   Cell: cell => (
                     //TODO Link to invoice page
-                    <a style={Invoice} href={"http://localhost:3000/invoices"}>
-                      <Paragraph>{cell.value}</Paragraph>
+                    <a
+                      style={Invoice}
+                      href={`/client-invoices/${cell.original.sys.id}`}
+                    >
+                      <Paragraph>
+                        <b>{cell.value}</b>
+                      </Paragraph>
                     </a>
                   )
                 },

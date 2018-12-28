@@ -101,8 +101,6 @@ const ClientProfile = props => {
     tracker = <ClientTracker clientName={fields.clientName} />;
   }
 
-  console.log(displayInvoiceTracker);
-
   return (
     <div>
       <div style={BackgroundHead}>
@@ -121,7 +119,7 @@ const ClientProfile = props => {
                 <Row>
                   <Col>
                     <Button style={invoice} onClick={displayTracker}>
-                      {displayInvoiceTracker ? "Content" : "Invoices"}
+                      {displayInvoiceTracker ? "Content Tracker" : "Invoices"}
                     </Button>
                   </Col>
                   <Col>
