@@ -72,16 +72,12 @@ const BackgroundHead = {
 };
 
 const ClientProfile = props => {
+  //Fetch the profile from the client ID
   const [profile, setProfile] = useState({});
-  const [displayInvoiceTracker, setState] = useState(false);
 
   useEffect(() => {
     fetchProfile();
   }, {});
-
-  const displayTracker = () => {
-    setState({ displayInvoiceTracker: !displayInvoiceTracker });
-  };
 
   const fetchProfile = async () => {
     const res = await client.getEntry(props.match.params.clientprofileid);
@@ -90,6 +86,14 @@ const ClientProfile = props => {
 
   const { fields = {} } = profile;
 
+  //Render Invoice Tracker
+  const [displayInvoiceTracker, setTracker] = useState(false);
+
+  const displayTracker = async () => {
+    const response = !displayInvoiceTracker;
+    setTracker(response);
+  };
+
   let tracker;
   if (displayInvoiceTracker) {
     tracker = <InvoiceTracker clientName={fields.clientName} />;
@@ -97,20 +101,7 @@ const ClientProfile = props => {
     tracker = <ClientTracker clientName={fields.clientName} />;
   }
 
-  let button;
-  if (displayInvoiceTracker) {
-    button = (
-      <Button style={invoice} onClick={displayTracker}>
-        Content
-      </Button>
-    );
-  } else {
-    button = (
-      <Button style={invoice} onClick={displayTracker}>
-        Invoices
-      </Button>
-    );
-  }
+  console.log(displayInvoiceTracker);
 
   return (
     <div>
@@ -128,7 +119,11 @@ const ClientProfile = props => {
             <Col lg="4" md="6" sm="12">
               <BlockContainer>
                 <Row>
-                  <Col>{button}</Col>
+                  <Col>
+                    <Button style={invoice} onClick={displayTracker}>
+                      {displayInvoiceTracker ? "Content" : "Invoices"}
+                    </Button>
+                  </Col>
                   <Col>
                     <Button style={linkedIn} href={`${fields.linkedInUrl}`}>
                       LinkedIn Profile
