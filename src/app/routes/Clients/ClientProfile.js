@@ -73,10 +73,15 @@ const BackgroundHead = {
 
 const ClientProfile = props => {
   const [profile, setProfile] = useState({});
+  const [displayInvoiceTracker, setState] = useState(false);
 
   useEffect(() => {
     fetchProfile();
   }, {});
+
+  const displayTracker = () => {
+    setState({ displayInvoiceTracker: !displayInvoiceTracker });
+  };
 
   const fetchProfile = async () => {
     const res = await client.getEntry(props.match.params.clientprofileid);
@@ -85,7 +90,28 @@ const ClientProfile = props => {
 
   const { fields = {} } = profile;
 
-  console.log(profile);
+  let tracker;
+  if (displayInvoiceTracker) {
+    tracker = <InvoiceTracker clientName={fields.clientName} />;
+  } else {
+    tracker = <ClientTracker clientName={fields.clientName} />;
+  }
+
+  let button;
+  if (displayInvoiceTracker) {
+    button = (
+      <Button style={invoice} onClick={displayTracker}>
+        Content
+      </Button>
+    );
+  } else {
+    button = (
+      <Button style={invoice} onClick={displayTracker}>
+        Invoices
+      </Button>
+    );
+  }
+
   return (
     <div>
       <div style={BackgroundHead}>
@@ -102,11 +128,7 @@ const ClientProfile = props => {
             <Col lg="4" md="6" sm="12">
               <BlockContainer>
                 <Row>
-                  <Col>
-                    <Button style={invoice} href={`#`}>
-                      Invoices
-                    </Button>
-                  </Col>
+                  <Col>{button}</Col>
                   <Col>
                     <Button style={linkedIn} href={`${fields.linkedInUrl}`}>
                       LinkedIn Profile
@@ -125,10 +147,7 @@ const ClientProfile = props => {
               </BlockContainer>
             </Col>
             <Col lg="8" md="6" sm="12">
-              <TrackerContainer>
-                <ClientTracker clientName={fields.clientName} />
-                <InvoiceTracker clientName={fields.clientName} />
-              </TrackerContainer>
+              <TrackerContainer>{tracker}</TrackerContainer>
             </Col>
           </Row>
         </Content>
