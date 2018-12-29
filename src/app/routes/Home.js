@@ -15,11 +15,11 @@ const ContentWrapper = styled.div`
 const BgPrimary = styled.div`
   background: linear-gradient(
     to bottom,
-    #09bc8a 0%,
-    #09bc8a 30%,
-    #09bc8a 30%,
-    #292f36 30%,
-    #292f36 100%
+    #508991 0%,
+    #508991 30%,
+    #508991 30%,
+    #f7f7f7 30%,
+    #f7f7f7 100%
   );
 `;
 
@@ -38,7 +38,7 @@ class Home extends Component {
         <BgPrimary>
           <Container fluid>
             <ContentWrapper>
-              <H2 style={white}>Writer Content Home</H2>
+              <H2 style={white}>Admin Home</H2>
               <ContentTracker />
               <Row style={m20}>
                 <Col lg="5">

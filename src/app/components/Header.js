@@ -33,7 +33,7 @@ class Header extends React.Component {
         <Container fluid>
           <Row noGutters>
             <NavbarBrand style={textStyle} href="/">
-              Jamocha Content
+              Jamocha Dashboard
             </NavbarBrand>
           </Row>
         </Container>

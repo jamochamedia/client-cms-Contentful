@@ -142,7 +142,7 @@ class InvoiceTracker extends Component {
             }
           ]}
           defaultPageSize={5}
-          style={{ height: "300px" }}
+          style={{ height: "431px" }}
           showPagination={false}
         />
       </div>

@@ -8,6 +8,10 @@ import { client } from "../../../../utils/client";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
+const green = {
+  color: "#508991"
+};
+
 //Create component
 class ContentTracker extends Component {
   state = {
@@ -113,7 +117,7 @@ class ContentTracker extends Component {
                   headerClassName: "table-subheader",
                   accessor: "fields.postTitle",
                   Cell: cell => (
-                    <a href={`/linkedin/${cell.original.sys.id}`}>
+                    <a style={green} href={`/linkedin/${cell.original.sys.id}`}>
                       <Paragraph>{cell.value}</Paragraph>
                     </a>
                   )
@@ -140,7 +144,7 @@ class ContentTracker extends Component {
             }
           ]}
           defaultPageSize={5}
-          style={{ height: "300px" }}
+          style={{ height: "400px" }}
           showPagination={false}
         />
       </div>

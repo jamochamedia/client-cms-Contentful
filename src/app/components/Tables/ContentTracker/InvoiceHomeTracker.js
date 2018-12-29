@@ -134,7 +134,7 @@ class InvoiceHomeTracker extends Component {
             }
           ]}
           defaultPageSize={5}
-          style={{ height: "300px" }}
+          style={{ height: "350px" }}
           showPagination={false}
         />
       </div>
