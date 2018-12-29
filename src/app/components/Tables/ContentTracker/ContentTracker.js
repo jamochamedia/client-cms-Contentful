@@ -8,8 +8,8 @@ import { client } from "../../../../utils/client";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-const green = {
-  color: "#508991"
+const color = {
+  color: "#292f36"
 };
 
 //Create component
@@ -24,7 +24,10 @@ class ContentTracker extends Component {
     this.fetch().then(this.setPosts);
   }
 
-  fetch = () => this.client.getEntries();
+  fetch = () =>
+    this.client.getEntries({
+      content_type: "linkedInTextPost"
+    });
 
   setPosts = response => {
     this.setState({
@@ -62,6 +65,34 @@ class ContentTracker extends Component {
                       <H4>{cell.value}</H4>
                     </a>
                   )
+                },
+                {
+                  Header: <H5>POST TITLE</H5>,
+                  headerClassName: "table-subheader",
+                  accessor: "fields.postTitle",
+                  Cell: cell => (
+                    <a style={color} href={`/linkedin/${cell.original.sys.id}`}>
+                      <Paragraph>{cell.value}</Paragraph>
+                    </a>
+                  )
+                },
+                {
+                  Header: <H5>POST DATE</H5>,
+                  headerClassName: "table-subheader",
+                  accessor: "fields.postDate",
+                  Cell: cell => (
+                    <div>
+                      <Paragraph>
+                        {new Date(cell.value).toLocaleString()}
+                      </Paragraph>
+                    </div>
+                  )
+                },
+                {
+                  Header: <H5>WRITER</H5>,
+                  headerClassName: "table-subheader",
+                  accessor: "fields.writer",
+                  Cell: cell => <Paragraph>{cell.value}</Paragraph>
                 },
                 {
                   Header: <H5>STATUS</H5>,
@@ -111,34 +142,6 @@ class ContentTracker extends Component {
                       </span>
                     </Paragraph>
                   )
-                },
-                {
-                  Header: <H5>POST TITLE</H5>,
-                  headerClassName: "table-subheader",
-                  accessor: "fields.postTitle",
-                  Cell: cell => (
-                    <a style={green} href={`/linkedin/${cell.original.sys.id}`}>
-                      <Paragraph>{cell.value}</Paragraph>
-                    </a>
-                  )
-                },
-                {
-                  Header: <H5>POST DATE</H5>,
-                  headerClassName: "table-subheader",
-                  accessor: "fields.postDate",
-                  Cell: cell => (
-                    <div>
-                      <Paragraph>
-                        {new Date(cell.value).toLocaleString()}
-                      </Paragraph>
-                    </div>
-                  )
-                },
-                {
-                  Header: <H5>WRITER</H5>,
-                  headerClassName: "table-subheader",
-                  accessor: "fields.writer",
-                  Cell: cell => <Paragraph>{cell.value}</Paragraph>
                 }
               ]
             }

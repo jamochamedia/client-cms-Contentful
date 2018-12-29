@@ -17,14 +17,18 @@ const BgPrimary = styled.div`
     to bottom,
     #508991 0%,
     #508991 30%,
-    #508991 30%,
-    #f7f7f7 30%,
+    #0ad198 30%,
+    #0ad198 35%,
+    #292f36 35%,
+    #292f36 37%,
+    #f7f7f7 37%,
     #f7f7f7 100%
   );
 `;
 
 const white = {
-  color: "white"
+  color: "white",
+  marginBottom: "20px"
 };
 
 const m20 = {
@@ -38,13 +42,13 @@ class Home extends Component {
         <BgPrimary>
           <Container fluid>
             <ContentWrapper>
-              <H2 style={white}>Admin Home</H2>
+              <H2 style={white}>Admin Dashboard Home</H2>
               <ContentTracker />
-              <Row style={m20}>
-                <Col lg="5">
+              <Row>
+                <Col lg="5" style={m20}>
                   <ClientHomeTracker />
                 </Col>
-                <Col lg="7">
+                <Col lg="7" style={m20}>
                   <InvoiceHomeTracker />
                 </Col>
               </Row>
