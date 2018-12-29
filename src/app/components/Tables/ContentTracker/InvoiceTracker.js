@@ -112,23 +112,31 @@ class InvoiceTracker extends Component {
                         <span
                           style={{
                             color:
-                              cell.value === "Paid"
+                              cell.value === "paid"
                                 ? "#ff9900"
-                                : cell.value === "Not Paid"
+                                : cell.value === "open"
                                 ? "#00db62"
-                                : cell.value === "Late"
+                                : cell.value === "uncollectible"
                                 ? "#e03404"
-                                : "#5a5f66"
+                                : cell.value === "void"
+                                ? "#717171"
+                                : cell.value === "draft"
+                                ? "#fbdf17"
+                                : "#000"
                           }}
                         >
                           &#x25C9;
                         </span>
-                        {cell.value === "Paid"
+                        {cell.value === "open"
+                          ? " Open"
+                          : cell.value === "paid"
                           ? " Paid"
-                          : cell.value === "Not Paid"
-                          ? " Not Paid"
-                          : cell.value === "Late"
-                          ? " Late"
+                          : cell.value === "uncollectible"
+                          ? " Uncollectible"
+                          : cell.value === "void"
+                          ? " Void"
+                          : cell.value === "draft"
+                          ? " Draft"
                           : " Not Set"}
                       </span>
                     </Paragraph>
