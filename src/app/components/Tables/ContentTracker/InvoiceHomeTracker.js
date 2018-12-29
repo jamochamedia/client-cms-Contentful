@@ -13,7 +13,7 @@ const Invoice = {
 };
 
 //Create component
-class InvoiceTracker extends Component {
+class InvoiceHomeTracker extends Component {
   state = {
     invoices: []
   };
@@ -21,7 +21,7 @@ class InvoiceTracker extends Component {
   client = client;
 
   componentDidMount() {
-    this.fetch().then(this.setInvoices);
+    this.fetch().then(this.setPosts);
   }
 
   fetch = () =>
@@ -29,7 +29,7 @@ class InvoiceTracker extends Component {
       content_type: "invoice"
     });
 
-  setInvoices = response => {
+  setPosts = response => {
     this.setState({
       invoices: response.items.map(item => item)
     });
@@ -38,18 +38,15 @@ class InvoiceTracker extends Component {
   render() {
     const { invoices } = this.state;
 
-    const filterInvoices = invoices.filter(
-      invoice =>
-        invoice.fields.client.fields.clientName === this.props.clientName
-    );
+    console.log(invoices);
 
     return (
-      <div className="Tracker">
+      <div>
         <ReactTable
-          data={filterInvoices}
+          data={invoices}
           columns={[
             {
-              Header: <H3>Invoices</H3>,
+              Header: <H3>Invoice Overview</H3>,
               headerClassName: "table-header",
               columns: [
                 {
@@ -78,23 +75,18 @@ class InvoiceTracker extends Component {
                   )
                 },
                 {
-                  Header: <H5>ISSUED</H5>,
+                  Header: <H5>CLIENT</H5>,
                   headerClassName: "table-subheader",
-                  accessor: "fields.issueDate",
+                  accessor: "fields.clientName",
                   Cell: cell => (
-                    <div>
-                      <Paragraph>{cell.value}</Paragraph>
-                    </div>
-                  )
-                },
-                {
-                  Header: <H5>DUE DATE</H5>,
-                  headerClassName: "table-subheader",
-                  accessor: "fields.dueDate",
-                  Cell: cell => (
-                    <div>
-                      <Paragraph>{cell.value}</Paragraph>
-                    </div>
+                    <a
+                      style={Invoice}
+                      href={`/clients/${cell.original.fields.client.sys.id}`}
+                    >
+                      <Paragraph>
+                        <b>{cell.value}</b>
+                      </Paragraph>
+                    </a>
                   )
                 },
                 {
@@ -150,4 +142,4 @@ class InvoiceTracker extends Component {
   }
 }
 
-export default InvoiceTracker;
+export default InvoiceHomeTracker;

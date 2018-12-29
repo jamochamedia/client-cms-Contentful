@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../../../App.css";
-import { H3, H4, H5 } from "../../Typography/HeaderText";
+import { H3, H5 } from "../../Typography/HeaderText";
 import { Paragraph } from "../../Typography/ParapgraphText";
 import { client } from "../../../../utils/client";
 
@@ -8,10 +8,14 @@ import { client } from "../../../../utils/client";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
+const Post = {
+  color: "#292f36"
+};
+
 //Create component
-class ContentTracker extends Component {
+class ClientHomeTracker extends Component {
   state = {
-    posts: []
+    clients: []
   };
 
   client = client;
@@ -20,47 +24,43 @@ class ContentTracker extends Component {
     this.fetch().then(this.setPosts);
   }
 
-  fetch = () => this.client.getEntries();
+  fetch = () =>
+    this.client.getEntries({
+      content_type: "clientIdentifier"
+    });
 
   setPosts = response => {
     this.setState({
-      posts: response.items.map(item => item)
+      clients: response.items.map(item => item)
     });
   };
 
   render() {
-    const { posts } = this.state;
-
-    const filterPosts = posts.filter(
-      post => post.fields.clientName.fields !== undefined
-    );
+    const { clients } = this.state;
 
     return (
       <div>
         <ReactTable
-          data={filterPosts}
+          data={clients}
           columns={[
             {
-              Header: <H3>Client Content Tracker</H3>,
+              Header: <H3>Client List</H3>,
               headerClassName: "table-header",
               columns: [
                 {
                   Header: <H5>CLIENT</H5>,
                   headerClassName: "table-subheader",
-                  id: "fields.clientName",
-                  accessor: "fields.clientName.fields.clientName",
+                  accessor: "fields.clientName",
                   Cell: cell => (
-                    <a
-                      href={`/clients/${
-                        cell.original.fields.clientName.sys.id
-                      }`}
-                    >
-                      <H4>{cell.value}</H4>
+                    <a style={Post} href={`/clients/${cell.original.sys.id}`}>
+                      <Paragraph>
+                        <b>{cell.value}</b>
+                      </Paragraph>
                     </a>
                   )
                 },
                 {
-                  Header: <H5>STATUS</H5>,
+                  Header: <H5>CURRENT STATUS</H5>,
                   headerClassName: "table-subheader",
                   id: "status",
                   accessor: "fields.status",
@@ -88,6 +88,7 @@ class ContentTracker extends Component {
                           }}
                         >
                           &#x25C9;
+                          {/* TODO: Add Most Recent Invoice paid and post made */}
                         </span>
                         {row.value === "Question Sent"
                           ? " Question Sent"
@@ -107,34 +108,6 @@ class ContentTracker extends Component {
                       </span>
                     </Paragraph>
                   )
-                },
-                {
-                  Header: <H5>POST TITLE</H5>,
-                  headerClassName: "table-subheader",
-                  accessor: "fields.postTitle",
-                  Cell: cell => (
-                    <a href={`/linkedin/${cell.original.sys.id}`}>
-                      <Paragraph>{cell.value}</Paragraph>
-                    </a>
-                  )
-                },
-                {
-                  Header: <H5>POST DATE</H5>,
-                  headerClassName: "table-subheader",
-                  accessor: "fields.postDate",
-                  Cell: cell => (
-                    <div>
-                      <Paragraph>
-                        {new Date(cell.value).toLocaleString()}
-                      </Paragraph>
-                    </div>
-                  )
-                },
-                {
-                  Header: <H5>WRITER</H5>,
-                  headerClassName: "table-subheader",
-                  accessor: "fields.writer",
-                  Cell: cell => <Paragraph>{cell.value}</Paragraph>
                 }
               ]
             }
@@ -148,4 +121,4 @@ class ContentTracker extends Component {
   }
 }
 
-export default ContentTracker;
+export default ClientHomeTracker;

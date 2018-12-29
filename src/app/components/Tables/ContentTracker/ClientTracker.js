@@ -142,6 +142,8 @@ class ClientTracker extends Component {
             }
           ]}
           defaultPageSize={5}
+          style={{ height: "300px" }}
+          showPagination={false}
         />
       </div>
     );
