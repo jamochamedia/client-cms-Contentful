@@ -5,6 +5,7 @@ import { H3 } from "../../components/Typography/HeaderText";
 import { Paragraph } from "../Typography/ParapgraphText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+//TODO: WORK ON STYLES
 const ProfileContainer = styled.div`
   width: 100%;
   min-height: 375px;

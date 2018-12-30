@@ -149,7 +149,7 @@ class ContentTracker extends Component {
               ]
             }
           ]}
-          defaultPageSize={5}
+          minRows={5}
           style={{ height: "400px" }}
           showPagination={false}
         />

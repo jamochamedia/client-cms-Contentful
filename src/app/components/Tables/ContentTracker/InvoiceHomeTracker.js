@@ -132,7 +132,7 @@ class InvoiceHomeTracker extends Component {
               ]
             }
           ]}
-          defaultPageSize={5}
+          minRows={5}
           style={{ height: "350px" }}
           showPagination={false}
         />

@@ -144,7 +144,7 @@ class ClientTracker extends Component {
               ]
             }
           ]}
-          defaultPageSize={5}
+          minRows={5}
           style={{ height: "431px" }}
           showPagination={false}
         />
