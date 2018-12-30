@@ -38,6 +38,8 @@ class ClientHomeTracker extends Component {
   render() {
     const { clients } = this.state;
 
+    console.log(clients);
+
     return (
       <div>
         <ReactTable
@@ -60,53 +62,17 @@ class ClientHomeTracker extends Component {
                   )
                 },
                 {
-                  Header: <H5>CURRENT STATUS</H5>,
+                  Header: <H5>LINKEDIN PROFILE</H5>,
                   headerClassName: "table-subheader",
                   id: "status",
-                  accessor: "fields.status",
-                  Cell: row => (
-                    <Paragraph>
-                      <span>
-                        <span
-                          style={{
-                            color:
-                              row.value === "Question Sent"
-                                ? "#9106e8"
-                                : row.value === "In Writing"
-                                ? "#00db62"
-                                : row.value === "In Editing"
-                                ? "#fce302"
-                                : row.value === "In Client Review"
-                                ? "#e03404"
-                                : row.value === "Ready for Post"
-                                ? "#01a6ff"
-                                : row.value === "Posted"
-                                ? "#ff9900"
-                                : row.value === "Not Posting"
-                                ? "#000000"
-                                : "#5a5f66"
-                          }}
-                        >
-                          &#x25C9;
-                          {/* TODO: Add Most Recent Invoice paid and post made */}
-                        </span>
-                        {row.value === "Question Sent"
-                          ? " Question Sent"
-                          : row.value === "In Writing"
-                          ? " In Writing"
-                          : row.value === "In Editing"
-                          ? " In Editing"
-                          : row.value === "In Client Review"
-                          ? " In Client Review"
-                          : row.value === "Ready for Post"
-                          ? " Ready for Post"
-                          : row.value === "Posted"
-                          ? " Posted"
-                          : row.value === "Not Posting"
-                          ? " Not Posting"
-                          : " Not Set"}
-                      </span>
-                    </Paragraph>
+                  accessor: "fields.clientRole",
+                  Cell: cell => (
+                    <a
+                      style={Post}
+                      href={`${cell.original.fields.linkedInUrl}`}
+                    >
+                      <Paragraph>{cell.value}</Paragraph>
+                    </a>
                   )
                 }
               ]
