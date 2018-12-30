@@ -42,6 +42,8 @@ class ContentTracker extends Component {
       post => post.fields.clientName.fields !== undefined
     );
 
+    console.log(posts);
+
     return (
       <div>
         <ReactTable
@@ -92,7 +94,7 @@ class ContentTracker extends Component {
                 {
                   Header: <H5>WRITER</H5>,
                   headerClassName: "table-subheader",
-                  accessor: "fields.writer",
+                  accessor: "fields.writer.fields.fullName",
                   Cell: cell => <Paragraph>{cell.value}</Paragraph>
                 },
                 {

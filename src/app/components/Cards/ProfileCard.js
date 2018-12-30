@@ -11,14 +11,13 @@ const ProfileContainer = styled.div`
   background: linear-gradient(
     to bottom,
     #508991 0%,
-    #508991 50%,
-    #508991 50%,
-    #fff 50%,
+    #508991 40%,
+    #fff 40%,
     #fff 100%
   );
   border-radius: 0.375rem;
   box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
-  padding-top: 30px;
+  padding-top: 40px;
   text-align: center;
 `;
 
@@ -33,8 +32,7 @@ const ProfileImage = styled.div`
 `;
 
 const TextContainer = styled.div`
-  margin-top: 15px;
-  padding: 10px 30px 15px 30px;
+  padding: 5px 30px 40px 30px;
 `;
 
 const DescriptionContainer = styled.div`
@@ -43,6 +41,12 @@ const DescriptionContainer = styled.div`
 
 const white = {
   color: "#f1f1f1"
+};
+
+const title = {
+  color: "#f1f1f1",
+  marginTop: "20px",
+  marginBottom: "20px"
 };
 
 function ProfileCard(props) {
@@ -54,8 +58,8 @@ function ProfileCard(props) {
             <FontAwesomeIcon icon="briefcase" />
           </D2>
         </ProfileImage>
+        <H3 style={title}>{props.role}</H3>
         <TextContainer>
-          <H3 style={white}>{props.role}</H3>
           <DescriptionContainer>
             <Paragraph>{props.description}</Paragraph>
           </DescriptionContainer>

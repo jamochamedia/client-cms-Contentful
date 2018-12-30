@@ -44,6 +44,8 @@ class ClientTracker extends Component {
         post.fields.clientName.fields.clientName === this.props.clientName
     );
 
+    console.log(posts);
+
     return (
       <div>
         <ReactTable
@@ -130,13 +132,13 @@ class ClientTracker extends Component {
                 {
                   Header: <H5>WRITER</H5>,
                   headerClassName: "table-subheader",
-                  accessor: "fields.writer",
+                  accessor: "fields.writer.fields.fullName",
                   Cell: cell => <Paragraph>{cell.value}</Paragraph>
                 },
                 {
                   Header: <H5>Editor</H5>,
                   headerClassName: "table-subheader",
-                  accessor: "fields.editor",
+                  accessor: "fields.editor.fields.fullName",
                   Cell: cell => <Paragraph>{cell.value}</Paragraph>
                 }
               ]
