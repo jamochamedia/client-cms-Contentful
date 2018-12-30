@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import styled from "styled-components";
 import { Container, Col, Row } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { H2 } from "../components/Typography/HeaderText";
 
 import ContentTracker from "../components/Tables/ContentTracker/ContentTracker";
@@ -33,6 +34,10 @@ const m20 = {
   marginTop: "20px"
 };
 
+const mr20 = {
+  marginRight: "20px"
+};
+
 class Home extends Component {
   render() {
     return (
@@ -40,7 +45,9 @@ class Home extends Component {
         <BgPrimary>
           <Container fluid>
             <ContentWrapper>
-              <H2 style={white}>Admin Dashboard Home</H2>
+              <H2 style={white}>
+                <FontAwesomeIcon style={mr20} icon="home" /> Admin Dashboard
+              </H2>
               <ContentTracker />
               <Row>
                 <Col lg="5" style={m20}>
