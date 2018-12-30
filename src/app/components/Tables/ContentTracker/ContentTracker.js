@@ -46,6 +46,7 @@ class ContentTracker extends Component {
       <div>
         <ReactTable
           data={filterPosts}
+          noDataText="Loading..."
           columns={[
             {
               Header: <H3>Client Content Tracker</H3>,

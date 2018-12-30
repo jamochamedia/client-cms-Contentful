@@ -42,6 +42,7 @@ class InvoiceHomeTracker extends Component {
       <div>
         <ReactTable
           data={invoices}
+          noDataText="Loading..."
           columns={[
             {
               Header: <H3>Invoice Overview</H3>,

@@ -44,6 +44,7 @@ class ClientHomeTracker extends Component {
       <div>
         <ReactTable
           data={clients}
+          noDataText="Loading..."
           columns={[
             {
               Header: <H3>Client List</H3>,

@@ -47,6 +47,7 @@ class InvoiceTracker extends Component {
       <div className="Tracker">
         <ReactTable
           data={filterInvoices}
+          noDataText="Loading..."
           columns={[
             {
               Header: <H3>Invoices</H3>,
