@@ -11,7 +11,6 @@ import { H3 } from "../../components/Typography/HeaderText";
 import ProfileCard from "../../components/Cards/ProfileCard";
 import ClientTracker from "../../components/Tables/ContentTracker/Clients/ClientTracker";
 import Background from "../../img/profile-background.jpg";
-import InvoiceTracker from "../../components/Tables/Invoices/InvoiceTracker";
 
 //Styles
 const Container = styled.div`
@@ -33,12 +32,6 @@ const BlockContainer = styled.div`
   width: 100%;
 `;
 
-const TrackerContainer = styled.div`
-  margin-top: 20px;
-  float: left;
-  width: 100%;
-`;
-
 const white = {
   color: "white"
 };
@@ -48,15 +41,6 @@ const linkedIn = {
   width: "100%",
   backgroundColor: "#292f36",
   color: "white",
-  border: "none",
-  boxShadow: "0 0 2rem 0 rgba(136, 152, 170, 0.15)"
-};
-
-const invoice = {
-  marginBottom: "20px",
-  width: "100%",
-  backgroundColor: "#0ad198",
-  color: "#292f36",
   border: "none",
   boxShadow: "0 0 2rem 0 rgba(136, 152, 170, 0.15)"
 };
@@ -71,7 +55,7 @@ const BackgroundHead = {
   minHeight: "210px"
 };
 
-const ClientProfile = props => {
+const WriterProfile = props => {
   //Fetch the profile from the client ID
   const [profile, setProfile] = useState({});
 
@@ -80,34 +64,21 @@ const ClientProfile = props => {
   }, {});
 
   const fetchProfile = async () => {
-    const res = await client.getEntry(props.match.params.clientprofileid);
+    const res = await client.getEntry(props.match.params.writerid);
     setProfile(res);
   };
 
   const { fields = {} } = profile;
 
-  //Render Invoice Tracker
-  const [displayInvoiceTracker, setTracker] = useState(false);
-
-  const displayTracker = async () => {
-    const response = !displayInvoiceTracker;
-    setTracker(response);
-  };
-
-  let tracker;
-  if (displayInvoiceTracker) {
-    tracker = <InvoiceTracker clientName={fields.clientName} />;
-  } else {
-    tracker = <ClientTracker clientName={fields.clientName} />;
-  }
+  console.log(fields);
 
   return (
     <div>
       <div style={BackgroundHead}>
         <Container>
           <Header>
-            <D3 style={white}>{fields.clientName}</D3>
-            <H3 style={white}>{fields.companyName}</H3>
+            <D3 style={white}>{fields.fullName}</D3>
+            <H3 style={white}>{fields.position}</H3>
           </Header>
         </Container>
       </div>
@@ -118,11 +89,6 @@ const ClientProfile = props => {
               <BlockContainer>
                 <Row>
                   <Col>
-                    <Button style={invoice} onClick={displayTracker}>
-                      {displayInvoiceTracker ? "Content Tracker" : "Invoices"}
-                    </Button>
-                  </Col>
-                  <Col>
                     <Button style={linkedIn} href={`${fields.linkedInUrl}`}>
                       LinkedIn Profile
                     </Button>
@@ -132,15 +98,15 @@ const ClientProfile = props => {
                   role={fields.clientRole}
                   company={fields.companyName}
                   description={
-                    fields.clientDescription
-                      ? fields.clientDescription
+                    fields.description
+                      ? fields.description
                       : "No Description Available"
                   }
                 />
               </BlockContainer>
             </Col>
             <Col lg="8" md="6" sm="12">
-              <TrackerContainer>{tracker}</TrackerContainer>
+              <ClientTracker clientName={fields.fullName} />
             </Col>
           </Row>
         </Content>
@@ -149,4 +115,4 @@ const ClientProfile = props => {
   );
 };
 
-export default withRouter(ClientProfile);
+export default withRouter(WriterProfile);

@@ -7,6 +7,8 @@ import Clients from "./routes/Clients";
 import ClientProfile from "./routes/Clients/ClientProfile";
 import Invoices from "./routes/Invoices";
 import InvoicePage from "./routes/Invoices/InvoicePage";
+import Writers from "./routes/Writers";
+import WriterProfile from "./routes/Writers/WriterProfile";
 
 const Router = () => (
   <Switch>
@@ -15,6 +17,8 @@ const Router = () => (
     <Route exact path="/linkedin/:linkedinpostid" component={LinkedInPost} />
     <Route exact path="/clients" component={Clients} />
     <Route exact path="/clients/:clientprofileid" component={ClientProfile} />
+    <Route exact path="/writers" component={Writers} />
+    <Route exact path="/writers/:writerid" component={WriterProfile} />
     <Route exact path="/invoices" component={Invoices} />
     <Route exact path="/invoices/:invoiceid" component={InvoicePage} />
     <Route exact path="/client-invoices/:invoiceid" component={InvoicePage} />
