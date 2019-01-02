@@ -4,6 +4,7 @@ import { D2 } from "../../components/Typography/DisplayText";
 import { H3 } from "../../components/Typography/HeaderText";
 import { Paragraph } from "../Typography/ParapgraphText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Markdown from "react-markdown";
 
 //TODO: WORK ON STYLES
 const ProfileContainer = styled.div`
@@ -33,7 +34,7 @@ const ProfileImage = styled.div`
 `;
 
 const TextContainer = styled.div`
-  padding: 5px 30px 40px 30px;
+  padding: 5px 30px 20px 30px;
 `;
 
 const DescriptionContainer = styled.div`
@@ -62,7 +63,9 @@ function ProfileCard(props) {
         <H3 style={title}>{props.role}</H3>
         <TextContainer>
           <DescriptionContainer>
-            <Paragraph>{props.description}</Paragraph>
+            <Paragraph>
+              <Markdown source={props.description} />
+            </Paragraph>
           </DescriptionContainer>
         </TextContainer>
       </ProfileContainer>
