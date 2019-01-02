@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "../../../../../App.css";
-import { H3, H5 } from "../../../Typography/HeaderText";
-import { Paragraph } from "../../../Typography/ParapgraphText";
-import { client } from "../../../../../utils/client";
+import "../../../../App.css";
+import { H3, H5 } from "../../Typography/HeaderText";
+import { Paragraph } from "../../Typography/ParapgraphText";
+import { client } from "../../../../utils/client";
 
 // Import React Table
 import ReactTable from "react-table";
@@ -38,8 +38,6 @@ class ClientHomeTracker extends Component {
   render() {
     const { clients } = this.state;
 
-    console.log(clients);
-
     return (
       <div>
         <ReactTable
@@ -63,10 +61,10 @@ class ClientHomeTracker extends Component {
                   )
                 },
                 {
-                  Header: <H5>LINKEDIN PROFILE</H5>,
+                  Header: <H5>COMPANY NAME</H5>,
                   headerClassName: "table-subheader",
                   id: "status",
-                  accessor: "fields.clientRole",
+                  accessor: "fields.companyName",
                   Cell: cell => (
                     <a
                       style={Post}

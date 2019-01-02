@@ -9,7 +9,7 @@ import { Col, Row, Button } from "reactstrap";
 import { D3 } from "../../components/Typography/DisplayText";
 import { H3 } from "../../components/Typography/HeaderText";
 import ProfileCard from "../../components/Cards/ProfileCard";
-import ClientTracker from "../../components/Tables/ContentTracker/Clients/ClientTracker";
+import WriterTracker from "../../components/Tables/Writers/WriterTracker";
 import Background from "../../img/profile-background.jpg";
 
 //Styles
@@ -70,8 +70,6 @@ const WriterProfile = props => {
 
   const { fields = {} } = profile;
 
-  console.log(fields);
-
   return (
     <div>
       <div style={BackgroundHead}>
@@ -106,7 +104,7 @@ const WriterProfile = props => {
               </BlockContainer>
             </Col>
             <Col lg="8" md="6" sm="12">
-              <ClientTracker clientName={fields.fullName} />
+              <WriterTracker fullName={fields.fullName} />
             </Col>
           </Row>
         </Content>

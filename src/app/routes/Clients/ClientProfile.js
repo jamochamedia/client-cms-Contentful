@@ -9,7 +9,7 @@ import { Col, Row, Button } from "reactstrap";
 import { D3 } from "../../components/Typography/DisplayText";
 import { H3 } from "../../components/Typography/HeaderText";
 import ProfileCard from "../../components/Cards/ProfileCard";
-import ClientTracker from "../../components/Tables/ContentTracker/Clients/ClientTracker";
+import ClientTracker from "../../components/Tables/Clients/ClientTracker";
 import Background from "../../img/profile-background.jpg";
 import InvoiceTracker from "../../components/Tables/Invoices/InvoiceTracker";
 
@@ -100,6 +100,8 @@ const ClientProfile = props => {
   } else {
     tracker = <ClientTracker clientName={fields.clientName} />;
   }
+
+  console.log(fields.clientName);
 
   return (
     <div>

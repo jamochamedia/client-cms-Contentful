@@ -5,8 +5,8 @@ import { Container, Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { H2 } from "../components/Typography/HeaderText";
 
-import ContentTracker from "../components/Tables/ContentTracker/Clients/ContentTracker";
-import ClientHomeTracker from "../components/Tables/ContentTracker/Clients/ClientHomeTracker";
+import ContentTracker from "../components/Tables/Clients/ContentTracker";
+import ClientHomeTracker from "../components/Tables/Clients/ClientHomeTracker";
 import InvoiceHomeTracker from "../components/Tables/Invoices/InvoiceHomeTracker";
 
 const ContentWrapper = styled.div`

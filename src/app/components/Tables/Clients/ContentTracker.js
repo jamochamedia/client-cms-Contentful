@@ -1,19 +1,19 @@
 import React, { Component } from "react";
-import "../../../../../App.css";
-import { H3, H5 } from "../../../Typography/HeaderText";
-import { Paragraph } from "../../../Typography/ParapgraphText";
-import { client } from "../../../../../utils/client";
+import "../../../../App.css";
+import { H3, H4, H5 } from "../../Typography/HeaderText";
+import { Paragraph } from "../../Typography/ParapgraphText";
+import { client } from "../../../../utils/client";
 
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-const Post = {
+const color = {
   color: "#292f36"
 };
 
 //Create component
-class ClientTracker extends Component {
+class ContentTracker extends Component {
   state = {
     posts: []
   };
@@ -39,9 +39,7 @@ class ClientTracker extends Component {
     const { posts } = this.state;
 
     const filterPosts = posts.filter(
-      post =>
-        post.fields.clientName.fields !== undefined &&
-        post.fields.clientName.fields.clientName === this.props.clientName
+      post => post.fields.clientName.fields !== undefined
     );
 
     return (
@@ -51,18 +49,56 @@ class ClientTracker extends Component {
           noDataText="Loading..."
           columns={[
             {
-              Header: <H3>Content Tracker</H3>,
+              Header: <H3>Client Content Tracker</H3>,
               headerClassName: "table-header",
               columns: [
+                {
+                  Header: <H5>CLIENT</H5>,
+                  headerClassName: "table-subheader",
+                  id: "fields.clientName",
+                  accessor: "fields.clientName.fields.clientName",
+                  Cell: cell => (
+                    <a
+                      href={`/clients/${
+                        cell.original.fields.clientName.sys.id
+                      }`}
+                    >
+                      <H4>{cell.value}</H4>
+                    </a>
+                  )
+                },
                 {
                   Header: <H5>POST TITLE</H5>,
                   headerClassName: "table-subheader",
                   accessor: "fields.postTitle",
                   Cell: cell => (
-                    <a style={Post} href={`/linkedin/${cell.original.sys.id}`}>
+                    <a style={color} href={`/linkedin/${cell.original.sys.id}`}>
+                      <Paragraph>{cell.value}</Paragraph>
+                    </a>
+                  )
+                },
+                {
+                  Header: <H5>POST DATE</H5>,
+                  headerClassName: "table-subheader",
+                  accessor: "fields.postDate",
+                  Cell: cell => (
+                    <div>
                       <Paragraph>
-                        <b>{cell.value}</b>
+                        {new Date(cell.value).toLocaleString()}
                       </Paragraph>
+                    </div>
+                  )
+                },
+                {
+                  Header: <H5>WRITER</H5>,
+                  headerClassName: "table-subheader",
+                  accessor: "fields.writer.fields.fullName",
+                  Cell: cell => (
+                    <a
+                      style={color}
+                      href={`/writers/${cell.original.fields.writer.sys.id}`}
+                    >
+                      <Paragraph>{cell.value}</Paragraph>
                     </a>
                   )
                 },
@@ -114,36 +150,12 @@ class ClientTracker extends Component {
                       </span>
                     </Paragraph>
                   )
-                },
-                {
-                  Header: <H5>POST DATE</H5>,
-                  headerClassName: "table-subheader",
-                  accessor: "fields.postDate",
-                  Cell: cell => (
-                    <div>
-                      <Paragraph>
-                        {new Date(cell.value).toLocaleString()}
-                      </Paragraph>
-                    </div>
-                  )
-                },
-                {
-                  Header: <H5>WRITER</H5>,
-                  headerClassName: "table-subheader",
-                  accessor: "fields.writer.fields.fullName",
-                  Cell: cell => <Paragraph>{cell.value}</Paragraph>
-                },
-                {
-                  Header: <H5>Editor</H5>,
-                  headerClassName: "table-subheader",
-                  accessor: "fields.editor.fields.fullName",
-                  Cell: cell => <Paragraph>{cell.value}</Paragraph>
                 }
               ]
             }
           ]}
           minRows={5}
-          style={{ height: "431px" }}
+          style={{ height: "400px" }}
           showPagination={false}
         />
       </div>
@@ -151,4 +163,4 @@ class ClientTracker extends Component {
   }
 }
 
-export default ClientTracker;
+export default ContentTracker;

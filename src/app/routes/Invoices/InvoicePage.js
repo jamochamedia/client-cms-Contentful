@@ -15,7 +15,6 @@ const InvoicePage = props => {
     setInvoice(response.fields);
   };
 
-  console.log(invoice);
   return (
     <div>
       <p>{invoice.invoiceId}</p>

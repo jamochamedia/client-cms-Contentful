@@ -26,7 +26,7 @@ class Invoices extends React.Component {
 
   render() {
     const { invoices } = this.state;
-    console.log(invoices);
+
     return (
       <div>
         <p>All Invoices</p>
