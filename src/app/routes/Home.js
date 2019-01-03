@@ -9,6 +9,8 @@ import ContentTracker from "../components/Tables/Clients/ContentTracker";
 import ClientHomeTracker from "../components/Tables/Clients/ClientHomeTracker";
 import InvoiceHomeTracker from "../components/Tables/Invoices/InvoiceHomeTracker";
 
+import { areAuthItemsSet, setAuthItems } from "../../utils/Auth/Auth";
+
 const ContentWrapper = styled.div`
   padding: 20px;
 `;
@@ -39,6 +41,11 @@ const mr20 = {
 };
 
 class Home extends Component {
+  componentDidMount() {
+    if (!areAuthItemsSet()) {
+      setAuthItems();
+    }
+  }
   render() {
     return (
       <div>

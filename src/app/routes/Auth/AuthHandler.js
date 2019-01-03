@@ -1,5 +1,5 @@
 import React from "react";
-import { setAuthItems } from "../../../Auth/Auth";
+import { setAuthItems } from "../../../utils/Auth/Auth";
 
 class AuthHandler extends React.Component {
   constructor(props) {

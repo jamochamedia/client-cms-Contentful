@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { H1, H2, H5 } from "../../components/Typography/HeaderText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { ssoLogin } from "../../../Auth/Auth";
+import { ssoLogin } from "../../../utils/Auth/Auth";
 
 const MainContainer = styled.div`
   display: table;
