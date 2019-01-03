@@ -29,7 +29,7 @@ export function ssoLogin(email, history) {
           history.push("/verify");
           return true;
         }
-        history.push("/setup");
+        history.push("/home");
         return true;
       }
       throw new Error("No user was returned");
@@ -37,18 +37,26 @@ export function ssoLogin(email, history) {
   );
 }
 
+//Handle Authentication
 export function setAuthItems(callback) {
   auth0Client.parseHash({}, (err, result) => {
     if (err) {
-      console.error(err);
+      console.log(err);
       callback(err, null);
       return;
     }
-    const { accessToken, idToken } = result;
-    localStorage.setItem("idToken", idToken);
-    localStorage.setItem("accessToken", accessToken);
+    setSession(result);
     callback(null, result);
   });
+}
+
+export function setSession(result) {
+  //Set isLoggedIn flad in localStorage
+  localStorage.setItem("isLoggedIn", "true");
+
+  const { accessToken, idToken } = result;
+  localStorage.setItem("idToken", idToken);
+  localStorage.setItem("accessToken", accessToken);
 }
 
 export function areAuthItemsSet() {
