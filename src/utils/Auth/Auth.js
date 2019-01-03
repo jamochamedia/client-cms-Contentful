@@ -10,6 +10,7 @@ const auth0Client = new Auth0.WebAuth({
   scope: "openid profile"
 });
 
+//Handles Login
 export function ssoLogin(email, history) {
   auth0Client.passwordlessStart(
     {
@@ -37,7 +38,7 @@ export function ssoLogin(email, history) {
   );
 }
 
-//Handle Authentication
+//Sets access and id tokens = handleAuthentication();
 export function setAuthItems(callback) {
   auth0Client.parseHash({}, (err, result) => {
     if (err) {
@@ -48,6 +49,20 @@ export function setAuthItems(callback) {
     setSession(result);
     callback(null, result);
   });
+}
+
+export function getAccessToken() {
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken) {
+    return accessToken;
+  }
+}
+
+export function getIdToken() {
+  const idToken = localStorage.getItem("idToken");
+  if (idToken) {
+    return idToken;
+  }
 }
 
 export function setSession(result) {
@@ -64,13 +79,30 @@ export function setSession(result) {
   localStorage.setItem("expiresAt", expiresAt);
 }
 
+export function renewSession() {
+  auth0Client.checkSession({}, (err, result) => {
+    if (err) {
+      console.log(err);
+      console.log("Could not get new user token");
+      logout();
+    }
+    setSession(result);
+  });
+}
+
 export function areAuthItemsSet() {
   const idToken = localStorage.getItem("idToken");
   const accessToken = localStorage.getItem("accessToken");
+
   if (idToken && accessToken) {
     return true;
   }
   return false;
+}
+
+export function isAuthenticated() {
+  const expiresAt = localStorage.getItem("expiresAt");
+  return new Date().getTime() < expiresAt;
 }
 
 export function logout() {
@@ -85,4 +117,7 @@ export function logout() {
 
   //Remove isLoggedIn flag from localStorage
   localStorage.removeItem("isLoggedIn");
+
+  //Set Expiry to 0
+  localStorage.setItem("expiresAt", 0);
 }
