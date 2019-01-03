@@ -51,7 +51,7 @@ export function setAuthItems(callback) {
 }
 
 export function setSession(result) {
-  //Set isLoggedIn flad in localStorage
+  //Set isLoggedIn flag in localStorage
   localStorage.setItem("isLoggedIn", "true");
 
   const { accessToken, idToken } = result;
@@ -77,5 +77,7 @@ export function logout() {
   //Clear access and id token
   localStorage.removeItem("idToken");
   localStorage.removeItem("accessToken");
-  // history.replace('/login');
+
+  //Remove isLoggedIn flag from localStorage
+  localStorage.removeItem("isLoggedIn");
 }
