@@ -7,7 +7,7 @@ const auth0Client = new Auth0.WebAuth({
   redirectUri: config.auth0.redirectUri,
   audience: config.auth0.audience,
   responseType: "token id_token",
-  scope: "openid"
+  scope: "openid profile"
 });
 
 export function ssoLogin(email, history) {
