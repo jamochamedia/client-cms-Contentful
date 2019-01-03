@@ -57,6 +57,11 @@ export function setSession(result) {
   const { accessToken, idToken } = result;
   localStorage.setItem("idToken", idToken);
   localStorage.setItem("accessToken", accessToken);
+
+  //Set access token expiry
+  //TODO: IS THIS RIGHT?
+  let expiresAt = result.expiresIn * 1000 + new Date().getTime();
+  localStorage.setItem("expiresAt", expiresAt);
 }
 
 export function areAuthItemsSet() {
