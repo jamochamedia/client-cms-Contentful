@@ -101,8 +101,6 @@ const ClientProfile = props => {
     tracker = <ClientTracker clientName={fields.clientName} />;
   }
 
-  console.log(fields.clientName);
-
   return (
     <div>
       <div style={BackgroundHead}>

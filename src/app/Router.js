@@ -9,10 +9,19 @@ import Invoices from "./routes/Invoices";
 import InvoicePage from "./routes/Invoices/InvoicePage";
 import Writers from "./routes/Writers";
 import WriterProfile from "./routes/Writers/WriterProfile";
+import AuthHandler from "./routes/Auth/AuthHandler";
+import Login from "./routes/Auth/Login";
+import Verify from "./routes/Auth/Verify";
 
 const Router = () => (
   <Switch>
+    {/* Login Routes */}
+    <Route exact path="/auth-handler" component={AuthHandler} />
+    <Route exact path="/login" component={Login} />
+    <Route exact path="/verify" component={Verify} />
+
     <Route exact path="/" component={Home} />
+    <Route exact path="/admin" component={Home} />
     <Route exact path="/linkedin" component={LinkedIn} />
     <Route exact path="/linkedin/:linkedinpostid" component={LinkedInPost} />
     <Route exact path="/clients" component={Clients} />

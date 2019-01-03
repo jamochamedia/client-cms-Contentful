@@ -2,7 +2,6 @@ import styled from "styled-components";
 import React from "react";
 import { D2 } from "../../components/Typography/DisplayText";
 import { H3 } from "../../components/Typography/HeaderText";
-import { Paragraph } from "../Typography/ParapgraphText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Markdown from "react-markdown";
 
@@ -37,8 +36,11 @@ const TextContainer = styled.div`
   padding: 5px 30px 20px 30px;
 `;
 
-const DescriptionContainer = styled.div`
+const DescriptionStyles = styled.div`
   margin-top: 50px;
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.7;
 `;
 
 const white = {
@@ -62,11 +64,9 @@ function ProfileCard(props) {
         </ProfileImage>
         <H3 style={title}>{props.role}</H3>
         <TextContainer>
-          <DescriptionContainer>
-            <Paragraph>
-              <Markdown source={props.description} />
-            </Paragraph>
-          </DescriptionContainer>
+          <DescriptionStyles>
+            <Markdown source={props.description} />
+          </DescriptionStyles>
         </TextContainer>
       </ProfileContainer>
     </div>

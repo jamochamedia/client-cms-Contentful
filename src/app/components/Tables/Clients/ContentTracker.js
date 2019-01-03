@@ -4,6 +4,8 @@ import { H3, H4, H5 } from "../../Typography/HeaderText";
 import { Paragraph } from "../../Typography/ParapgraphText";
 import { client } from "../../../../utils/client";
 
+import moment from "moment";
+
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
@@ -84,7 +86,12 @@ class ContentTracker extends Component {
                   Cell: cell => (
                     <div>
                       <Paragraph>
-                        {new Date(cell.value).toLocaleString()}
+                        {moment(cell.value).calendar(null, {
+                          sameDay: "[Today]",
+                          lastDay: "[Yesterday]",
+                          lastWeek: "[Last] dddd",
+                          sameElse: "MMM Do YYYY, h:mm:ss a"
+                        })}
                       </Paragraph>
                     </div>
                   )

@@ -12,9 +12,14 @@ import { loadContent } from "./store/data/Content";
 
 // Font awesome
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUser, faBriefcase, faHome } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faBriefcase,
+  faHome,
+  faLock
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faUser, faBriefcase, faHome);
+library.add(faUser, faBriefcase, faHome, faLock);
 
 const store = configureStore();
 store.dispatch(loadContent());

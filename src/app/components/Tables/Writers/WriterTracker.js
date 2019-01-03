@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import moment from "moment";
+
 import "../../../../App.css";
 import { H3, H5 } from "../../Typography/HeaderText";
 import { Paragraph } from "../../Typography/ParapgraphText";
@@ -148,7 +150,12 @@ class ClientTracker extends Component {
                   Cell: cell => (
                     <div>
                       <Paragraph>
-                        {new Date(cell.value).toLocaleString()}
+                        {moment(cell.value).calendar(null, {
+                          sameDay: "[Today]",
+                          lastDay: "[Yesterday]",
+                          lastWeek: "[Last] dddd",
+                          sameElse: "MMM Do YYYY, h:mm:ss a"
+                        })}
                       </Paragraph>
                     </div>
                   )
