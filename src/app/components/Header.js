@@ -47,7 +47,7 @@ class Header extends React.Component {
               </NavLink>
             )}
             {!areAuthItemsSet() && (
-              <NavLink style={white} to="./login">
+              <NavLink style={white} href="/login">
                 <FontAwesomeIcon icon="sign-in-alt" /> Login
               </NavLink>
             )}
