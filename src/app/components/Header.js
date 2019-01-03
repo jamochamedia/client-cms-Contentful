@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Container, Row, NavbarBrand, Navbar, NavLink } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -48,11 +47,9 @@ class Header extends React.Component {
               </NavLink>
             )}
             {!areAuthItemsSet() && (
-              <Link to="./login">
-                <NavLink style={white}>
-                  <FontAwesomeIcon icon="sign-in-alt" /> Login
-                </NavLink>
-              </Link>
+              <NavLink style={white} to="./login">
+                <FontAwesomeIcon icon="sign-in-alt" /> Login
+              </NavLink>
             )}
           </Row>
         </Container>

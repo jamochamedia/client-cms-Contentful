@@ -112,8 +112,8 @@ class ContentTracker extends Component {
                 {
                   Header: <H5>STATUS</H5>,
                   headerClassName: "table-subheader",
-                  id: "status",
-                  accessor: "fields.status",
+                  id: "editingStatus",
+                  accessor: "fields.editingStatus",
                   Cell: row => (
                     <Paragraph>
                       <span>
@@ -125,6 +125,8 @@ class ContentTracker extends Component {
                                 : row.value === "In Writing"
                                 ? "#00db62"
                                 : row.value === "In Editing"
+                                ? "#fce302"
+                                : row.value === "Back to Writing"
                                 ? "#fce302"
                                 : row.value === "In Client Review"
                                 ? "#e03404"
@@ -145,6 +147,8 @@ class ContentTracker extends Component {
                           ? " In Writing"
                           : row.value === "In Editing"
                           ? " In Editing"
+                          : row.value === "Back to Writing"
+                          ? " Back to Writing"
                           : row.value === "In Client Review"
                           ? " In Client Review"
                           : row.value === "Ready for Post"
