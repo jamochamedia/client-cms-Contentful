@@ -9,16 +9,29 @@ import Footer from "./components/Footer";
 import Content from "./components/Content";
 import Site from "./components/Site";
 
-const Layout = ({ children }) => (
-  <Site>
-    <Helmet title="Jamocha Client CMS" />
-    <Header />
-    <Content>
-      <Router />
-    </Content>
-    <Footer />
-  </Site>
-);
+import { renewSession } from "../utils/Auth/Auth";
+
+class Layout extends React.Component {
+  //TODO: renew session when using app. Correct?
+  componentDidMount() {
+    if (localStorage.getItem("isLoggedIn") === "true") {
+      renewSession();
+    }
+  }
+
+  render(props) {
+    return (
+      <Site>
+        <Helmet title="Jamocha Client CMS" />
+        <Header />
+        <Content>
+          <Router />
+        </Content>
+        <Footer />
+      </Site>
+    );
+  }
+}
 
 export default Layout;
 

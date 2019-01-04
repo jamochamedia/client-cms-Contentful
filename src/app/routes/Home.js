@@ -9,7 +9,7 @@ import ContentTracker from "../components/Tables/Clients/ContentTracker";
 import ClientHomeTracker from "../components/Tables/Clients/ClientHomeTracker";
 import InvoiceHomeTracker from "../components/Tables/Invoices/InvoiceHomeTracker";
 
-import { areAuthItemsSet, setAuthItems } from "../../utils/Auth/Auth";
+import { areAuthItemsSet } from "../../utils/Auth/Auth";
 
 const ContentWrapper = styled.div`
   padding: 20px;
@@ -41,32 +41,31 @@ const mr20 = {
 };
 
 class Home extends Component {
-  componentDidMount() {
-    if (!areAuthItemsSet()) {
-      setAuthItems();
-    }
-  }
   render() {
     return (
       <div>
-        <BgPrimary>
-          <Container fluid>
-            <ContentWrapper>
-              <H2 style={white}>
-                <FontAwesomeIcon style={mr20} icon="home" /> Admin Dashboard
-              </H2>
-              <ContentTracker />
-              <Row>
-                <Col lg="5" style={m20}>
-                  <ClientHomeTracker />
-                </Col>
-                <Col lg="7" style={m20}>
-                  <InvoiceHomeTracker />
-                </Col>
-              </Row>
-            </ContentWrapper>
-          </Container>
-        </BgPrimary>
+        {areAuthItemsSet() && (
+          <BgPrimary>
+            <Container fluid>
+              <ContentWrapper>
+                <H2 style={white}>
+                  <FontAwesomeIcon style={mr20} icon="home" /> Admin Dashboard
+                </H2>
+                <ContentTracker />
+                <Row>
+                  <Col lg="5" style={m20}>
+                    <ClientHomeTracker />
+                  </Col>
+                  <Col lg="7" style={m20}>
+                    <InvoiceHomeTracker />
+                  </Col>
+                </Row>
+              </ContentWrapper>
+            </Container>
+          </BgPrimary>
+        )}
+        {!areAuthItemsSet() &&
+          window.location.replace("http://localhost:3000/login")}
       </div>
     );
   }

@@ -31,7 +31,7 @@ const InputWrap = styled.div`
   margin-bottom: 10px;
 `;
 
-export default class ConfirmIn extends React.Component {
+export default class Login extends React.Component {
   state = {
     email: ""
   };

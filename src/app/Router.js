@@ -19,7 +19,6 @@ const Router = () => (
     <Route exact path="/auth-handler" component={AuthHandler} />
     <Route exact path="/login" component={Login} />
     <Route exact path="/verify" component={Verify} />
-
     <Route exact path="/" component={Home} />
     <Route exact path="/admin" component={Home} />
     <Route exact path="/linkedin" component={LinkedIn} />
