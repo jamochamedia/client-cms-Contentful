@@ -75,8 +75,8 @@ export function setSession(result) {
 
   //Set access token expiry
   //TODO: IS THIS RIGHT?
-  let expiresAt = result.expiresIn * 1000 + new Date().getTime();
-  localStorage.setItem("expiresAt", expiresAt);
+  // let expiresAt = result.expiresIn * 1000 + new Date().getTime();
+  // localStorage.setItem("expiresAt", expiresAt);
 }
 
 export function renewSession() {
@@ -119,5 +119,5 @@ export function logout() {
   localStorage.removeItem("isLoggedIn");
 
   //Set Expiry to 0
-  localStorage.setItem("expiresAt", 0);
+  // localStorage.setItem("expiresAt", 0);
 }
