@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { Container, Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -44,7 +44,9 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {areAuthItemsSet() && (
+        {!areAuthItemsSet() ? (
+          <Redirect to="/login" />
+        ) : (
           <BgPrimary>
             <Container fluid>
               <ContentWrapper>
@@ -64,8 +66,6 @@ class Home extends Component {
             </Container>
           </BgPrimary>
         )}
-        {!areAuthItemsSet() &&
-          window.location.replace("http://localhost:3000/login")}
       </div>
     );
   }

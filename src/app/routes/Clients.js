@@ -1,6 +1,10 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
+
 import ClientItem from "../routes/Clients/ClientItem";
+
 import { client } from "../../utils/client";
+import { areAuthItemsSet } from "../../utils/Auth/Auth";
 
 class Clients extends React.Component {
   state = {
@@ -39,10 +43,16 @@ class Clients extends React.Component {
     const { clients } = this.state;
     return (
       <div>
-        <p>Our Clients</p>
-        {clients.map((clients, i) => (
-          <ClientItem key={i} {...clients} />
-        ))}
+        {!areAuthItemsSet() ? (
+          <Redirect to="/login" />
+        ) : (
+          <div>
+            <p>Our Clients</p>
+            {clients.map((clients, i) => (
+              <ClientItem key={i} {...clients} />
+            ))}
+          </div>
+        )}
         <br />
       </div>
     );
