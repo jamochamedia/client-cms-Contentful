@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+/public
 /src/Auth/config.js
 
 # misc

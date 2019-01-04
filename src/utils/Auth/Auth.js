@@ -100,10 +100,10 @@ export function areAuthItemsSet() {
   return false;
 }
 
-export function isAuthenticated() {
-  const expiresAt = localStorage.getItem("expiresAt");
-  return new Date().getTime() < expiresAt;
-}
+// export function isAuthenticated() {
+//   const expiresAt = localStorage.getItem("expiresAt");
+//   return new Date().getTime() < expiresAt;
+// }
 
 export function logout() {
   auth0Client.logout({
