@@ -1,13 +1,14 @@
 {
-  "name": "socialmedia-dash",
+  "name": "client-cms-contentful",
   "version": "1.0.0",
+  "repository": "git@github.com:jamochamedia/client-cms-Contentful.git",
+  "author": "Mehak Vohra <watthemehak@gmail.com>",
+  "license": "MIT",
   "workspaces": [
     "client"
   ],
   "scripts": {
-    "start": "yarn start:client",
-    "build": "yarn build:client",
-    "start:client": "cd client && yarn start"
-  },
-  "dependencies": {}
+    "start": "cd client && yarn start",
+    "build": "cd client && yarn build"
+  }
 }
