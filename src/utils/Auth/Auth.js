@@ -49,6 +49,7 @@ export function setAuthItems(callback) {
     setSession(result);
     callback(null, result);
   });
+  console.log("grabbed auth tokens");
 }
 
 export function getAccessToken() {
@@ -56,6 +57,7 @@ export function getAccessToken() {
   if (accessToken) {
     return accessToken;
   }
+  console.log("set access token");
 }
 
 export function getIdToken() {
@@ -63,6 +65,7 @@ export function getIdToken() {
   if (idToken) {
     return idToken;
   }
+  console.log("got id token");
 }
 
 export function setSession(result) {
@@ -77,8 +80,10 @@ export function setSession(result) {
   //TODO: IS THIS RIGHT?
   // let expiresAt = result.expiresIn * 1000 + new Date().getTime();
   // localStorage.setItem("expiresAt", expiresAt);
+  console.log("set session");
 }
 
+//TODO: RENEWSESSION FIX
 export function renewSession() {
   auth0Client.checkSession({}, (err, result) => {
     if (err) {
@@ -118,6 +123,7 @@ export function logout() {
   //Remove isLoggedIn flag from localStorage
   localStorage.removeItem("isLoggedIn");
 
+  console.log("you are logged out");
   //Set Expiry to 0
   // localStorage.setItem("expiresAt", 0);
 }

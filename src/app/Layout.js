@@ -9,15 +9,14 @@ import Footer from "./components/Footer";
 import Content from "./components/Content";
 import Site from "./components/Site";
 
-import { renewSession } from "../utils/Auth/Auth";
-
 class Layout extends React.Component {
   //TODO: renew session when using app. Correct?
-  componentDidMount() {
-    if (localStorage.getItem("isLoggedIn") === "true") {
-      renewSession();
-    }
-  }
+  // componentDidMount() {
+  //   if (localStorage.getItem("isLoggedIn") === "true") {
+  //     renewSession();
+  //     console.log("renewed Session");
+  //   }
+  // }
 
   render(props) {
     return (
