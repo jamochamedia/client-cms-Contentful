@@ -10,14 +10,6 @@ import Content from "./components/Content";
 import Site from "./components/Site";
 
 class Layout extends React.Component {
-  //TODO: renew session when using app. Correct?
-  // componentDidMount() {
-  //   if (localStorage.getItem("isLoggedIn") === "true") {
-  //     renewSession();
-  //     console.log("renewed Session");
-  //   }
-  // }
-
   render(props) {
     return (
       <Site>

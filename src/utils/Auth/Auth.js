@@ -1,5 +1,7 @@
 import Auth0 from "auth0-js";
 import config from "./config";
+// import localConfig from "./localConfig";
+import hostedConfig from "./hostedConfig";
 
 const auth0Client = new Auth0.WebAuth({
   domain: config.auth0.domain,
@@ -76,10 +78,6 @@ export function setSession(result) {
   localStorage.setItem("idToken", idToken);
   localStorage.setItem("accessToken", accessToken);
 
-  //Set access token expiry
-  //TODO: IS THIS RIGHT?
-  // let expiresAt = result.expiresIn * 1000 + new Date().getTime();
-  // localStorage.setItem("expiresAt", expiresAt);
   console.log("set session");
 }
 
@@ -105,14 +103,9 @@ export function areAuthItemsSet() {
   return false;
 }
 
-// export function isAuthenticated() {
-//   const expiresAt = localStorage.getItem("expiresAt");
-//   return new Date().getTime() < expiresAt;
-// }
-
 export function logout() {
   auth0Client.logout({
-    returnTo: "http://localhost:3000/login",
+    returnTo: hostedConfig.urls.login,
     client_id: config.auth0.client
   });
 
@@ -124,6 +117,4 @@ export function logout() {
   localStorage.removeItem("isLoggedIn");
 
   console.log("you are logged out");
-  //Set Expiry to 0
-  // localStorage.setItem("expiresAt", 0);
 }
