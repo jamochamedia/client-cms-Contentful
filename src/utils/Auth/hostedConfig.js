@@ -1,6 +1,6 @@
 export default {
   urls: {
-    login: "https://jamocha-cms.netlify.com/login",
-    redirectUri: "https://jamocha-cms.netlify.com/auth-handler"
+    login: "https://client-cms-contentful.herokuapp.com/login",
+    redirectUri: "https://client-cms-contentful.herokuapp.com/auth-handler"
   }
 };
