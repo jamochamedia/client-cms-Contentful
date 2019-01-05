@@ -3,7 +3,7 @@ import { Container, Row, Col, Input, Button } from "reactstrap";
 
 import styled from "styled-components";
 
-import { H1, H2, H5 } from "../../components/Typography/HeaderText";
+import { H1, H2, H4 } from "../../components/Typography/HeaderText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { ssoLogin } from "../../../utils/Auth/Auth";
@@ -28,8 +28,16 @@ const LeftBorder = styled.div`
 `;
 
 const InputWrap = styled.div`
+  overflow: hidden;
+  padding-right: 0.5em;
+  margin-top: 15px;
   margin-bottom: 10px;
 `;
+
+const right = {
+  marginTop: "15px",
+  float: "right"
+};
 
 export default class Login extends React.Component {
   state = {
@@ -51,7 +59,7 @@ export default class Login extends React.Component {
         <Row>
           <MainContainer>
             <ContentContainer>
-              <Col xs={{ size: 6, offset: 3 }}>
+              <Col xs={{ size: 10, offset: 1 }} lg={{ size: 6, offset: 3 }}>
                 <Row>
                   <Col xs="12" sm="2" md="1">
                     <H1>
@@ -61,22 +69,18 @@ export default class Login extends React.Component {
                   <Col xs="12" sm="10" md="11">
                     <LeftBorder>
                       <H2>Enter Your Email</H2>
-                      <H5>
+                      <H4>
                         We'll send you a confirmation link to get started.
-                      </H5>
-                      <Row>
-                        <Col xs="12" md="12" lg="8">
-                          <InputWrap>
-                            <Input
-                              placeholder="example@example.com"
-                              onChange={this._onChange}
-                            />
-                          </InputWrap>
-                        </Col>
-                        <Col xs="12" md="12" lg="4">
-                          <Button onClick={this._sso}>Confirm</Button>
-                        </Col>
-                      </Row>
+                      </H4>
+                      <Button style={right} onClick={this._sso}>
+                        Confirm
+                      </Button>
+                      <InputWrap>
+                        <Input
+                          placeholder="example@example.com"
+                          onChange={this._onChange}
+                        />
+                      </InputWrap>
                     </LeftBorder>
                   </Col>
                 </Row>

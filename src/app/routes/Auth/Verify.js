@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 
 import styled from "styled-components";
-import { H1, H2, H5 } from "../../components/Typography/HeaderText";
+import { H1, H2, H4 } from "../../components/Typography/HeaderText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MainContainer = styled.div`
@@ -24,6 +24,10 @@ const LeftBorder = styled.div`
   padding-left: 15px;
 `;
 
+const bottom = {
+  paddingBottom: "15px"
+};
+
 export default class Verify extends Component {
   render() {
     return (
@@ -31,7 +35,7 @@ export default class Verify extends Component {
         <Row>
           <MainContainer>
             <ContentContainer>
-              <Col xs={{ size: 6, offset: 3 }}>
+              <Col xs={{ size: 10, offset: 1 }} lg={{ size: 6, offset: 3 }}>
                 <Row>
                   <Col xs="12" sm="2" md="1">
                     <H1>
@@ -40,13 +44,11 @@ export default class Verify extends Component {
                   </Col>
                   <Col xs="12" sm="10" md="11">
                     <LeftBorder>
-                      <H2>
-                        A confirmation email has been sent to your account.
-                      </H2>
-                      <H5>
-                        To finish setting up your account please verify your
+                      <H2>A confirmation link has been sent to your email.</H2>
+                      <H4 style={bottom}>
+                        To finish logging in, please click the link in your
                         email.
-                      </H5>
+                      </H4>
                     </LeftBorder>
                   </Col>
                 </Row>
