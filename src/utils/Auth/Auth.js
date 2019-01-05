@@ -105,6 +105,7 @@ export function areAuthItemsSet() {
 
 export function logout() {
   auth0Client.logout({
+    // returnTo: localConfig.urls.login,
     returnTo: hostedConfig.urls.login,
     client_id: config.auth0.client
   });

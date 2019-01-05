@@ -5,6 +5,7 @@ export default {
   auth0: {
     client: "NN94F3O0Xi5c794xWdKHY0usZERvGfNm",
     domain: "jamocha.auth0.com",
+    // redirectUri: localConfig.urls.redirectUri,
     redirectUri: hostedConfig.urls.redirectUri,
     audience: "https://jamocha.auth0.com/userinfo"
   }
