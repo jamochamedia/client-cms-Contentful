@@ -112,8 +112,8 @@ class ContentTracker extends Component {
                 {
                   Header: <H5>STATUS</H5>,
                   headerClassName: "table-subheader",
-                  id: "editingStatus",
-                  accessor: "fields.editingStatus",
+                  id: "status",
+                  accessor: "fields.status",
                   Cell: row => (
                     <Paragraph>
                       <span>
