@@ -12,8 +12,8 @@ const ProfileContainer = styled.div`
   background: linear-gradient(
     to bottom,
     #508991 0%,
-    #508991 40%,
-    #fff 40%,
+    #508991 210px,
+    #fff 210px,
     #fff 100%
   );
   border-radius: 0.375rem;
@@ -29,7 +29,7 @@ const ProfileImage = styled.div`
   height: 90px;
   background-color: #292f36;
   margin: 0 auto;
-  padding: 8px;
+  padding: 10px;
 `;
 
 const TextContainer = styled.div`
@@ -49,8 +49,7 @@ const white = {
 
 const title = {
   color: "#f1f1f1",
-  marginTop: "20px",
-  marginBottom: "20px"
+  margin: "20px"
 };
 
 function ProfileCard(props) {
