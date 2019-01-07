@@ -5,8 +5,8 @@ import { Container, Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { H2 } from "../components/Typography/HeaderText";
 
-import ContentTracker from "../components/Tables/Clients/ContentTracker";
-import ClientHomeTracker from "../components/Tables/Clients/ClientHomeTracker";
+import EditorContentTracker from "../components/Tables/Content/EditorContentTracker";
+import ClientList from "../components/Tables/Clients/ClientList";
 import InvoiceHomeTracker from "../components/Tables/Invoices/InvoiceHomeTracker";
 
 import { areAuthItemsSet } from "../../utils/Auth/Auth";
@@ -53,10 +53,10 @@ class Home extends Component {
                 <H2 style={white}>
                   <FontAwesomeIcon style={mr20} icon="home" /> Admin Dashboard
                 </H2>
-                <ContentTracker />
+                <EditorContentTracker />
                 <Row>
                   <Col lg="5" style={m20}>
-                    <ClientHomeTracker />
+                    <ClientList />
                   </Col>
                   <Col lg="7" style={m20}>
                     <InvoiceHomeTracker />

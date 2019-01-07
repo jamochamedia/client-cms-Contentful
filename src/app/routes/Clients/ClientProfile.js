@@ -9,7 +9,7 @@ import { Col, Row, Button } from "reactstrap";
 import { D3 } from "../../components/Typography/DisplayText";
 import { H3 } from "../../components/Typography/HeaderText";
 import ProfileCard from "../../components/Cards/ProfileCard";
-import ClientTracker from "../../components/Tables/Clients/ClientTracker";
+import ClientTracker from "../../components/Tables/Content/ClientContentTracker";
 import Background from "../../img/profile-background.jpg";
 import InvoiceTracker from "../../components/Tables/Invoices/InvoiceTracker";
 
