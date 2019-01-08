@@ -6,7 +6,8 @@ import {
   NavbarToggler,
   Collapse,
   NavItem,
-  Nav
+  Nav,
+  Container
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -40,8 +41,8 @@ class Header extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Navbar style={NavStyle} dark expand="md">
+      <Navbar style={NavStyle} dark expand="md">
+        <Container fluid>
           <NavbarBrand href="/">Jamocha CMS</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -60,8 +61,8 @@ class Header extends React.Component {
               </NavItem>
             </Nav>
           </Collapse>
-        </Navbar>
-      </div>
+        </Container>
+      </Navbar>
     );
   }
 }
