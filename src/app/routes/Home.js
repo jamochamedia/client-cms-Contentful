@@ -4,10 +4,6 @@ import styled from "styled-components";
 import { Container, Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { H2 } from "../components/Typography/HeaderText";
-
-import EditorContentTracker from "../components/Tables/Content/EditorContentTracker";
-import ClientList from "../components/Tables/Clients/ClientList";
-
 import { areAuthItemsSet } from "../../utils/Auth/Auth";
 
 const ContentWrapper = styled.div`
@@ -24,6 +20,7 @@ const BgPrimary = styled.div`
     #f7f7f7 37%,
     #f7f7f7 100%
   );
+  min-height: 100vh;
 `;
 
 const white = {
@@ -52,12 +49,13 @@ class Home extends Component {
                 <H2 style={white}>
                   <FontAwesomeIcon style={mr20} icon="home" /> Client Dashboard
                 </H2>
-                <EditorContentTracker />
                 <Row>
                   <Col lg="5" style={m20}>
-                    <ClientList />
+                    This is the client Home
                   </Col>
-                  <Col lg="7" style={m20} />
+                  <Col lg="7" style={m20}>
+                    There will be things here
+                  </Col>
                 </Row>
               </ContentWrapper>
             </Container>
