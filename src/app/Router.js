@@ -1,6 +1,9 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { userHasScopes } from "../utils/Auth/Auth";
+
 import Home from "./routes/Home";
+import AdminHome from "./routes/Admin/AdminHome";
 import LinkedIn from "./routes/LinkedIn";
 import LinkedInPost from "./routes/LinkedIn/LinkedInPost";
 import Clients from "./routes/Clients";
@@ -20,7 +23,17 @@ const Router = () => (
     <Route exact path="/login" component={Login} />
     <Route exact path="/verify" component={Verify} />
     <Route exact path="/" component={Home} />
-    <Route exact path="/admin" component={Home} />
+    <Route
+      exact
+      path="/admin"
+      render={() =>
+        !userHasScopes(["admin:all"]) ? (
+          <Redirect to="/" />
+        ) : (
+          <Route component={AdminHome} />
+        )
+      }
+    />
     <Route exact path="/linkedin" component={LinkedIn} />
     <Route exact path="/linkedin/:linkedinpostid" component={LinkedInPost} />
     <Route exact path="/clients" component={Clients} />

@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { logout, areAuthItemsSet } from "../../utils/Auth/Auth";
+import { logout, areAuthItemsSet, userHasScopes } from "../../utils/Auth/Auth";
 
 const NavStyle = {
   backgroundColor: "#292f36"
@@ -43,7 +43,11 @@ class Header extends React.Component {
     return (
       <Navbar style={NavStyle} dark expand="md">
         <Container fluid>
-          <NavbarBrand href="/">Jamocha CMS</NavbarBrand>
+          {userHasScopes(["admin:all"]) ? (
+            <NavbarBrand href="/admin">Jamocha CMS</NavbarBrand>
+          ) : (
+            <NavbarBrand href="/">Jamocha CMS</NavbarBrand>
+          )}
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

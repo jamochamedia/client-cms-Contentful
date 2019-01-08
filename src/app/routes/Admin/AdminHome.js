@@ -3,12 +3,13 @@ import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { Container, Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { H2 } from "../components/Typography/HeaderText";
+import { H2 } from "../../components/Typography/HeaderText";
 
-import EditorContentTracker from "../components/Tables/Content/EditorContentTracker";
-import ClientList from "../components/Tables/Clients/ClientList";
+import EditorContentTracker from "../../components/Tables/Content/EditorContentTracker";
+import ClientList from "../../components/Tables/Clients/ClientList";
+import InvoiceHomeTracker from "../../components/Tables/Invoices/InvoiceHomeTracker";
 
-import { areAuthItemsSet } from "../../utils/Auth/Auth";
+import { areAuthItemsSet, userHasScopes } from "../../../utils/Auth/Auth";
 
 const ContentWrapper = styled.div`
   padding: 20px;
@@ -43,7 +44,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {!areAuthItemsSet() ? (
+        {!areAuthItemsSet() && userHasScopes(["admin:all"]) ? (
           <Redirect to="/login" />
         ) : (
           <BgPrimary>
@@ -57,7 +58,9 @@ class Home extends Component {
                   <Col lg="5" style={m20}>
                     <ClientList />
                   </Col>
-                  <Col lg="7" style={m20} />
+                  <Col lg="7" style={m20}>
+                    <InvoiceHomeTracker />
+                  </Col>
                 </Row>
               </ContentWrapper>
             </Container>
