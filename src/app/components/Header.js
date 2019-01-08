@@ -46,7 +46,13 @@ class Header extends React.Component {
           {userHasScopes(["admin:all"]) ? (
             <NavbarBrand href="/admin">Jamocha CMS</NavbarBrand>
           ) : (
-            <NavbarBrand href="/">Jamocha CMS</NavbarBrand>
+            [
+              userHasScopes(["role:editor"]) ? (
+                <NavbarBrand href="/editor">Jamocha CMS</NavbarBrand>
+              ) : (
+                <NavbarBrand href="/">Jamocha CMS</NavbarBrand>
+              )
+            ]
           )}
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

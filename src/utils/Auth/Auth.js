@@ -28,13 +28,12 @@ export function ssoLogin(email, history) {
         throw new Error(`User could not be sent sign on link error: ${err}`);
 
       const { email, emailVerified, Id } = res;
-      console.log("id ->", Id);
       if (email && Id) {
         if (!emailVerified) {
           history.push("/verify");
           return true;
         }
-        history.push("/home");
+        history.push("/");
         return true;
       }
       throw new Error("No user was returned");
@@ -53,7 +52,6 @@ export function setAuthItems(callback) {
     setSession(result);
     callback(null, result);
   });
-  console.log("grabbed auth tokens");
 }
 
 export function getAccessToken() {
@@ -61,7 +59,6 @@ export function getAccessToken() {
   if (accessToken) {
     return accessToken;
   }
-  console.log("set access token");
 }
 
 export function getIdToken() {
@@ -69,7 +66,6 @@ export function getIdToken() {
   if (idToken) {
     return idToken;
   }
-  console.log("got id token");
 }
 
 export function setSession(result) {
@@ -82,11 +78,6 @@ export function setSession(result) {
 
   const scopes = result.scope || requestedScopes || "";
   localStorage.setItem("scopes", scopes);
-  // console.log("scopes: " + scopes);
-
-  // console.log("set session");
-  // console.log(result.scope);
-  // console.log(result);
 }
 
 export function userHasScopes(scopes) {

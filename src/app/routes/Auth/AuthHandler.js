@@ -1,5 +1,5 @@
 import React from "react";
-import { setAuthItems } from "../../../utils/Auth/Auth";
+import { setAuthItems, userHasScopes } from "../../../utils/Auth/Auth";
 
 class AuthHandler extends React.Component {
   constructor(props) {
@@ -15,7 +15,13 @@ class AuthHandler extends React.Component {
         this.setState({ error: err.errorDescription });
         return;
       }
-      this.props.history.push("/admin");
+      if (userHasScopes(["admin:all"])) {
+        this.props.history.push("/admin");
+      } else if (userHasScopes(["role:editor"])) {
+        this.props.history.push("/editor");
+      } else {
+        this.props.history.push("/");
+      }
     });
   }
 

@@ -3,12 +3,12 @@ import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { Container, Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { H2 } from "../components/Typography/HeaderText";
+import { H2 } from "../../components/Typography/HeaderText";
 
-import EditorContentTracker from "../components/Tables/Content/EditorContentTracker";
-import ClientList from "../components/Tables/Clients/ClientList";
+import EditorContentTracker from "../../components/Tables/Content/EditorContentTracker";
+import ClientList from "../../components/Tables/Clients/ClientList";
 
-import { areAuthItemsSet } from "../../utils/Auth/Auth";
+import { areAuthItemsSet, userHasScopes } from "../../../utils/Auth/Auth";
 
 const ContentWrapper = styled.div`
   padding: 20px;
@@ -43,14 +43,14 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {!areAuthItemsSet() ? (
+        {!areAuthItemsSet() && userHasScopes(["role:editor"]) ? (
           <Redirect to="/login" />
         ) : (
           <BgPrimary>
             <Container fluid>
               <ContentWrapper>
                 <H2 style={white}>
-                  <FontAwesomeIcon style={mr20} icon="home" /> Client Dashboard
+                  <FontAwesomeIcon style={mr20} icon="home" /> Editor Dashboard
                 </H2>
                 <EditorContentTracker />
                 <Row>
