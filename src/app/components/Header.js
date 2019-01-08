@@ -1,31 +1,23 @@
 import React from "react";
-import { Container, Row, NavbarBrand, Navbar, NavLink } from "reactstrap";
+import {
+  NavbarBrand,
+  Navbar,
+  NavLink,
+  NavbarToggler,
+  Collapse,
+  NavItem,
+  Nav
+} from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { logout, areAuthItemsSet, userHasScopes } from "../../utils/Auth/Auth";
-
-const textStyle = {
-  color: "white",
-  textDecoration: "none",
-  "& a:focus": {
-    textDecoration: "none"
-  },
-  "& a:hover": {
-    textDecoration: "none"
-  },
-  "& a:visited": {
-    textDecoration: "none"
-  },
-  "& a:link": {
-    textDecoration: "none"
-  },
-  "& a:active": {
-    textDecoration: "none"
-  }
-};
+import { logout, areAuthItemsSet } from "../../utils/Auth/Auth";
 
 const NavStyle = {
   backgroundColor: "#292f36"
+};
+
+const NavLinkStyle = {
+  cursor: "pointer"
 };
 
 const white = {
@@ -33,32 +25,43 @@ const white = {
 };
 
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
   render() {
     return (
-      <Navbar style={NavStyle}>
-        <Container fluid>
-          <Row noGutters>
-            <NavbarBrand style={textStyle} href="/">
-              Jamocha Dashboard
-            </NavbarBrand>
-            {areAuthItemsSet() && (
-              <NavLink style={white} onClick={() => logout()}>
-                <FontAwesomeIcon icon="sign-in-alt" /> Logout
-              </NavLink>
-            )}
-            {areAuthItemsSet() && userHasScopes(["admin:all"]) && (
-              <NavLink style={white} onClick={() => logout()}>
-                ADMIN!!!!
-              </NavLink>
-            )}
-            {!areAuthItemsSet() && (
-              <NavLink style={white} href="/login">
-                <FontAwesomeIcon icon="sign-in-alt" /> Login
-              </NavLink>
-            )}
-          </Row>
-        </Container>
-      </Navbar>
+      <div>
+        <Navbar style={NavStyle} dark expand="md">
+          <NavbarBrand href="/">Jamocha CMS</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem style={NavLinkStyle}>
+                {areAuthItemsSet() && (
+                  <NavLink style={white} onClick={() => logout()}>
+                    <FontAwesomeIcon icon="sign-in-alt" /> Logout
+                  </NavLink>
+                )}
+                {!areAuthItemsSet() && (
+                  <NavLink style={white} href="/login">
+                    <FontAwesomeIcon icon="sign-in-alt" /> Login
+                  </NavLink>
+                )}
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
     );
   }
 }

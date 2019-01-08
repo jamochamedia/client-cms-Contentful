@@ -9,7 +9,7 @@ import EditorContentTracker from "../components/Tables/Content/EditorContentTrac
 import ClientList from "../components/Tables/Clients/ClientList";
 import InvoiceHomeTracker from "../components/Tables/Invoices/InvoiceHomeTracker";
 
-import { areAuthItemsSet } from "../../utils/Auth/Auth";
+import { areAuthItemsSet, userHasScopes } from "../../utils/Auth/Auth";
 
 const ContentWrapper = styled.div`
   padding: 20px;
@@ -54,14 +54,16 @@ class Home extends Component {
                   <FontAwesomeIcon style={mr20} icon="home" /> Admin Dashboard
                 </H2>
                 <EditorContentTracker />
-                <Row>
-                  <Col lg="5" style={m20}>
-                    <ClientList />
-                  </Col>
-                  <Col lg="7" style={m20}>
-                    <InvoiceHomeTracker />
-                  </Col>
-                </Row>
+                {areAuthItemsSet() && userHasScopes(["admin:all"]) && (
+                  <Row>
+                    <Col lg="5" style={m20}>
+                      <ClientList />
+                    </Col>
+                    <Col lg="7" style={m20}>
+                      <InvoiceHomeTracker />
+                    </Col>
+                  </Row>
+                )}
               </ContentWrapper>
             </Container>
           </BgPrimary>

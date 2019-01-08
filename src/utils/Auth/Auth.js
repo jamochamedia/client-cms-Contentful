@@ -3,7 +3,7 @@ import config from "./config";
 // import localConfig from "./localConfig";
 import hostedConfig from "./hostedConfig";
 
-const requestedScopes = "openid profile content:editor admin:all";
+const requestedScopes = "openid profile";
 
 const auth0Client = new Auth0.WebAuth({
   domain: config.auth0.domain,
@@ -82,13 +82,11 @@ export function setSession(result) {
 
   const scopes = result.scope || requestedScopes || "";
   localStorage.setItem("scopes", scopes);
+  // console.log("scopes: " + scopes);
 
-  console.log("set session");
-}
-
-export function setScopes(result) {
-  const scopes = result.scope || requestedScopes || "";
-  localStorage.setItem("scopes", scopes);
+  // console.log("set session");
+  // console.log(result.scope);
+  // console.log(result);
 }
 
 export function userHasScopes(scopes) {

@@ -8,8 +8,10 @@
 # testing
 /coverage
 
+
 # production
-/src/Auth/config.js
+./src/utils/Auth/Auth.js
+./src/utils/Auth/config.js
 
 # misc
 .DS_Store
