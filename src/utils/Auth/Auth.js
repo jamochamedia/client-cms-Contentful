@@ -3,13 +3,15 @@ import config from "./config";
 // import localConfig from "./localConfig";
 import hostedConfig from "./hostedConfig";
 
+const requestedScopes = "openid profile content:editor admin:all";
+
 const auth0Client = new Auth0.WebAuth({
   domain: config.auth0.domain,
   clientID: config.auth0.client,
   redirectUri: config.auth0.redirectUri,
   audience: config.auth0.audience,
   responseType: "token id_token",
-  scope: "openid profile"
+  scope: requestedScopes
 });
 
 //Handles Login
@@ -78,7 +80,37 @@ export function setSession(result) {
   localStorage.setItem("idToken", idToken);
   localStorage.setItem("accessToken", accessToken);
 
+  const scopes = result.scope || requestedScopes || "";
+  localStorage.setItem("scopes", scopes);
+
   console.log("set session");
+}
+
+export function setScopes(result) {
+  const scopes = result.scope || requestedScopes || "";
+  localStorage.setItem("scopes", scopes);
+}
+
+export function userHasScopes(scopes) {
+  const localScopes = localStorage.getItem("scopes");
+  if (localScopes) {
+    const grantedScopes = localScopes.split(" ");
+    return scopes.every(scope => grantedScopes.includes(scope));
+  }
+  return false;
+}
+
+export function getProfile(callback) {
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken) {
+    auth0Client.userinfo(accessToken, (err, profile) => {
+      if (profile) {
+        const userProfile = profile;
+        localStorage.setItem("userProfile", userProfile);
+      }
+      callback(err, profile);
+    });
+  }
 }
 
 //TODO: RENEWSESSION FIX
@@ -116,6 +148,12 @@ export function logout() {
 
   //Remove isLoggedIn flag from localStorage
   localStorage.removeItem("isLoggedIn");
+
+  //Remove isLoggedIn flag from localStorage
+  localStorage.removeItem("scopes");
+
+  //Remove isLoggedIn flag from localStorage
+  localStorage.removeItem("userProfile");
 
   console.log("you are logged out");
 }

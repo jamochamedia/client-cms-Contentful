@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, NavbarBrand, Navbar, NavLink } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { logout, areAuthItemsSet } from "../../utils/Auth/Auth";
+import { logout, areAuthItemsSet, userHasScopes } from "../../utils/Auth/Auth";
 
 const textStyle = {
   color: "white",
@@ -44,6 +44,11 @@ class Header extends React.Component {
             {areAuthItemsSet() && (
               <NavLink style={white} onClick={() => logout()}>
                 <FontAwesomeIcon icon="sign-in-alt" /> Logout
+              </NavLink>
+            )}
+            {areAuthItemsSet() && userHasScopes(["admin:all"]) && (
+              <NavLink style={white} onClick={() => logout()}>
+                ADMIN!!!!
               </NavLink>
             )}
             {!areAuthItemsSet() && (
