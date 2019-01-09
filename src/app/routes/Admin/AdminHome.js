@@ -9,7 +9,7 @@ import EditorContentTracker from "../../components/Tables/Content/EditorContentT
 import ClientList from "../../components/Tables/Clients/ClientList";
 import InvoiceHomeTracker from "../../components/Tables/Invoices/InvoiceHomeTracker";
 
-import { areAuthItemsSet, userHasScopes } from "../../../utils/Auth/Auth";
+import { areAuthItemsSet } from "../../../utils/Auth/Auth";
 
 const ContentWrapper = styled.div`
   padding: 20px;
@@ -44,7 +44,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {!areAuthItemsSet() && userHasScopes(["admin:all"]) ? (
+        {!areAuthItemsSet() ? (
           <Redirect to="/login" />
         ) : (
           <BgPrimary>

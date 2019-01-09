@@ -10,7 +10,7 @@ import Content from "./components/Content";
 import Site from "./components/Site";
 
 class Layout extends React.Component {
-  render(props) {
+  render() {
     return (
       <Site>
         <Helmet title="Jamocha Client CMS" />

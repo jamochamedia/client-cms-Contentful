@@ -1,10 +1,8 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-
 import { client } from "../../utils/client";
-import { areAuthItemsSet } from "../../utils/Auth/Auth";
-
 import InvoiceItem from "./Invoices/InvoiceItem";
+import { areAuthItemsSet } from "../../utils/Auth/Auth";
 
 class Invoices extends React.Component {
   state = {
@@ -37,7 +35,7 @@ class Invoices extends React.Component {
           <Redirect to="/login" />
         ) : (
           <div>
-            ><p>All Invoices</p>
+            <p>All Invoices</p>
             {invoices.map((invoices, i) => (
               <InvoiceItem key={i} {...invoices} />
             ))}

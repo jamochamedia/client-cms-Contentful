@@ -89,6 +89,33 @@ export function userHasScopes(scopes) {
   return false;
 }
 
+export function checkAdmin() {
+  if (userHasScopes(["admin:all"])) {
+    return true;
+  } else if (userHasScopes(["role:editor"])) {
+    window.location.href = "/editor";
+    return false;
+  } else if (areAuthItemsSet()) {
+    window.location.href = "/";
+    return false;
+  } else {
+    window.location.href = "/login";
+    return false;
+  }
+}
+
+export function checkEditor() {
+  if (userHasScopes(["role:editor"])) {
+    return true;
+  } else if (areAuthItemsSet()) {
+    window.location.href = "/";
+    return false;
+  } else {
+    window.location.href = "/login";
+    return false;
+  }
+}
+
 export function getProfile(callback) {
   const accessToken = localStorage.getItem("accessToken");
   if (accessToken) {

@@ -8,7 +8,7 @@ import { H2 } from "../../components/Typography/HeaderText";
 import EditorContentTracker from "../../components/Tables/Content/EditorContentTracker";
 import ClientList from "../../components/Tables/Clients/ClientList";
 
-import { areAuthItemsSet, userHasScopes } from "../../../utils/Auth/Auth";
+import { areAuthItemsSet } from "../../../utils/Auth/Auth";
 
 const ContentWrapper = styled.div`
   padding: 20px;
@@ -43,7 +43,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {!areAuthItemsSet() && userHasScopes(["role:editor"]) ? (
+        {!areAuthItemsSet() ? (
           <Redirect to="/login" />
         ) : (
           <BgPrimary>
