@@ -9,8 +9,12 @@ import { client } from "../../../../utils/client";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
+const Post = {
+  color: "#292f36"
+};
+
 //Create component
-class ClientTracker extends Component {
+class WriterTracker extends Component {
   state = {
     writers: []
   };
@@ -35,8 +39,6 @@ class ClientTracker extends Component {
   render() {
     const { writers } = this.state;
 
-    console.log(writers);
-
     return (
       <ReactTable
         data={writers}
@@ -51,9 +53,11 @@ class ClientTracker extends Component {
                 headerClassName: "table-subheader",
                 accessor: "fields.fullName",
                 Cell: cell => (
-                  <Paragraph>
-                    <b>{cell.value}</b>
-                  </Paragraph>
+                  <a style={Post} href={`/writers/${cell.original.sys.id}`}>
+                    <Paragraph>
+                      <b>{cell.value}</b>
+                    </Paragraph>
+                  </a>
                 )
               },
               {
@@ -77,4 +81,4 @@ class ClientTracker extends Component {
   }
 }
 
-export default ClientTracker;
+export default WriterTracker;

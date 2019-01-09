@@ -9,7 +9,6 @@ import { Col, Row, Button } from "reactstrap";
 import { D3 } from "../../components/Typography/DisplayText";
 import { H3 } from "../../components/Typography/HeaderText";
 import ProfileCard from "../../components/Cards/ProfileCard";
-import WriterTracker from "../../components/Tables/Writers/WriterTracker";
 import Background from "../../img/profile-background.jpg";
 
 //Styles
@@ -66,6 +65,7 @@ const WriterProfile = props => {
   const fetchProfile = async () => {
     const res = await client.getEntry(props.match.params.writerid);
     setProfile(res);
+    console.log(res);
   };
 
   const { fields = {} } = profile;
@@ -93,8 +93,7 @@ const WriterProfile = props => {
                   </Col>
                 </Row>
                 <ProfileCard
-                  role={fields.clientRole}
-                  company={fields.companyName}
+                  role={fields.position}
                   description={
                     fields.description
                       ? fields.description
@@ -102,9 +101,6 @@ const WriterProfile = props => {
                   }
                 />
               </BlockContainer>
-            </Col>
-            <Col lg="8" md="6" sm="12">
-              <WriterTracker fullName={fields.fullName} />
             </Col>
           </Row>
         </Content>
