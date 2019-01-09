@@ -15,15 +15,17 @@ const Post = {
 };
 
 //Create component
-class ClientTracker extends Component {
+class ClientContentTracker extends Component {
   state = {
-    posts: []
+    posts: [],
+    writers: []
   };
 
   client = client;
 
   componentDidMount() {
     this.fetch().then(this.setPosts);
+    this.fetch().then(this.setWriters);
   }
 
   fetch = () =>
@@ -31,9 +33,17 @@ class ClientTracker extends Component {
       content_type: "linkedInTextPost"
     });
 
+  //TODO Fetch Writer Type as well
+
   setPosts = response => {
     this.setState({
       posts: response.items.map(item => item)
+    });
+  };
+
+  setWriters = response => {
+    this.setState({
+      writers: response.items.map(item => item)
     });
   };
 
@@ -162,4 +172,4 @@ class ClientTracker extends Component {
   }
 }
 
-export default ClientTracker;
+export default ClientContentTracker;
