@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { H2 } from "../../components/Typography/HeaderText";
 
 import EditorContentTracker from "../../components/Tables/Content/EditorContentTracker";
+import WriterTacker from "../../components/Tables/Writers/WriterTracker";
 import ClientList from "../../components/Tables/Clients/ClientList";
 
 import { areAuthItemsSet } from "../../../utils/Auth/Auth";
@@ -54,10 +55,12 @@ class Home extends Component {
                 </H2>
                 <EditorContentTracker />
                 <Row>
-                  <Col lg="5" style={m20}>
+                  <Col lg="6" style={m20}>
                     <ClientList />
                   </Col>
-                  <Col lg="7" style={m20} />
+                  <Col lg="6" style={m20}>
+                    <WriterTacker />
+                  </Col>
                 </Row>
               </ContentWrapper>
             </Container>
