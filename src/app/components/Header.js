@@ -57,6 +57,16 @@ class Header extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+              {userHasScopes(["role:editor"]) && (
+                <NavItem>
+                  <NavLink
+                    style={white}
+                    href="https://app.contentful.com/spaces/le3jnclmcpxu/home"
+                  >
+                    Contentful
+                  </NavLink>
+                </NavItem>
+              )}
               <NavItem style={NavLinkStyle}>
                 {areAuthItemsSet() && (
                   <NavLink style={white} onClick={() => logout()}>
