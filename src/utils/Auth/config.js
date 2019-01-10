@@ -7,6 +7,5 @@ export default {
     domain: "jamocha.auth0.com",
     // redirectUri: localConfig.urls.redirectUri
     redirectUri: hostedConfig.urls.redirectUri
-    // audience: "https://api.jamochamedia.com/"
   }
 };
