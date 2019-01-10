@@ -2,12 +2,7 @@
 
 # dependencies
 /client/node_modules
-
-#config files and secrets
-/client/src/utils/Auth/config.js
-/client/src/utils/Auth/hostedConfig.js
-/client/src/utils/Auth/localConfig.js
-/client/src/utils/client.js
+/node_modules
 
 # misc
 npm-debug.log*

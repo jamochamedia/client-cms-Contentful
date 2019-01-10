@@ -1,5 +1,6 @@
 import Auth0 from "auth0-js";
 import config from "./config";
+import { Route } from "react-router-dom";
 // import localConfig from "./localConfig";
 import hostedConfig from "./hostedConfig";
 
@@ -114,6 +115,23 @@ export function checkEditor() {
     window.location.href = "/login";
     return false;
   }
+}
+
+export function AdminSecured(props) {
+  const { component: Component, path } = props;
+  return (
+    // eslint-disable-next-line react/react-in-jsx-scope
+    <Route
+      path={path}
+      render={() => {
+        if (checkAdmin()) {
+          // eslint-disable-next-line react/react-in-jsx-scope
+          return <Component />;
+        }
+        return;
+      }}
+    />
+  );
 }
 
 export function getProfile(callback) {

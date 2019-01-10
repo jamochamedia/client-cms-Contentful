@@ -5,5 +5,16 @@
   "repository": "git@github.com:jamochamedia/client-cms-Contentful.git",
   "author": "Jamocha Media <mehak@jamochamedia.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "start": "concurrently --names \"CLIENT,SERVER\" -c \"white.bgRed,white.bgBlue\"  \"yarn start:client\" \"yarn start:server\" ",
+    "start:client": "cd client && yarn start"
+  },
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  }
 }
