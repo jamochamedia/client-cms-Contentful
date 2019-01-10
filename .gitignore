@@ -1,20 +1,15 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/.pnp
-.pnp.js
+# /client/node_modules
 
-# testing
-/coverage
+#config files and secrets
+/client/src/utils/Auth/config.js
+/client/src/utils/Auth/hostedConfig.js
+/client/src/utils/Auth/localConfig.js
+/client/src/utils/client.js
 
 # misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
