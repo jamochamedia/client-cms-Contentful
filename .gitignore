@@ -8,11 +8,6 @@
 # testing
 /coverage
 
-
-# production
-./src/utils/Auth/Auth.js
-./src/utils/Auth/config.js
-
 # misc
 .DS_Store
 .env.local
