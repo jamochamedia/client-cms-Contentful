@@ -1,11 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import {
-  areAuthItemsSet,
-  checkAdmin,
-  checkEditor,
-  AdminSecured
-} from "../utils/Auth/Auth";
+import { areAuthItemsSet, checkAdmin, checkEditor } from "../utils/Auth/Auth";
 
 import Home from "./routes/Home";
 import AdminHome from "./routes/Admin/AdminHome";
@@ -33,7 +28,11 @@ const Router = () => (
     <Route exact path="/writers/:writerid" component={WriterProfile} />
 
     {/* Clients List */}
-    <AdminSecured exact path="/clients" component={Clients} />
+    <Route
+      exact
+      path="/clients"
+      render={() => checkAdmin() && <Route component={Clients} />}
+    />
 
     {/* Invoice List */}
     <Route

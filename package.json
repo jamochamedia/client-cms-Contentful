@@ -7,11 +7,10 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "client",
-    "server"
+    "client"
   ],
   "scripts": {
-    "start": "concurrently --names \"CLIENT,SERVER\" -c \"white.bgRed,white.bgBlue\"  \"yarn start:client\" \"yarn start:server\" ",
+    "start": "concurrently --names \"CLIENT\" -c \"white.bgRed\"  \"yarn start:client\" ",
     "start:client": "cd client && yarn start"
   },
   "dependencies": {
