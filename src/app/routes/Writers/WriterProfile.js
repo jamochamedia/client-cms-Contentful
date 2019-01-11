@@ -65,7 +65,6 @@ const WriterProfile = props => {
   const fetchProfile = async () => {
     const res = await client.getEntry(props.match.params.writerid);
     setProfile(res);
-    console.log(res);
   };
 
   const { fields = {} } = profile;

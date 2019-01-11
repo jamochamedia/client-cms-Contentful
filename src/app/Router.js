@@ -1,6 +1,6 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import { areAuthItemsSet, checkAdmin, checkEditor } from "../utils/Auth/Auth";
+import { Switch, Route } from "react-router-dom";
+import { checkAdmin, checkEditor, checkClient } from "../utils/Auth/Auth";
 
 import Home from "./routes/Home";
 import AdminHome from "./routes/Admin/AdminHome";
@@ -22,9 +22,8 @@ const Router = () => (
     <Route exact path="/auth-handler" component={AuthHandler} />
     <Route exact path="/login" component={Login} />
     <Route exact path="/verify" component={Verify} />
-
-    <Route exact path="/linkedin/:linkedinpostid" component={LinkedInPost} />
     <Route exact path="/clients/:clientprofileid" component={ClientProfile} />
+    <Route exact path="/linkedin/:linkedinpostid" component={LinkedInPost} />
     <Route exact path="/writers/:writerid" component={WriterProfile} />
 
     {/* Clients List */}
@@ -59,13 +58,7 @@ const Router = () => (
     <Route
       exact
       path="/"
-      render={() =>
-        !areAuthItemsSet() ? (
-          <Redirect to="/login" />
-        ) : (
-          <Route component={Home} />
-        )
-      }
+      render={() => checkClient() && <Route component={Home} />}
     />
 
     {/* Admin Home */}

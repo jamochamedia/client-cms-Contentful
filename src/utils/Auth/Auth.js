@@ -1,18 +1,7 @@
-import Auth0 from "auth0-js";
 import config from "./config";
-// import localConfig from "./localConfig";
-import hostedConfig from "./hostedConfig";
-
-const requestedScopes = "openid profile";
-
-const auth0Client = new Auth0.WebAuth({
-  domain: config.auth0.domain,
-  clientID: config.auth0.client,
-  redirectUri: config.auth0.redirectUri,
-  audience: config.auth0.audience,
-  responseType: "token id_token",
-  scope: requestedScopes
-});
+import localConfig from "./localConfig";
+// import hostedConfig from "./hostedConfig";
+import { auth0Client, requestedScopes } from "./auth0Client";
 
 //Handles Login
 export function ssoLogin(email, history) {
@@ -54,20 +43,6 @@ export function setAuthItems(callback) {
   });
 }
 
-export function getAccessToken() {
-  const accessToken = localStorage.getItem("accessToken");
-  if (accessToken) {
-    return accessToken;
-  }
-}
-
-export function getIdToken() {
-  const idToken = localStorage.getItem("idToken");
-  if (idToken) {
-    return idToken;
-  }
-}
-
 export function setSession(result) {
   //Set isLoggedIn flag in localStorage
   localStorage.setItem("isLoggedIn", "true");
@@ -78,6 +53,9 @@ export function setSession(result) {
 
   const scopes = result.scope || requestedScopes || "";
   localStorage.setItem("scopes", scopes);
+
+  const userid = result.idTokenPayload.sub;
+  localStorage.setItem("userId", userid);
 }
 
 export function userHasScopes(scopes) {
@@ -97,11 +75,11 @@ export function checkAdmin() {
   } else if (userHasScopes(["role:editor"])) {
     window.location.href = "/editor";
     return false;
-  } else if (areAuthItemsSet()) {
+  } else if (userHasScopes(["client:linkedin"])) {
     window.location.href = "/";
     return false;
   } else {
-    window.location.href = "/login";
+    logout();
     return false;
   }
 }
@@ -109,45 +87,34 @@ export function checkAdmin() {
 export function checkEditor() {
   if (userHasScopes(["role:editor"])) {
     return true;
-  } else if (areAuthItemsSet()) {
+  } else if (userHasScopes(["client:linkedin"])) {
     window.location.href = "/";
     return false;
   } else {
-    window.location.href = "/login";
+    logout();
     return false;
   }
 }
 
-export function getProfile(callback) {
-  const accessToken = localStorage.getItem("accessToken");
-  if (accessToken) {
-    auth0Client.userinfo(accessToken, (err, profile) => {
-      if (profile) {
-        const userProfile = profile;
-        localStorage.setItem("userProfile", userProfile);
-      }
-      callback(err, profile);
-    });
+export function checkClient() {
+  if (userHasScopes(["client:linkedin"])) {
+    return true;
+  } else if (userHasScopes(["admin:all"])) {
+    window.location.href = "/admin";
+    return false;
+  } else if (userHasScopes(["role:editor"])) {
+    window.location.href = "/editor";
+    return false;
+  } else {
+    logout();
   }
-}
-
-//TODO: RENEWSESSION FIX
-export function renewSession() {
-  auth0Client.checkSession({}, (err, result) => {
-    if (err) {
-      console.log(err);
-      console.log("Could not get new user token");
-      logout();
-    }
-    setSession(result);
-  });
 }
 
 export function areAuthItemsSet() {
   const idToken = localStorage.getItem("idToken");
   const accessToken = localStorage.getItem("accessToken");
-
-  if (idToken && accessToken) {
+  const userId = localStorage.getItem("userId");
+  if (idToken && accessToken && userId) {
     return true;
   }
   return false;
@@ -155,8 +122,8 @@ export function areAuthItemsSet() {
 
 export function logout() {
   auth0Client.logout({
-    // returnTo: localConfig.urls.login,
-    returnTo: hostedConfig.urls.login,
+    returnTo: localConfig.urls.login,
+    // returnTo: hostedConfig.urls.login,
     client_id: config.auth0.client
   });
 
@@ -173,5 +140,6 @@ export function logout() {
   //Remove isLoggedIn flag from localStorage
   localStorage.removeItem("userProfile");
 
-  console.log("you are logged out");
+  //Remove userid flag from localStorage
+  localStorage.removeItem("userId");
 }
