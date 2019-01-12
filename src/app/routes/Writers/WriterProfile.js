@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
 import { client } from "../../../utils/Contentful/client";
 
@@ -62,48 +62,70 @@ const WriterProfile = props => {
     fetchProfile();
   }, {});
 
-  const fetchProfile = async () => {
+  async function fetchProfile() {
     const res = await client.getEntry(props.match.params.writerid);
     setProfile(res);
-  };
+    const auth0Id = res.fields.auth0Id;
+    localStorage.setItem("auth0Id", auth0Id);
+  }
 
   const { fields = {} } = profile;
 
+  const contentFulProfileCheck = async () => {
+    const auth0Id = await localStorage.getItem("auth0Id");
+    const userId = await localStorage.getItem("userId");
+    console.log(auth0Id);
+    console.log(userId);
+    if (auth0Id === userId) {
+      return true;
+    } else if (auth0Id === undefined) {
+      return true;
+    } else {
+      return true;
+    }
+  };
+
   return (
     <div>
-      <div style={BackgroundHead}>
-        <Container>
-          <Header>
-            <D3 style={white}>{fields.fullName}</D3>
-            <H3 style={white}>{fields.position}</H3>
-          </Header>
-        </Container>
-      </div>
-      <Container>
-        <Content>
-          <Row>
-            <Col lg="4" md="6" sm="12">
-              <BlockContainer>
-                <Row>
-                  <Col>
-                    <Button style={linkedIn} href={`${fields.linkedInUrl}`}>
-                      LinkedIn Profile
-                    </Button>
-                  </Col>
-                </Row>
-                <ProfileCard
-                  role={fields.position}
-                  description={
-                    fields.description
-                      ? fields.description
-                      : "No Description Available"
-                  }
-                />
-              </BlockContainer>
-            </Col>
-          </Row>
-        </Content>
-      </Container>
+      {contentFulProfileCheck() ? (
+        <div>
+          <div style={BackgroundHead}>
+            <Container>
+              <Header>
+                <D3 style={white}>{fields.fullName}</D3>
+                <H3 style={white}>{fields.position}</H3>
+              </Header>
+            </Container>
+          </div>
+          <Container>
+            <Content>
+              <Row>
+                <Col lg="4" md="6" sm="12">
+                  <BlockContainer>
+                    <Row>
+                      <Col>
+                        <Button style={linkedIn} href={`${fields.linkedInUrl}`}>
+                          LinkedIn Profile
+                        </Button>
+                      </Col>
+                    </Row>
+                    <ProfileCard
+                      role={fields.position}
+                      description={
+                        fields.description
+                          ? fields.description
+                          : "No Description Available"
+                      }
+                    />
+                  </BlockContainer>
+                </Col>
+              </Row>
+            </Content>
+          </Container>
+        </div>
+      ) : (
+        <Redirect to="/admin" />
+      )}
     </div>
   );
 };
