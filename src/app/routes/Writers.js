@@ -1,6 +1,6 @@
 import React from "react";
 import WriterItem from "../routes/Writers/WriterItem";
-import { client } from "../../utils/client";
+import { client } from "../../utils/Contentful/client";
 
 class Writers extends React.Component {
   state = {

@@ -1,6 +1,6 @@
 import React from "react";
 import LinkedInItem from "../routes/LinkedIn/LinkedInItem";
-import { client } from "../../utils/client";
+import { client } from "../../utils/Contentful/client";
 
 class LinkedIn extends React.Component {
   state = {

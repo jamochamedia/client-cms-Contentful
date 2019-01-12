@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
-import { client } from "../../../utils/client";
+import { client } from "../../../utils/Contentful/client";
 
 import styled from "styled-components";
 import { Col, Row, Button } from "reactstrap";
@@ -85,6 +85,7 @@ const ClientProfile = props => {
   };
 
   const { fields = {} } = profile;
+  console.log(fields);
 
   //Render Invoice Tracker
   const [displayInvoiceTracker, setTracker] = useState(false);
@@ -92,24 +93,24 @@ const ClientProfile = props => {
   const displayTracker = async () => {
     const response = !displayInvoiceTracker;
     setTracker(response);
+    console.log(response);
   };
 
-  // const contentFulProfileCheck = () => {
-  //   const userId = localStorage.getItem("userId");
-  //   const auth0Id = fields.auth0Id;
-  //   console.log(auth0Id);
-  //   console.log(userId);
+  const contentFulProfileCheck = () => {
+    const auth0Id = fields.auth0Id;
+    //localStorage.setItem("auth0Id", auth0Id);
+    console.log(auth0Id);
 
-  //   if (auth0Id === userId) {
-  //     return true;
-  //   } else if (auth0Id === undefined) {
-  //     return false;
-  //   } else {
-  //     return false;
-  //   }
-  // };
+    const userId = localStorage.getItem("userId");
 
-  // console.log(contentFulProfileCheck);
+    if (auth0Id === userId) {
+      return true;
+    } else if (auth0Id === undefined) {
+      return true;
+    } else {
+      return true;
+    }
+  };
 
   let tracker;
   if (displayInvoiceTracker) {
@@ -120,50 +121,55 @@ const ClientProfile = props => {
 
   return (
     <div>
-      <div>
-        <div style={BackgroundHead}>
+      {contentFulProfileCheck() ? (
+        <div>
+          <div style={BackgroundHead}>
+            <Container>
+              <Header>
+                <D3 style={white}>{fields.clientName}</D3>
+                <H3 style={white}>{fields.companyName}</H3>
+              </Header>
+            </Container>
+          </div>
           <Container>
-            <Header>
-              <D3 style={white}>{fields.clientName}</D3>
-              <H3 style={white}>{fields.companyName}</H3>
-            </Header>
+            <Content>
+              <Row>
+                <Col lg="4" md="6" sm="12">
+                  <BlockContainer>
+                    <Row>
+                      <Col>
+                        <Button style={invoice} onClick={displayTracker}>
+                          {displayInvoiceTracker
+                            ? "Content Tracker"
+                            : "Invoices"}
+                        </Button>
+                      </Col>
+                      <Col>
+                        <Button style={linkedIn} href={`${fields.linkedInUrl}`}>
+                          LinkedIn Profile
+                        </Button>
+                      </Col>
+                    </Row>
+                    <ProfileCard
+                      role={fields.clientRole}
+                      company={fields.companyName}
+                      description={
+                        fields.clientDescription
+                          ? fields.clientDescription
+                          : "No Description Available"
+                      }
+                    />
+                  </BlockContainer>
+                </Col>
+                <Col lg="8" md="6" sm="12">
+                  <TrackerContainer>{tracker}</TrackerContainer>
+                </Col>
+              </Row>
+            </Content>
           </Container>
         </div>
-        <Container>
-          <Content>
-            <Row>
-              <Col lg="4" md="6" sm="12">
-                <BlockContainer>
-                  <Row>
-                    <Col>
-                      <Button style={invoice} onClick={displayTracker}>
-                        {displayInvoiceTracker ? "Content Tracker" : "Invoices"}
-                      </Button>
-                    </Col>
-                    <Col>
-                      <Button style={linkedIn} href={`${fields.linkedInUrl}`}>
-                        LinkedIn Profile
-                      </Button>
-                    </Col>
-                  </Row>
-                  <ProfileCard
-                    role={fields.clientRole}
-                    company={fields.companyName}
-                    description={
-                      fields.clientDescription
-                        ? fields.clientDescription
-                        : "No Description Available"
-                    }
-                  />
-                </BlockContainer>
-              </Col>
-              <Col lg="8" md="6" sm="12">
-                <TrackerContainer>{tracker}</TrackerContainer>
-              </Col>
-            </Row>
-          </Content>
-        </Container>
-      </div>
+      ) : (
+        <Redirect to="/admin" />
       )}
     </div>
   );

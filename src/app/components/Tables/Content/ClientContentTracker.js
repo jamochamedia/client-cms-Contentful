@@ -4,7 +4,7 @@ import moment from "moment";
 import "../../../../App.css";
 import { H3, H5 } from "../../Typography/HeaderText";
 import { Paragraph } from "../../Typography/ParapgraphText";
-import { client } from "../../../../utils/client";
+import { client } from "../../../../utils/Contentful/client";
 
 // Import React Table
 import ReactTable from "react-table";

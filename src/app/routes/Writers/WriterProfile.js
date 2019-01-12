@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 
-import { client } from "../../../utils/client";
+import { client } from "../../../utils/Contentful/client";
 
 import styled from "styled-components";
 import { Col, Row, Button } from "reactstrap";

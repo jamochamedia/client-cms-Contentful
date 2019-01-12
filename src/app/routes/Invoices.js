@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { client } from "../../utils/client";
+import { client } from "../../utils/Contentful/client";
 import InvoiceItem from "./Invoices/InvoiceItem";
 import { areAuthItemsSet } from "../../utils/Auth/Auth";
 

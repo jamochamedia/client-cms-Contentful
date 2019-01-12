@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 
 import ClientItem from "../routes/Clients/ClientItem";
 
-import { client } from "../../utils/client";
+import { client } from "../../utils/Contentful/client";
 import { areAuthItemsSet } from "../../utils/Auth/Auth";
 
 class Clients extends React.Component {
