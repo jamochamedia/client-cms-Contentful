@@ -8,6 +8,7 @@ import { H2 } from "../../components/Typography/HeaderText";
 import EditorContentTracker from "../../components/Tables/Content/EditorContentTracker";
 import ClientList from "../../components/Tables/Clients/ClientList";
 import InvoiceHomeTracker from "../../components/Tables/Invoices/InvoiceHomeTracker";
+import WriterList from "../../components/Tables/Writers/WriterTracker";
 
 import { areAuthItemsSet } from "../../../utils/Auth/Auth";
 
@@ -55,12 +56,18 @@ class Home extends Component {
                 </H2>
                 <EditorContentTracker />
                 <Row>
-                  <Col lg="5" style={m20}>
+                  <Col lg="6" style={m20}>
                     <ClientList />
                   </Col>
-                  <Col lg="7" style={m20}>
+                  <Col lg="6" style={m20}>
                     <InvoiceHomeTracker />
                   </Col>
+                </Row>
+                <Row>
+                  <Col lg="6" style={m20}>
+                    <WriterList />
+                  </Col>
+                  <Col lg="6" style={m20} />
                 </Row>
               </ContentWrapper>
             </Container>
