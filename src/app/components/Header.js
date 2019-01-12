@@ -61,6 +61,7 @@ class Header extends React.Component {
                 <NavItem>
                   <NavLink
                     style={white}
+                    target="_blank"
                     href="https://app.contentful.com/spaces/le3jnclmcpxu/home"
                   >
                     Contentful
