@@ -43,10 +43,8 @@ export function setAuthItems(callback) {
   });
 }
 
+//Sets the session (idToken, accessToken, scopes, userId)
 export function setSession(result) {
-  //Set isLoggedIn flag in localStorage
-  localStorage.setItem("isLoggedIn", "true");
-
   const { accessToken, idToken } = result;
   localStorage.setItem("idToken", idToken);
   localStorage.setItem("accessToken", accessToken);
@@ -58,6 +56,7 @@ export function setSession(result) {
   localStorage.setItem("userId", userid);
 }
 
+//checks for what scopes the user has
 export function userHasScopes(scopes) {
   const localScopes = localStorage.getItem("scopes");
   if (localScopes) {
@@ -69,6 +68,7 @@ export function userHasScopes(scopes) {
 
 //TODO: Create SecuredRoute function using checkAdmin and checkEditor
 
+//checks if the yser has the admin scope
 export function checkAdmin() {
   if (userHasScopes(["admin:all"])) {
     return true;
@@ -84,6 +84,7 @@ export function checkAdmin() {
   }
 }
 
+//checks if the user has the editor scope
 export function checkEditor() {
   if (userHasScopes(["role:editor"])) {
     return true;
@@ -96,6 +97,7 @@ export function checkEditor() {
   }
 }
 
+//checks if user has the client scope for linkedIn
 export function checkClient() {
   if (userHasScopes(["client:linkedin"])) {
     return true;
@@ -110,6 +112,7 @@ export function checkClient() {
   }
 }
 
+//Checks if user is logged in
 export function areAuthItemsSet() {
   const idToken = localStorage.getItem("idToken");
   const accessToken = localStorage.getItem("accessToken");
@@ -120,6 +123,8 @@ export function areAuthItemsSet() {
   return false;
 }
 
+//Logs the user out and removes the idToken, accessToken, scopes, userProfile,
+//userId, auth0Id
 export function logout() {
   auth0Client.logout({
     // returnTo: localConfig.urls.login,
@@ -130,9 +135,6 @@ export function logout() {
   //Clear access and id token
   localStorage.removeItem("idToken");
   localStorage.removeItem("accessToken");
-
-  //Remove isLoggedIn flag from localStorage
-  localStorage.removeItem("isLoggedIn");
 
   //Remove isLoggedIn flag from localStorage
   localStorage.removeItem("scopes");

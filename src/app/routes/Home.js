@@ -5,6 +5,7 @@ import { Container, Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { H2 } from "../components/Typography/HeaderText";
 import { areAuthItemsSet } from "../../utils/Auth/Auth";
+import ClientList from "../components/Tables/Clients/ClientList";
 
 const ContentWrapper = styled.div`
   padding: 20px;
@@ -50,10 +51,10 @@ class Home extends Component {
                   <FontAwesomeIcon style={mr20} icon="home" /> Client Dashboard
                 </H2>
                 <Row>
-                  <Col lg="5" style={m20}>
-                    This is the client Home
+                  <Col lg="6" style={m20}>
+                    <ClientList />
                   </Col>
-                  <Col lg="7" style={m20}>
+                  <Col lg="6" style={m20}>
                     There will be things here
                   </Col>
                 </Row>
