@@ -5,7 +5,7 @@ import { Container, Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { H2 } from "../components/Typography/HeaderText";
 import { areAuthItemsSet } from "../../utils/Auth/Auth";
-import ClientList from "../components/Tables/Clients/ClientList";
+import WriterTracker from "../components/Tables/Writers/WriterTracker";
 
 const ContentWrapper = styled.div`
   padding: 20px;
@@ -52,10 +52,10 @@ class Home extends Component {
                 </H2>
                 <Row>
                   <Col lg="6" style={m20}>
-                    <ClientList />
+                    <WriterTracker />
                   </Col>
                   <Col lg="6" style={m20}>
-                    There will be things here
+                    New Features coming:
                   </Col>
                 </Row>
               </ContentWrapper>
