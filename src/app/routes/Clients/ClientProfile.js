@@ -31,8 +31,6 @@ const ClientProfile = props => {
     function contentFulProfileCheck() {
       const auth0Id = localStorage.getItem("auth0Id");
       const userId = localStorage.getItem("userId");
-      console.log(auth0Id);
-      console.log(userId);
 
       //Checks if matches
       if (auth0Id === userId) {

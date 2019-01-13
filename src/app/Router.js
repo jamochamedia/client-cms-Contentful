@@ -22,6 +22,8 @@ const Router = () => (
     <Route exact path="/auth-handler" component={AuthHandler} />
     <Route exact path="/login" component={Login} />
     <Route exact path="/verify" component={Verify} />
+
+    {/* Specifc Entry Pages */}
     <Route exact path="/clients/:clientprofileid" component={ClientProfile} />
     <Route exact path="/linkedin/:linkedinpostid" component={LinkedInPost} />
     <Route exact path="/writers/:writerid" component={WriterProfile} />

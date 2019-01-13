@@ -38,7 +38,6 @@ class WriterTracker extends Component {
 
   render() {
     const { writers } = this.state;
-
     return (
       <ReactTable
         data={writers}
