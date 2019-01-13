@@ -1,8 +1,8 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { client } from "../../utils/Contentful/client";
-import InvoiceItem from "./Invoices/InvoiceItem";
-import { areAuthItemsSet } from "../../utils/Auth/Auth";
+import { client } from "../../../utils/Contentful/client";
+import InvoiceItem from "./InvoiceItem";
+import { areAuthItemsSet } from "../../../utils/Auth/Auth";
 
 class Invoices extends React.Component {
   state = {

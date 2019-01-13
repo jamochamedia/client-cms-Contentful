@@ -68,7 +68,7 @@ export function userHasScopes(scopes) {
 
 //TODO: Create SecuredRoute function using checkAdmin and checkEditor
 
-//checks if the yser has the admin scope
+//Checks if the user has the admin scope
 export function checkAdmin() {
   if (userHasScopes(["admin:all"])) {
     return true;

@@ -1,10 +1,10 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-import ClientItem from "../routes/Clients/ClientItem";
+import ClientItem from "./ClientItem";
 
-import { client } from "../../utils/Contentful/client";
-import { areAuthItemsSet } from "../../utils/Auth/Auth";
+import { client } from "../../../utils/Contentful/client";
+import { areAuthItemsSet } from "../../../utils/Auth/Auth";
 
 class Clients extends React.Component {
   state = {

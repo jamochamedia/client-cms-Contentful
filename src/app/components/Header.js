@@ -22,7 +22,7 @@ const NavLinkStyle = {
 };
 
 const white = {
-  color: "white"
+  color: "#e4e4e4"
 };
 
 class Header extends React.Component {
@@ -68,6 +68,11 @@ class Header extends React.Component {
                   </NavLink>
                 </NavItem>
               )}
+              <NavItem>
+                <NavLink style={white} href="/writers/:writerid">
+                  <FontAwesomeIcon icon="user" /> Profile
+                </NavLink>
+              </NavItem>
               <NavItem style={NavLinkStyle}>
                 {areAuthItemsSet() && (
                   <NavLink style={white} onClick={() => logout()}>
