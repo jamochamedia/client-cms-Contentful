@@ -75,15 +75,51 @@ class Header extends React.Component {
                     <FontAwesomeIcon icon="user" /> Profile
                   </NavLink>
                 )}
+                {/* Chelsea Editor Account */}
+                {userHasScopes(["7y0Unz69pK8sgaq62EeUuy"]) && (
+                  <NavLink style={white} href="/writers/7y0Unz69pK8sgaq62EeUuy">
+                    <FontAwesomeIcon icon="user" /> Profile
+                  </NavLink>
+                )}
                 {/* Mehak Client Account */}
                 {userHasScopes(["53jNSEKtqgYamEeo6uu6Oo"]) && (
                   <NavLink style={white} href="/clients/53jNSEKtqgYamEeo6uu6Oo">
                     <FontAwesomeIcon icon="user" /> Profile
                   </NavLink>
                 )}
-                {/* Chelsea Editor Account */}
-                {userHasScopes(["7y0Unz69pK8sgaq62EeUuy"]) && (
-                  <NavLink style={white} href="/writers/7y0Unz69pK8sgaq62EeUuy">
+                {/* Dan Bender Client Account */}
+                {userHasScopes(["4oHSTjxscUIG08eSisWwWk"]) && (
+                  <NavLink style={white} href="/clients/4oHSTjxscUIG08eSisWwWk">
+                    <FontAwesomeIcon icon="user" /> Profile
+                  </NavLink>
+                )}
+                {/* Shane Metcalf Client Account */}
+                {userHasScopes(["5tnX4vbyCWwaCIaQOcqksm"]) && (
+                  <NavLink style={white} href="/clients/5tnX4vbyCWwaCIaQOcqksm">
+                    <FontAwesomeIcon icon="user" /> Profile
+                  </NavLink>
+                )}
+                {/* Sandeep Bhanote Client Account */}
+                {userHasScopes(["72GtLvYYiAYU6qiG2iciok"]) && (
+                  <NavLink style={white} href="/clients/72GtLvYYiAYU6qiG2iciok">
+                    <FontAwesomeIcon icon="user" /> Profile
+                  </NavLink>
+                )}
+                {/* Philip Papendieck Client Account */}
+                {userHasScopes(["4rzRmPYf6oMuoMoiOSGQk2"]) && (
+                  <NavLink style={white} href="/clients/4rzRmPYf6oMuoMoiOSGQk2">
+                    <FontAwesomeIcon icon="user" /> Profile
+                  </NavLink>
+                )}
+                {/* David Segura Client Account */}
+                {userHasScopes(["7bkfT8NgnCsAu2w8iQS8w0"]) && (
+                  <NavLink style={white} href="/clients/7bkfT8NgnCsAu2w8iQS8w0">
+                    <FontAwesomeIcon icon="user" /> Profile
+                  </NavLink>
+                )}
+                {/* Rohan Thakkar Client Account */}
+                {userHasScopes(["4vnHRFO9bOUC2s0uIauYEa"]) && (
+                  <NavLink style={white} href="/clients/4vnHRFO9bOUC2s0uIauYEa">
                     <FontAwesomeIcon icon="user" /> Profile
                   </NavLink>
                 )}

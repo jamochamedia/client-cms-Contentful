@@ -56,7 +56,6 @@ class ClientContentTracker extends Component {
         post.fields.clientName.fields.clientName === this.props.clientName
     );
 
-    console.log(filterPosts);
     return (
       <div>
         <ReactTable

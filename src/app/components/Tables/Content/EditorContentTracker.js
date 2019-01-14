@@ -46,7 +46,6 @@ class ContentTracker extends Component {
         post.fields.status !== "Posted"
     );
 
-    console.log(filterPosts);
     return (
       <div>
         <ReactTable

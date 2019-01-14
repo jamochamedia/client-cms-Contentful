@@ -39,7 +39,6 @@ export function setAuthItems(callback) {
       return;
     }
     setSession(result);
-    console.log(result);
     callback(null, result);
   });
 }
