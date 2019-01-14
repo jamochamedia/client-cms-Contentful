@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import React from "react";
-import { D4 } from "../../components/Typography/DisplayText";
-import { H3, H4 } from "../../components/Typography/HeaderText";
+import { D4 } from "../Typography/DisplayText";
+import { H3, H4 } from "../Typography/HeaderText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Row, Col } from "reactstrap";
+import { Col } from "reactstrap";
 
 //TODO: WORK ON STYLES
 const ProfileContainer = styled.div`
@@ -60,7 +60,7 @@ const done = {
   textDecoration: "line-through"
 };
 
-function FeaturesCard() {
+function FeaturesClientCard() {
   return (
     <div>
       <ProfileContainer>
@@ -69,7 +69,7 @@ function FeaturesCard() {
             <FontAwesomeIcon icon="list-ol" />
           </D4>
         </ProfileImage>
-        <H3 style={title}>Upcoming Features</H3>
+        <H3 style={title}>Upcoming Client Features</H3>
         <TextContainer>
           <DescriptionStyles>
             <Col lg={{ offset: 1 }}>
@@ -78,16 +78,16 @@ function FeaturesCard() {
                 Profiles
               </H4>
               <H4 style={(todo, done)}>
-                <FontAwesomeIcon icon="check-square" /> Invoicing for clients
+                <FontAwesomeIcon icon="check-square" /> Invoices for clients
               </H4>
               <H4 style={(todo, done)}>
-                <FontAwesomeIcon icon="check-square" /> LinkedIn Content
+                <FontAwesomeIcon icon="check-square" /> LinkedIn content tracker
               </H4>
               <H4 style={todo}>
-                <FontAwesomeIcon icon="square" /> Analytics
+                <FontAwesomeIcon icon="square" /> Content analytics
               </H4>
               <H4 style={todo}>
-                <FontAwesomeIcon icon="square" /> Edit Content In the App
+                <FontAwesomeIcon icon="square" /> Edit content in the app
               </H4>
             </Col>
           </DescriptionStyles>
@@ -97,4 +97,4 @@ function FeaturesCard() {
   );
 }
 
-export default FeaturesCard;
+export default FeaturesClientCard;

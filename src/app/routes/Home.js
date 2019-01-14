@@ -7,7 +7,7 @@ import { H2 } from "../components/Typography/HeaderText";
 import { areAuthItemsSet } from "../../utils/Auth/Auth";
 
 import WriterTracker from "../components/Tables/Writers/WriterTracker";
-import FeaturesCard from "../components/Cards/FeaturesCard";
+import FeaturesCard from "../components/Cards/FeaturesClientCard";
 
 const ContentWrapper = styled.div`
   padding: 20px;
