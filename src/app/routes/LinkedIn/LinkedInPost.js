@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 
@@ -21,9 +22,9 @@ const Header = styled.div`
 `;
 
 const Status = styled.div`
-  margin: 5px 0 20px 0;
-  padding: 7px;
-  background-color: #0ad19847;
+  margin: 10px 0 20px 0;
+  padding: 10px;
+  background-color: #50899147;
   border-radius: 10px;
   width: 47%;
   min-width: 290px;
@@ -31,12 +32,16 @@ const Status = styled.div`
 
 const PostDate = styled.div`
   padding: 10px;
-  background-color: #50899147;
+  background-color: #0ad19847;
   border-radius: 10px;
 `;
 
 const M40 = {
   marginTop: "40px"
+};
+
+const M30 = {
+  marginTop: "30px"
 };
 
 const BackgroundHead = {
@@ -58,22 +63,31 @@ const Document = styled.div`
   min-height: 75vh;
   border-radius: 5px;
   box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
+  white-space: normal;
+  overflow: hidden;
 `;
 
 const LinkedInPost = props => {
   const [post, setPost] = useState({});
   const [writer, setWriter] = useState({});
   const [editor, setEditor] = useState({});
+  const [question, setQuestion] = useState({});
 
   useEffect(() => {
     fetchLinkedInPost();
     fetchWriter();
     fetchEditor();
+    fetchQuestion();
   }, {});
 
   const fetchLinkedInPost = async () => {
     const response = await client.getEntry(props.match.params.linkedinpostid);
     setPost(response.fields);
+  };
+
+  const fetchQuestion = async () => {
+    const response = await client.getEntry(props.match.params.linkedinpostid);
+    setQuestion(response.fields.question.fields);
   };
 
   const fetchWriter = async () => {
@@ -91,12 +105,46 @@ const LinkedInPost = props => {
       return <Paragraph>Document not added.</Paragraph>;
     } else {
       return (
-        <a href={`${post.documentUrl}`}>
+        <a href={`${post.documentUrl}`} target="_blank">
           <Paragraph>{post.documentUrl}</Paragraph>
         </a>
       );
     }
   }
+
+  function QuestionShowing() {
+    if (post.answerUrl === undefined) {
+      return (
+        <div>
+          <Paragraph>{question.question}</Paragraph>
+        </div>
+      );
+    } else {
+      return (
+        <a href={`${post.answerUrl}`} target="_blank">
+          <Paragraph>{question.question}</Paragraph>
+        </a>
+      );
+    }
+  }
+
+  function LinkedInURLShowing() {
+    if (post.linkedInUrl === undefined) {
+      return (
+        <div>
+          <Paragraph>Content not posted yet.</Paragraph>
+        </div>
+      );
+    } else {
+      return (
+        <a href={`${post.linkedInUrl}`} target="_blank">
+          <Paragraph>{post.linkedInUrl}</Paragraph>
+        </a>
+      );
+    }
+  }
+
+  console.log(post);
 
   return (
     <div>
@@ -118,7 +166,7 @@ const LinkedInPost = props => {
                               : post.status === "In Writing"
                               ? "#00db62"
                               : post.status === "In Editing"
-                              ? "#fce302"
+                              ? "#dea700"
                               : post.status === "In Client Review"
                               ? "#e03404"
                               : post.status === "Ready for Post"
@@ -152,14 +200,14 @@ const LinkedInPost = props => {
               <Row>
                 <Col>
                   <H4 style={M40}>Question URL:</H4>
-                  <a href={`${post.questionUrl}`}>
-                    <Paragraph>{post.questionUrl}</Paragraph>
-                  </a>
-                  <H4 style={M40}>Document URL:</H4>
+                  <QuestionShowing />
+                  <H4 style={M30}>Document URL:</H4>
                   <DocumentShowing />
+                  <H4 style={M40}>LinkedIn Post URL:</H4>
+                  <LinkedInURLShowing />
                   <H4 style={M40}>Writer:</H4>
                   <Paragraph>{writer.fullName}</Paragraph>
-                  <H4 style={M40}>Editor:</H4>
+                  <H4 style={M30}>Editor:</H4>
                   <Paragraph>{editor.fullName}</Paragraph>
                 </Col>
               </Row>
