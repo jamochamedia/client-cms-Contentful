@@ -18,10 +18,23 @@ import {
   faHome,
   faLock,
   faSignInAlt,
-  faEnvelope
+  faEnvelope,
+  faListOl,
+  faCheckSquare,
+  faSquare
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faUser, faBriefcase, faHome, faLock, faSignInAlt, faEnvelope);
+library.add(
+  faUser,
+  faBriefcase,
+  faHome,
+  faLock,
+  faSignInAlt,
+  faEnvelope,
+  faListOl,
+  faCheckSquare,
+  faSquare
+);
 
 const store = configureStore();
 store.dispatch(loadContent());

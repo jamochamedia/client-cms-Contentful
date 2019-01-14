@@ -5,7 +5,9 @@ import { Container, Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { H2 } from "../components/Typography/HeaderText";
 import { areAuthItemsSet } from "../../utils/Auth/Auth";
+
 import WriterTracker from "../components/Tables/Writers/WriterTracker";
+import FeaturesCard from "../components/Cards/FeaturesCard";
 
 const ContentWrapper = styled.div`
   padding: 20px;
@@ -51,11 +53,11 @@ class Home extends Component {
                   <FontAwesomeIcon style={mr20} icon="home" /> Client Dashboard
                 </H2>
                 <Row>
-                  <Col lg="6" style={m20}>
-                    <WriterTracker />
+                  <Col lg="4" style={m20}>
+                    <FeaturesCard />
                   </Col>
-                  <Col lg="6" style={m20}>
-                    New Features coming:
+                  <Col lg="8" style={m20}>
+                    <WriterTracker />
                   </Col>
                 </Row>
               </ContentWrapper>
