@@ -39,6 +39,7 @@ export function setAuthItems(callback) {
       return;
     }
     setSession(result);
+    console.log(result);
     callback(null, result);
   });
 }
@@ -139,7 +140,7 @@ export function logout() {
   //Remove isLoggedIn flag from localStorage
   localStorage.removeItem("scopes");
 
-  //Remove isLoggedIn flag from localStorage
+  //Remove userProfile flag from localStorage
   localStorage.removeItem("userProfile");
 
   //Remove userid flag from localStorage

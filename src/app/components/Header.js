@@ -69,9 +69,24 @@ class Header extends React.Component {
                 </NavItem>
               )}
               <NavItem>
-                <NavLink style={white} href="/writers/:writerid">
-                  <FontAwesomeIcon icon="user" /> Profile
-                </NavLink>
+                {/* Mehak Admin Account */}
+                {userHasScopes(["4NEqNfnEs8gG4guQQ6Wgcy"]) && (
+                  <NavLink style={white} href="/writers/4NEqNfnEs8gG4guQQ6Wgcy">
+                    <FontAwesomeIcon icon="user" /> Profile
+                  </NavLink>
+                )}
+                {/* Mehak Client Account */}
+                {userHasScopes(["53jNSEKtqgYamEeo6uu6Oo"]) && (
+                  <NavLink style={white} href="/clients/53jNSEKtqgYamEeo6uu6Oo">
+                    <FontAwesomeIcon icon="user" /> Profile
+                  </NavLink>
+                )}
+                {/* Chelsea Editor Account */}
+                {userHasScopes(["7y0Unz69pK8sgaq62EeUuy"]) && (
+                  <NavLink style={white} href="/writers/7y0Unz69pK8sgaq62EeUuy">
+                    <FontAwesomeIcon icon="user" /> Profile
+                  </NavLink>
+                )}
               </NavItem>
               <NavItem style={NavLinkStyle}>
                 {areAuthItemsSet() && (
