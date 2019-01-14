@@ -167,7 +167,7 @@ class ContentTracker extends Component {
             }
           ]}
           minRows={5}
-          style={{ height: "400px" }}
+          style={{ height: "500px" }}
           showPagination={false}
         />
       </div>
