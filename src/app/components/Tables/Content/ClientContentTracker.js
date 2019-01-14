@@ -56,6 +56,7 @@ class ClientContentTracker extends Component {
         post.fields.clientName.fields.clientName === this.props.clientName
     );
 
+    console.log(filterPosts);
     return (
       <div>
         <ReactTable
@@ -114,7 +115,8 @@ class ClientContentTracker extends Component {
                           ? " Question Sent"
                           : row.value === "In Writing"
                           ? " In Writing"
-                          : row.value === "Back to Writing"
+                          : //Shows as "In Editing" to client
+                          row.value === "Back to Writing"
                           ? " In Editing"
                           : row.value === "In Editing"
                           ? " In Editing"

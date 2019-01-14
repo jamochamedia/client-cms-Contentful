@@ -41,9 +41,12 @@ class ContentTracker extends Component {
     const { posts } = this.state;
 
     const filterPosts = posts.filter(
-      post => post.fields.clientName.fields !== undefined
+      post =>
+        post.fields.clientName.fields !== undefined &&
+        post.fields.status !== "Posted"
     );
 
+    console.log(filterPosts);
     return (
       <div>
         <ReactTable
@@ -124,7 +127,7 @@ class ContentTracker extends Component {
                                 ? "#9106e8"
                                 : row.value === "In Writing"
                                 ? "#00db62"
-                                : //Shows as "In Editing to client"
+                                : //Shows as "In Editing" to client
                                 row.value === "Back to Writing"
                                 ? "#42cef4"
                                 : row.value === "In Editing"
