@@ -81,6 +81,12 @@ class Header extends React.Component {
                     <FontAwesomeIcon icon="user" /> Profile
                   </NavLink>
                 )}
+                {/* Mackenna Editor Account */}
+                {userHasScopes(["5hierVX3jwgzOFlUPM31GL"]) && (
+                  <NavLink style={white} href="/writers/5hierVX3jwgzOFlUPM31GL">
+                    <FontAwesomeIcon icon="user" /> Profile
+                  </NavLink>
+                )}
                 {/* Mehak Client Account */}
                 {userHasScopes(["53jNSEKtqgYamEeo6uu6Oo"]) && (
                   <NavLink style={white} href="/clients/53jNSEKtqgYamEeo6uu6Oo">
