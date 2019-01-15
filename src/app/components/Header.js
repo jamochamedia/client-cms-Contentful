@@ -105,7 +105,7 @@ class Header extends React.Component {
                     <FontAwesomeIcon icon="user" /> Profile
                   </NavLink>
                 )}
-                {/* Sandeep Bhanote Client Account */}
+                {/* Sandeep Bhanote and Brendan Phelan Client Account */}
                 {userHasScopes(["72GtLvYYiAYU6qiG2iciok"]) && (
                   <NavLink style={white} href="/clients/72GtLvYYiAYU6qiG2iciok">
                     <FontAwesomeIcon icon="user" /> Profile
