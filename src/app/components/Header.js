@@ -75,6 +75,12 @@ class Header extends React.Component {
                     <FontAwesomeIcon icon="user" /> Profile
                   </NavLink>
                 )}
+                {/* Conner Admin Account */}
+                {userHasScopes(["3sHD788PTtKGNDdOJHkTHe"]) && (
+                  <NavLink style={white} href="/writers/3sHD788PTtKGNDdOJHkTHe">
+                    <FontAwesomeIcon icon="user" /> Profile
+                  </NavLink>
+                )}
                 {/* Chelsea Editor Account */}
                 {userHasScopes(["7y0Unz69pK8sgaq62EeUuy"]) && (
                   <NavLink style={white} href="/writers/7y0Unz69pK8sgaq62EeUuy">
@@ -90,6 +96,12 @@ class Header extends React.Component {
                 {/* Mehak Client Account */}
                 {userHasScopes(["53jNSEKtqgYamEeo6uu6Oo"]) && (
                   <NavLink style={white} href="/clients/53jNSEKtqgYamEeo6uu6Oo">
+                    <FontAwesomeIcon icon="user" /> Profile
+                  </NavLink>
+                )}
+                {/* Conner Client Account */}
+                {userHasScopes(["1zhOIWfDabdYvtqwMZLyl4"]) && (
+                  <NavLink style={white} href="/writers/1zhOIWfDabdYvtqwMZLyl4">
                     <FontAwesomeIcon icon="user" /> Profile
                   </NavLink>
                 )}
