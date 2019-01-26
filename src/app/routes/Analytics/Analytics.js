@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+
 import { Col, Row } from "reactstrap";
 
 import { D3 } from "../../components/Typography/DisplayText";
@@ -10,6 +11,12 @@ import StatsCard from "../../components/Cards/Stats";
 import Background from "../../img/profile-background.jpg";
 import styled from "styled-components";
 import LeadFunnel from "../../components/Analytics/LeadFunnelGraph";
+
+import {
+  faPaperPlane,
+  faUserCheck,
+  faCommentAlt
+} from "@fortawesome/free-solid-svg-icons";
 
 //Styles
 const Container = styled.div`
@@ -49,8 +56,10 @@ const Analytics = props => {
       <div style={BackgroundHead}>
         <Container>
           <Header>
-            <D3 style={white}>{props.clientName}</D3>
-            <H3 style={white}>{props.companyName}</H3>
+            {/* <D3 style={white}>{props.clientName}</D3>
+            <H3 style={white}>{props.companyName}</H3> */}
+            <D3 style={white}>David Segura</D3>
+            <H3 style={white}>Carbon.io</H3>
           </Header>
         </Container>
       </div>
@@ -59,17 +68,29 @@ const Analytics = props => {
           <Row>
             <Col lg="4" md="6" sm="12">
               <BlockContainer>
-                <StatsCard number="XXXX" title="Sent Requests" />
+                <StatsCard
+                  number="635"
+                  title="Sent Requests"
+                  icon={faPaperPlane}
+                />
               </BlockContainer>
             </Col>
             <Col lg="4" md="6" sm="12">
               <BlockContainer>
-                <StatsCard number="XXXX" title="Accepted Connects" />
+                <StatsCard
+                  number="340"
+                  title="Accepted Connects"
+                  icon={faUserCheck}
+                />
               </BlockContainer>
             </Col>
             <Col lg="4" md="6" sm="12">
               <BlockContainer>
-                <StatsCard number="XXXX" title="Messages Received" />
+                <StatsCard
+                  number="40"
+                  title="Messages Received"
+                  icon={faCommentAlt}
+                />
               </BlockContainer>
             </Col>
           </Row>
@@ -77,7 +98,12 @@ const Analytics = props => {
             <Col lg="8" md="12" />
             <Col lg="4" md="12">
               <BlockContainer>
-                <LeadFunnel />
+                <LeadFunnel
+                  sent="635"
+                  accepted="340"
+                  responded="40"
+                  leads="20"
+                />
               </BlockContainer>
             </Col>
           </Row>

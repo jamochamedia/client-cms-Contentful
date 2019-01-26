@@ -172,12 +172,12 @@ function LeadFunnel(props) {
         <ul style={style}>
           <Li>
             <FunnelTop />
-            XXXX
+            {props.sent}
           </Li>
-          <Li>XXX</Li>
-          <Li>XX</Li>
+          <Li>{props.accepted}</Li>
+          <Li>{props.responded}</Li>
           <Li>
-            X
+            {props.leads}
             <FunnelBottom />
           </Li>
         </ul>

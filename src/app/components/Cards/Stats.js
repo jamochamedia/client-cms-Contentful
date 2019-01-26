@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React from "react";
 
 import { Col, Row } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { D4 } from "../Typography/DisplayText";
 import { H4 } from "../Typography/HeaderText";
@@ -13,7 +14,7 @@ const Card = styled.div`
   border-radius: 0.375rem;
   box-shadow: 0 0 4rem 0 rgba(136, 152, 170, 0.15);
   margin: auto 0;
-  padding: 15px;
+  padding: 15px 20px;
   color: #292f36;
 `;
 
@@ -23,7 +24,13 @@ const IconCircle = styled.div`
   width: 50px;
   border-radius: 50px;
   background-color: #292f36;
+  color: white;
+  padding: 14px 16px;
 `;
+
+const icon = {
+  margin: "0 auto"
+};
 
 function StatsCard(props) {
   return (
@@ -35,7 +42,9 @@ function StatsCard(props) {
             <H4>{props.title}</H4>
           </Col>
           <Col xs="3">
-            <IconCircle />
+            <IconCircle>
+              <FontAwesomeIcon style={icon} icon={props.icon} />
+            </IconCircle>
           </Col>
         </Row>
       </Card>

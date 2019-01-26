@@ -21,7 +21,10 @@ import {
   faEnvelope,
   faListOl,
   faCheckSquare,
-  faSquare
+  faSquare,
+  faPaperPlane,
+  faUserCheck,
+  faCommentAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -33,7 +36,10 @@ library.add(
   faEnvelope,
   faListOl,
   faCheckSquare,
-  faSquare
+  faSquare,
+  faPaperPlane,
+  faUserCheck,
+  faCommentAlt
 );
 
 const store = configureStore();
