@@ -18,6 +18,8 @@ import {
   faCommentAlt
 } from "@fortawesome/free-solid-svg-icons";
 
+import FollowUps from "../../components/Tables/Analytics/FollowUps";
+
 //Styles
 const Container = styled.div`
   padding: 20px;
@@ -48,6 +50,10 @@ const BlockContainer = styled.div`
 
 const white = {
   color: "white"
+};
+
+const m20 = {
+  marginTop: "20px"
 };
 
 const Analytics = props => {
@@ -95,7 +101,11 @@ const Analytics = props => {
             </Col>
           </Row>
           <Row>
-            <Col lg="8" md="12" />
+            <Col lg="8" md="12" style={m20}>
+              <BlockContainer>
+                <FollowUps />
+              </BlockContainer>
+            </Col>
             <Col lg="4" md="12">
               <BlockContainer>
                 <LeadFunnel
