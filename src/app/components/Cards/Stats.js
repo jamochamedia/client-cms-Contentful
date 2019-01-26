@@ -9,12 +9,12 @@ import { H4 } from "../Typography/HeaderText";
 const Card = styled.div`
   height: 100px;
   width: 100%;
-  background-color: #292f36;
+  background-color: white;
   border-radius: 0.375rem;
   box-shadow: 0 0 4rem 0 rgba(136, 152, 170, 0.15);
   margin: auto 0;
-  padding: 15px 20px 40px 20px;
-  color: white;
+  padding: 15px;
+  color: #292f36;
 `;
 
 const IconCircle = styled.div`
@@ -22,12 +22,8 @@ const IconCircle = styled.div`
   height: 50px;
   width: 50px;
   border-radius: 50px;
-  background-color: white;
+  background-color: #292f36;
 `;
-
-const white = {
-  color: "white"
-};
 
 function StatsCard(props) {
   return (
@@ -36,7 +32,7 @@ function StatsCard(props) {
         <Row>
           <Col xs="9">
             <D4>{props.number}</D4>
-            <H4 style={white}>{props.title}</H4>
+            <H4>{props.title}</H4>
           </Col>
           <Col xs="3">
             <IconCircle />

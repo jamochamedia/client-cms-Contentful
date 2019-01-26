@@ -18,7 +18,7 @@ const Container = styled.div`
 
 const Content = styled.div`
   margin-left: 3%;
-  margin-right: 3%;
+  overflow: hidden;
 `;
 
 const Header = styled.div`
@@ -74,9 +74,11 @@ const Analytics = props => {
             </Col>
           </Row>
           <Row>
-            <Col lg="8" />
-            <Col lg="4">
-              <LeadFunnel />
+            <Col lg="8" md="12" />
+            <Col lg="4" md="12">
+              <BlockContainer>
+                <LeadFunnel />
+              </BlockContainer>
             </Col>
           </Row>
         </Content>
