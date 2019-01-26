@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import React from "react";
 
+import { Col, Row } from "reactstrap";
+
 import { D4 } from "../Typography/DisplayText";
-import { H3 } from "../Typography/HeaderText";
+import { H4 } from "../Typography/HeaderText";
 
 const Card = styled.div`
   height: 100px;
@@ -16,8 +18,11 @@ const Card = styled.div`
 `;
 
 const IconCircle = styled.div`
+  margin-top: 10px;
   height: 50px;
   width: 50px;
+  border-radius: 50px;
+  background-color: white;
 `;
 
 const white = {
@@ -28,8 +33,15 @@ function StatsCard(props) {
   return (
     <div>
       <Card>
-        <D4>{props.number}</D4>
-        <H3 style={white}>{props.title}</H3>
+        <Row>
+          <Col xs="9">
+            <D4>{props.number}</D4>
+            <H4 style={white}>{props.title}</H4>
+          </Col>
+          <Col xs="3">
+            <IconCircle />
+          </Col>
+        </Row>
       </Card>
     </div>
   );

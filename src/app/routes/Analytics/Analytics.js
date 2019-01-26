@@ -9,10 +9,11 @@ import StatsCard from "../../components/Cards/Stats";
 
 import Background from "../../img/profile-background.jpg";
 import styled from "styled-components";
+import LeadFunnel from "../../components/Analytics/LeadFunnelGraph";
 
 //Styles
 const Container = styled.div`
-  padding: 20px 20px 30px 20px;
+  padding: 20px;
 `;
 
 const Content = styled.div`
@@ -35,8 +36,7 @@ const BackgroundHead = {
 };
 
 const BlockContainer = styled.div`
-  margin-top: 20px;
-  margin-right: 50px;
+  margin: 20px 20px 0 0;
 `;
 
 const white = {
@@ -71,6 +71,12 @@ const Analytics = props => {
               <BlockContainer>
                 <StatsCard number="XXXX" title="Messages Received" />
               </BlockContainer>
+            </Col>
+          </Row>
+          <Row>
+            <Col lg="8" />
+            <Col lg="4">
+              <LeadFunnel />
             </Col>
           </Row>
         </Content>
