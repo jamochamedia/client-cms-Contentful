@@ -15,6 +15,7 @@ import WriterProfile from "./routes/Writers/WriterProfile";
 import AuthHandler from "../app/components/Auth/AuthHandler";
 import Login from "./routes/Auth/Login";
 import Verify from "./routes/Auth/Verify";
+import Analytics from "./routes/Analytics/Analytics";
 
 const Router = () => (
   <Switch>
@@ -27,6 +28,8 @@ const Router = () => (
     <Route exact path="/clients/:clientprofileid" component={ClientProfile} />
     <Route exact path="/linkedin/:linkedinpostid" component={LinkedInPost} />
     <Route exact path="/writers/:writerid" component={WriterProfile} />
+
+    <Route exact path="/analytics" component={Analytics} />
 
     {/* Clients List */}
     <Route
