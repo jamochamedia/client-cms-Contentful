@@ -44,13 +44,6 @@ export default class Login extends React.Component {
     email: ""
   };
 
-  onEnterPress = e => {
-    if (e.keyCode === 13 && e.shiftKey === false) {
-      e.preventDefault();
-      this._sso();
-    }
-  };
-
   _onChange = e => {
     this.setState({ email: e.target.value });
   };
@@ -58,6 +51,11 @@ export default class Login extends React.Component {
   _sso = () => {
     const { email } = this.state;
     ssoLogin(email, this.props.history);
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this._sso();
   };
 
   render() {
