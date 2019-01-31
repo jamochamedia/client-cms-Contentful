@@ -44,13 +44,6 @@ export default class Login extends React.Component {
     email: ""
   };
 
-  onEnterPress = e => {
-    if (e.keyCode === 13 && e.shiftKey === false) {
-      e.preventDefault();
-      this._sso();
-    }
-  };
-
   _onChange = e => {
     this.setState({ email: e.target.value });
   };
@@ -58,6 +51,11 @@ export default class Login extends React.Component {
   _sso = () => {
     const { email } = this.state;
     ssoLogin(email, this.props.history);
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this._sso();
   };
 
   render() {
@@ -74,20 +72,17 @@ export default class Login extends React.Component {
                     </H1>
                   </Col>
                   <Col xs="12" sm="10" md="11">
-                    <form ref={el => (this.myForm = el)}>
+                    <form onSubmit={this.handleSubmit}>
                       <LeftBorder>
                         <H2>Enter Your Email</H2>
                         <H4>
                           We'll send you a confirmation link to get started.
                         </H4>
-                        <Button type="submit" style={right} onClick={this._sso}>
-                          Confirm
-                        </Button>
+                        <Button style={right}>Confirm</Button>
                         <InputWrap>
                           <Input
                             placeholder="example@example.com"
                             onChange={this._onChange}
-                            onKeyDown={this.onEnterPress}
                           />
                         </InputWrap>
                       </LeftBorder>
