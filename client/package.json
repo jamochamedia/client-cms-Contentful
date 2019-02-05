@@ -1,5 +1,4 @@
 {
-  "name": "client-cms-contentful",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,10 +8,8 @@
     "auth0-js": "^9.8.2",
     "bootstrap": "^4.1.3",
     "cli-table2": "^0.2.0",
-    "concurrently": "^4.1.0",
     "contentful": "^7.0.5",
     "moment": "^2.23.0",
-    "netlify-cli": "^2.6.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0-alpha.2",
     "react-async-component": "^2.0.0",
