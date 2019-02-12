@@ -106,7 +106,7 @@ const Analytics = props => {
                 <FollowUps />
               </BlockContainer>
             </Col>
-            <Col lg="4" md="12">
+            <Col lg="4" md="12" style={m20}>
               <BlockContainer>
                 <LeadFunnel
                   sent="635"

@@ -172,7 +172,7 @@ class ContentReview extends Component {
             }
           ]}
           minRows={5}
-          style={{ height: "431px" }}
+          style={{ height: "400px" }}
           showPagination={false}
         />
       </div>
