@@ -63,15 +63,22 @@ const ClientProfile = props => {
     setTracker(response);
   };
 
+  //define conditional prop variables
   let tracker;
+  let buttonText;
+
+  //conditional rendering logic for content and invoices
   if (displayInvoiceTracker) {
+    buttonText = "Content Tracker";
     tracker = <InvoiceTracker clientName={fields.clientName} />;
   } else {
+    buttonText = "Invoices";
     tracker = <ClientTracker clientName={fields.clientName} />;
   }
 
   return (
     <div>
+      {/* Props from ProfileContent.js */}
       <AsyncClientProfile
         clientName={fields.clientName}
         companyName={fields.companyName}
@@ -80,6 +87,7 @@ const ClientProfile = props => {
         role={fields.clientRole}
         company={fields.companyName}
         clientDescription={fields.clientDescription}
+        buttonText={buttonText}
         tracker={tracker}
       />
     </div>

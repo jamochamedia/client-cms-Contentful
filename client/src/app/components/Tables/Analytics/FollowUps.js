@@ -95,7 +95,7 @@ class FollowUps extends Component {
             }
           ]}
           minRows={5}
-          style={{ height: "350px" }}
+          style={{ height: "400px" }}
           showPagination={false}
         />
       </div>
