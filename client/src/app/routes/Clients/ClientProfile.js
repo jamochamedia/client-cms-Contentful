@@ -64,9 +64,13 @@ const ClientProfile = props => {
   };
 
   let tracker;
+  let buttonText;
+
   if (displayInvoiceTracker) {
+    buttonText = "Content Tracker";
     tracker = <InvoiceTracker clientName={fields.clientName} />;
   } else {
+    buttonText = "Invoices";
     tracker = <ClientTracker clientName={fields.clientName} />;
   }
 
@@ -80,6 +84,7 @@ const ClientProfile = props => {
         role={fields.clientRole}
         company={fields.companyName}
         clientDescription={fields.clientDescription}
+        buttonText={buttonText}
         tracker={tracker}
       />
     </div>

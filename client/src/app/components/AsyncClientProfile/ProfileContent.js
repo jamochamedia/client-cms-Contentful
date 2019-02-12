@@ -85,9 +85,7 @@ function ProfileContent(props) {
                 <Row>
                   <Col>
                     <Button style={invoice} onClick={props.displayTracker}>
-                      {props.displayInvoiceTracker
-                        ? "Content Tracker"
-                        : "Invoices"}
+                      {props.buttonText}
                     </Button>
                   </Col>
                   <Col>
