@@ -8,7 +8,7 @@ import { D4 } from "../Typography/DisplayText";
 import { H4 } from "../Typography/HeaderText";
 
 const Card = styled.div`
-  height: 100px;
+  height: 105px;
   width: 100%;
   background-color: white;
   border-radius: 0.375rem;

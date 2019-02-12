@@ -6,8 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { H2 } from "../components/Typography/HeaderText";
 import { areAuthItemsSet } from "../../utils/Auth/Auth";
 
-import WriterTracker from "../components/Tables/Writers/WriterTracker";
-import FeaturesCard from "../components/Cards/FeaturesClientCard";
+import StatsProgress from "../components/Cards/StatsProgress";
+import TeamTracker from "../components/Tables/Writers/Team";
+import ContentReview from "../components/Tables/Content/ContentReview";
 
 const ContentWrapper = styled.div`
   padding: 20px;
@@ -17,10 +18,10 @@ const BgPrimary = styled.div`
   background: linear-gradient(
     to bottom,
     #508991 0%,
-    #508991 30%,
-    #0ad198 30%,
-    #0ad198 37%,
-    #f7f7f7 37%,
+    #508991 40%,
+    #0ad198 40%,
+    #0ad198 47%,
+    #f7f7f7 47%,
     #f7f7f7 100%
   );
   min-height: 100vh;
@@ -35,8 +36,9 @@ const m20 = {
   marginTop: "20px"
 };
 
-const mr20 = {
-  marginRight: "20px"
+const title = {
+  marginTop: "15px",
+  marginRight: "15px"
 };
 
 class Home extends Component {
@@ -50,14 +52,41 @@ class Home extends Component {
             <Container fluid>
               <ContentWrapper>
                 <H2 style={white}>
-                  <FontAwesomeIcon style={mr20} icon="home" /> Client Dashboard
+                  <FontAwesomeIcon style={title} icon="home" /> Welcome, FIRST
+                  NAME!
                 </H2>
-                <Row>
-                  <Col lg="4" style={m20}>
-                    <FeaturesCard />
+                <Row style={m20}>
+                  <Col lg="4">
+                    <StatsProgress
+                      number="XX"
+                      goal="XXX"
+                      title="LinkedIn posts this month"
+                      width="30%"
+                    />
                   </Col>
-                  <Col lg="8" style={m20}>
-                    <WriterTracker />
+                  <Col lg="4">
+                    <StatsProgress
+                      number="XXX"
+                      goal="XXX"
+                      title="Sent Requests"
+                      width="50%"
+                    />
+                  </Col>
+                  <Col lg="4">
+                    <StatsProgress
+                      number="XX"
+                      goal="XXX"
+                      title="Qualified Sales Leads"
+                      width="75%"
+                    />
+                  </Col>
+                </Row>
+                <Row style={m20}>
+                  <Col lg="4">
+                    <TeamTracker />
+                  </Col>
+                  <Col lg="8">
+                    <ContentReview />
                   </Col>
                 </Row>
               </ContentWrapper>

@@ -88,7 +88,8 @@ const typeDefs = gql`
   type Query {
     linkedInPosts: [LinkedInPost!]!
     linkedInPost(id: Int!): LinkedInPost!
-    client(id: Int!): Client!
+    getClient(id: Int!): Client!
+    getAllClients: [Client!]!
   }
 
   type Mutation {
@@ -113,16 +114,22 @@ let client_id = 2;
 
 const resolvers = {
   Query: {
-    linkedInPosts: () => linkedInPosts,
+    linkedInPosts: async (_, { id }, context) => {
+      linkedInPosts;
+    },
     linkedInPost: async (_, { id }, context) => {
       const db = context.db;
       const linkedInPost = await db("linkedInPost").where("id", id);
       return linkedInPost[0];
     },
-    client: async (_, { id }, context) => {
+    getClient: async (_, { id }, context) => {
       const db = context.db;
       const clients = await db("clients").where("id", id);
       return clients[0];
+    },
+    getAllClients: async (_, __, { db }) => {
+      const clients = await db("clients").where({});
+      return clients;
     }
   },
   Mutation: {
@@ -149,7 +156,19 @@ const resolvers = {
     }
   },
   Client: {
-    linkedInPosts: client => filter(linkedInPosts, { clientId: client.id })
+    linkedInPosts: async (obj, _, { db }) => {
+      const clientId = obj.id;
+      console.log("hi", clientId);
+      console.log("yo1");
+      const linkedInPostsForClient = await db("linkedInPost").where(
+        "clientId",
+        clientId
+      );
+      console.log("yo2 ");
+      console.log(linkedInPostsForClient);
+
+      return linkedInPostsForClient;
+    }
   },
   Writer: {
     linkedInPosts: writer => filter(linkedInPosts, { writerId: writer.id })
@@ -158,7 +177,12 @@ const resolvers = {
     linkedInPosts: editor => filter(linkedInPosts, { editorId: editor.id })
   },
   LinkedInPost: {
-    client: linkedInPost => find(clients, { id: linkedInPost.clientId })
+    client: async (obj, _, { db }) => {
+      console.log(obj);
+      const clients = await db("clients").where("id", obj.clientId);
+      console.log(clients);
+      return clients[0];
+    }
   }
 };
 

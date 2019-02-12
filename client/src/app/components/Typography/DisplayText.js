@@ -23,3 +23,9 @@ export const D4 = styled.h4`
   font-weight: 600;
   line-height: 1.5;
 `;
+
+export const D5 = styled.h4`
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.5;
+`;

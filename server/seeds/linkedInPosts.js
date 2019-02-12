@@ -7,7 +7,7 @@ exports.seed = function(knex, Promise) {
       return knex("linkedInPost").insert([
         {
           id: 1,
-          client: 1,
+          clientId: 1,
           title: "A Great Title",
           status: "In Client Review",
           question: "What is this question?",
@@ -16,7 +16,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           id: 2,
-          client: 3,
+          clientId: 3,
           title: "What a Title",
           status: "Question Sent",
           question: "This is a different question?",
@@ -24,7 +24,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           id: 3,
-          client: 2,
+          clientId: 2,
           title: "Such a Title",
           status: "Posted",
           question: "How is this a question?",
