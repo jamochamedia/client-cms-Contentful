@@ -164,7 +164,7 @@ const m40 = {
   marginTop: "40px"
 };
 
-function LeadFunnel(props) {
+function LeadFunnelGraph(props) {
   return (
     <Card>
       <div style={funnel}>
@@ -200,4 +200,4 @@ function LeadFunnel(props) {
   );
 }
 
-export default LeadFunnel;
+export default LeadFunnelGraph;

@@ -3,7 +3,6 @@ import React from "react";
 import { D4 } from "../Typography/DisplayText";
 import { H3, H4 } from "../Typography/HeaderText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Col } from "reactstrap";
 
 //TODO: WORK ON STYLES
 const ProfileContainer = styled.div`
@@ -32,7 +31,7 @@ const ProfileImage = styled.div`
 `;
 
 const TextContainer = styled.div`
-  padding: 5px 30px 20px 30px;
+  padding: 20px;
 `;
 
 const DescriptionStyles = styled.div`
@@ -41,11 +40,9 @@ const DescriptionStyles = styled.div`
   font-size: 0.9rem;
   font-weight: 300;
   text-align: left;
+  line-height: 2.5;
+  text-align: center;
 `;
-
-const todo = {
-  lineHeight: "2.5"
-};
 
 const white = {
   color: "#f1f1f1"
@@ -56,40 +53,19 @@ const title = {
   margin: "20px"
 };
 
-const done = {
-  textDecoration: "line-through"
-};
-
-function FeaturesClientCard() {
+function HeaderCard(props) {
   return (
     <div>
       <ProfileContainer>
         <ProfileImage>
           <D4 style={white}>
-            <FontAwesomeIcon icon="list-ol" />
+            <FontAwesomeIcon icon={props.icon} />
           </D4>
         </ProfileImage>
-        <H3 style={title}>Upcoming Client Features</H3>
+        <H3 style={title}>{props.title}</H3>
         <TextContainer>
           <DescriptionStyles>
-            <Col lg={{ offset: 1 }}>
-              <H4 style={(todo, done)}>
-                <FontAwesomeIcon icon="check-square" /> Client and Writer
-                Profiles
-              </H4>
-              <H4 style={(todo, done)}>
-                <FontAwesomeIcon icon="check-square" /> Invoices for clients
-              </H4>
-              <H4 style={(todo, done)}>
-                <FontAwesomeIcon icon="check-square" /> LinkedIn content tracker
-              </H4>
-              <H4 style={todo}>
-                <FontAwesomeIcon icon="square" /> Content analytics
-              </H4>
-              <H4 style={todo}>
-                <FontAwesomeIcon icon="square" /> Edit content in the app
-              </H4>
-            </Col>
+            <H4>{props.text}</H4>
           </DescriptionStyles>
         </TextContainer>
       </ProfileContainer>
@@ -97,4 +73,4 @@ function FeaturesClientCard() {
   );
 }
 
-export default FeaturesClientCard;
+export default HeaderCard;

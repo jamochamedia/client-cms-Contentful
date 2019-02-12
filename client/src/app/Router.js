@@ -17,8 +17,12 @@ import Login from "./routes/Auth/Login";
 import Verify from "./routes/Auth/Verify";
 import Analytics from "./routes/Analytics/Analytics";
 
+import Test from "./routes/Test";
+
 const Router = () => (
   <Switch>
+    <Route exact path="/test" component={Test} />
+
     {/* Login Routes */}
     <Route exact path="/auth-handler" component={AuthHandler} />
     <Route exact path="/login" component={Login} />

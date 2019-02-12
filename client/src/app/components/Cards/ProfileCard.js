@@ -5,7 +5,6 @@ import { H3 } from "../../components/Typography/HeaderText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Markdown from "react-markdown";
 
-//TODO: WORK ON STYLES
 const ProfileContainer = styled.div`
   width: 100%;
   min-height: 375px;

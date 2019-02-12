@@ -10,7 +10,7 @@ import StatsCard from "../../components/Cards/Stats";
 
 import Background from "../../img/profile-background.jpg";
 import styled from "styled-components";
-import LeadFunnel from "../../components/Analytics/LeadFunnelGraph";
+import LeadFunnelGraph from "../../components/Analytics/LeadFunnelGraph";
 
 import {
   faPaperPlane,
@@ -126,7 +126,7 @@ const Analytics = props => {
             </Col>
             <Col lg="4" md="12" style={m10}>
               <BlockContainer>
-                <LeadFunnel
+                <LeadFunnelGraph
                   sent="635"
                   accepted="340"
                   responded="40"
