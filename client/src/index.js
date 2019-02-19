@@ -1,8 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+
 import App from "./App";
-import * as serviceWorker from "./serviceWorker";
+// import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 
 // Redux Store
@@ -45,13 +48,19 @@ library.add(
 const store = configureStore();
 store.dispatch(loadContent());
 
+const client = new ApolloClient({
+  uri: "http://localhost:4000/"
+});
+
 ReactDOM.render(
-  <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
-  </Provider>,
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
+  </ApolloProvider>,
   document.getElementById("root")
 );
 
-serviceWorker.unregister();
+// serviceWorker.unregister();
