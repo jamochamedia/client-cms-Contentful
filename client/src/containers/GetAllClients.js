@@ -7,6 +7,11 @@ const query = gql`
     getAllClients {
       id
       clientName
+      companyName
+      linkedInUrl
+      email
+      clientRole
+      clientDescription
     }
   }
 `;

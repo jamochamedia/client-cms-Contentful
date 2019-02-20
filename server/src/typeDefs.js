@@ -6,11 +6,11 @@ const typeDefs = gql`
     clientName: String!
     companyName: String!
     linkedInUrl: String!
-    billingEmail: String!
     email: String!
     clientRole: String!
     clientDescription: String!
     linkedInPosts: [LinkedInPost]!
+    billingEmail: String!
   }
 
   type Writer {
@@ -39,16 +39,25 @@ const typeDefs = gql`
     question: String
     answerUrl: String
     documentUrl: String
-    writer: Writer
-    editor: Editor
+    writer: String
+    editor: String
     postDate: String
   }
 
+  type Question {
+    question: String
+    clientName: String
+    category: String
+    notes: String
+  }
+
   type Query {
+    getAllClients: [Client!]!
     linkedInPosts: [LinkedInPost!]!
+    getAllWriters: [Writer!]!
+    getAllQuestions: [Question!]!
     linkedInPost(id: Int!): LinkedInPost!
     getClient(id: String!): Client!
-    getAllClients: [Client!]!
   }
 
   type Mutation {

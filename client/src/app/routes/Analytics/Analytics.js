@@ -10,7 +10,7 @@ import StatsCard from "../../components/Cards/Stats";
 
 import Background from "../../img/profile-background.jpg";
 import styled from "styled-components";
-import LeadFunnelGraph from "../../components/Analytics/LeadFunnelGraph";
+import LeadFunnelGraph from "../../components/Graphs/LeadFunnelGraph";
 
 import {
   faPaperPlane,

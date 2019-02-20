@@ -3,11 +3,10 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 const query = gql`
-  query GetClient($id: Int!) {
+  query getClient($id: String!) {
     getClient(id: $id) {
       id
-      firstName
-      lastName
+      clientName
     }
   }
 `;

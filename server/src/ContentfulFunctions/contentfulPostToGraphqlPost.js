@@ -25,18 +25,39 @@ const exampleLinkedInPost = {
   }
 };
 
+const exampleQuestion = {
+  sys: {
+    space: [Object],
+    id: "1VG7g6fHO8Ke6gGQewWqWm",
+    type: "Entry",
+    createdAt: "2019-01-11T07:46:55.211Z",
+    updatedAt: "2019-01-11T07:46:55.211Z",
+    environment: [Object],
+    revision: 1,
+    contentType: [Object],
+    locale: "en-US"
+  },
+  fields: {
+    question:
+      "What advice do VCs want to give founders during pitches, but refrain from?",
+    client: [Array],
+    category: "Venture Capital"
+  }
+};
+
 function contentfulPostToGraphqlPost(contentfulClient) {
+  const question = contentfulClient.fields.question || { fields: {} };
   return {
     id: contentfulClient.sys.id,
-    //clientName: contentfulPost.fields.clientName,
-    status: contentfulClient.fields.status,
-    //writer: contentfulPost.fields.writer,
-    //editor: contentfulPost.fields.editor,
+    clientName: contentfulClient.fields.clientName.fields.clientName,
     postTitle: contentfulClient.fields.postTitle,
-    postDate: contentfulClient.fields.postDate,
-    //question: contentfulPost.fields.question,
+    status: contentfulClient.fields.status,
+    question: question.fields.question,
     answerUrl: contentfulClient.fields.answerUrl,
-    documentUrl: contentfulClient.fields.documentUrl
+    documentUrl: contentfulClient.fields.documentUrl,
+    writer: contentfulClient.fields.writer.fields.fullName,
+    editor: contentfulClient.fields.editor.fields.fullName,
+    postDate: contentfulClient.fields.postDate
   };
 }
 

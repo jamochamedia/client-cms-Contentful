@@ -18,7 +18,6 @@ const ClientHomeTracker = () => {
   return (
     <GetAllClients>
       {data => {
-        console.log(data);
         const clients = data.getAllClients;
         return (
           <ReactTable
@@ -33,13 +32,10 @@ const ClientHomeTracker = () => {
                     Header: <H5>CLIENT</H5>,
                     headerClassName: "table-subheader",
                     Cell: cell => {
-                      console.log(cell);
                       return (
                         <a style={Post} href={`/clients/${cell.original.id}`}>
                           <Paragraph>
-                            <b>{`${cell.original.firstName} ${
-                              cell.original.lastName
-                            }`}</b>
+                            <b>{`${cell.original.clientName}`}</b>
                           </Paragraph>
                         </a>
                       );
@@ -51,7 +47,7 @@ const ClientHomeTracker = () => {
                     id: "status",
                     Cell: cell => (
                       <a style={Post} href={`${cell.original.url}`}>
-                        <Paragraph>{cell.original.url}</Paragraph>
+                        <Paragraph>{cell.original.companyName}</Paragraph>
                       </a>
                     )
                   }
