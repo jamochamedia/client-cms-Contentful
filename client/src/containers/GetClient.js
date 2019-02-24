@@ -7,6 +7,11 @@ const query = gql`
     getClient(id: $id) {
       id
       clientName
+      companyName
+      linkedInUrl
+      email
+      clientRole
+      clientDescription
     }
   }
 `;

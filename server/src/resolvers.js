@@ -46,9 +46,10 @@ const resolvers = {
     getClient: async (_, { id }, context) => {
       const contentfulClient = context.contentfulClient;
       const response = await contentfulClient.getEntry(id);
-      const client = response.items;
-      const graphqlClient = client.map(contentfulClientToGraphqlClient);
-      return graphqlClient[0];
+      const graphQlClient = contentfulClientToGraphqlClient(response);
+      console.log(graphQlClient);
+      console.log(graphQlClient.companyName);
+      return graphQlClient;
     }
   }
 };

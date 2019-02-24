@@ -73,7 +73,7 @@ const invoice = {
 };
 
 const ClientProfile = props => {
-  const clientId = parseInt(props.match.params.clientprofileid, 10);
+  const clientId = props.match.params.clientprofileid;
 
   //Render Invoice Tracker
   const [displayInvoiceTracker, setTracker] = useState(false);
