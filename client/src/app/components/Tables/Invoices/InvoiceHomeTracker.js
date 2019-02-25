@@ -37,7 +37,7 @@ class InvoiceHomeTracker extends Component {
 
   render() {
     const { invoices } = this.state;
-
+    console.log(invoices);
     return (
       <div>
         <ReactTable

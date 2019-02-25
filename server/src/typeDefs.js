@@ -45,6 +45,19 @@ const typeDefs = gql`
     postDate: String
   }
 
+  type Invoice {
+    id: String!
+    invoiceId: String!
+    clientName: String
+    clientId: String
+    subject: String
+    amount: String
+    issueDate: String
+    dueDate: String
+    stripeUrl: String
+    status: String
+  }
+
   type Question {
     question: String
     clientName: String
@@ -60,6 +73,7 @@ const typeDefs = gql`
     linkedInPost(id: Int!): LinkedInPost!
     getClient(id: String!): Client!
     getClientLinkedInPosts(id: String!): [LinkedInPost!]!
+    getAllInvoices: [Invoice!]!
   }
 
   type Mutation {

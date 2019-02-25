@@ -1,5 +1,6 @@
 const contentfulClientToGraphqlClient = require("./ContentfulFunctions/contentfulClientToGraphqlClient");
 const contentfulPosttoGraphqlPost = require("./ContentfulFunctions/contentfulPostToGraphqlPost");
+const contentfulInvoiceToGraphqlInvoice = require("./ContentfulFunctions/contentfulInvoiceToGraphqlInvoice");
 
 const resolvers = {
   Query: {
@@ -22,7 +23,6 @@ const resolvers = {
       const clientPosts = graphqlPosts.filter(
         post => post.clientId !== undefined && post.clientId === id
       );
-      console.log(clientPosts);
       return clientPosts;
     },
     linkedInPost: async (_, { id }, context) => {
@@ -46,13 +46,24 @@ const resolvers = {
       const graphQlClient = contentfulClientToGraphqlClient(response);
       return graphQlClient;
     },
+    getAllInvoices: async (_, __, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntries({
+        content_type: "invoice"
+      });
+      const invoices = response.items;
+      const graphqlInvoices = invoices.map(contentfulInvoiceToGraphqlInvoice);
+      console.log(graphqlInvoices);
+      return graphqlInvoices;
+    },
     getAllWriters: async (_, __, context) => {
       const contentfulClient = context.contentfulClient;
       const response = await contentfulClient.getEntries({
         content_type: "writer"
       });
       const writers = response.items;
-      console.log(writers);
+      //todo graphql api
+      return writers;
     },
     getAllQuestions: async (_, __, context) => {
       const contentfulClient = context.contentfulClient;
@@ -60,7 +71,8 @@ const resolvers = {
         content_type: "question"
       });
       const question = response.items;
-      console.log(question);
+      //todo graphql api
+      return question;
     }
   }
 };
