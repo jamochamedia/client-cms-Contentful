@@ -53,8 +53,19 @@ const resolvers = {
       });
       const invoices = response.items;
       const graphqlInvoices = invoices.map(contentfulInvoiceToGraphqlInvoice);
-      console.log(graphqlInvoices);
       return graphqlInvoices;
+    },
+    getClientInvoices: async (_, { id }, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntries({
+        content_type: "invoice"
+      });
+      const invoices = response.items;
+      const graphqlInvoices = invoices.map(contentfulInvoiceToGraphqlInvoice);
+      const clientInvoices = graphqlInvoices.filter(
+        post => post.clientId !== undefined && post.clientId === id
+      );
+      return clientInvoices;
     },
     getAllWriters: async (_, __, context) => {
       const contentfulClient = context.contentfulClient;

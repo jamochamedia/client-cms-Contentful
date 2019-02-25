@@ -9,7 +9,7 @@ import { H3 } from "../../components/Typography/HeaderText";
 
 import ProfileCard from "../../components/Cards/ProfileCard";
 import ClientTracker from "../../components/Tables/Content/ClientContentTracker";
-import InvoiceTracker from "../../components/Tables/Invoices/InvoiceTracker";
+import ClientInvoiceTracker from "../../components/Tables/Invoices/ClientInvoiceTracker";
 
 import Background from "../../img/profile-background.jpg";
 import styled from "styled-components";
@@ -91,7 +91,7 @@ const ClientProfile = props => {
   if (displayInvoiceTracker) {
     buttonText = "Content Tracker";
     //checking for if clientName matches (previously fields.clientName)
-    tracker = <InvoiceTracker clientId={clientId} />;
+    tracker = <ClientInvoiceTracker clientId={clientId} />;
   } else {
     buttonText = "Invoices";
     tracker = <ClientTracker clientId={clientId} />;

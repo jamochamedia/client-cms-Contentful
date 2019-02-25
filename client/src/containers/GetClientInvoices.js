@@ -3,24 +3,23 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 const query = gql`
-  query getClientLinkedInPosts($id: String!) {
-    getClientLinkedInPosts(id: $id) {
+  query getClientInvoices($id: String!) {
+    getClientInvoices(id: $id) {
       id
+      invoiceId
       clientName
       clientId
-      postTitle
+      subject
+      amount
+      issueDate
+      dueDate
+      stripeUrl
       status
-      question
-      answerUrl
-      documentUrl
-      writer
-      editor
-      postDate
     }
   }
 `;
 
-const GetClientLinkedInPosts = props => (
+const GetClientInvoices = props => (
   <Query query={query} variables={{ id: props.clientId }}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
@@ -31,4 +30,4 @@ const GetClientLinkedInPosts = props => (
   </Query>
 );
 
-export default GetClientLinkedInPosts;
+export default GetClientInvoices;
