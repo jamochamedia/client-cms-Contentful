@@ -75,6 +75,7 @@ const typeDefs = gql`
     getClientLinkedInPosts(id: String!): [LinkedInPost!]!
     getAllInvoices: [Invoice!]!
     getClientInvoices(id: String!): [Invoice!]!
+    getWriter(id: String!): Writer!
   }
 
   type Mutation {

@@ -77,6 +77,12 @@ const resolvers = {
       const graphqlWriters = writers.map(contentfulWritertoGraphqlWriter);
       return graphqlWriters;
     },
+    getWriter: async (_, { id }, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntry(id);
+      const graphqlWriter = contentfulWritertoGraphqlWriter(response);
+      return graphqlWriter;
+    },
     getAllQuestions: async (_, __, context) => {
       const contentfulClient = context.contentfulClient;
       const response = await contentfulClient.getEntries({
