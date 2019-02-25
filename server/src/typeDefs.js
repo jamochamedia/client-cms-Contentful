@@ -34,6 +34,7 @@ const typeDefs = gql`
   type LinkedInPost {
     id: String!
     clientName: String
+    clientId: String
     postTitle: String
     status: String
     question: String
@@ -58,6 +59,7 @@ const typeDefs = gql`
     getAllQuestions: [Question!]!
     linkedInPost(id: Int!): LinkedInPost!
     getClient(id: String!): Client!
+    getClientLinkedInPosts(id: String!): [LinkedInPost!]!
   }
 
   type Mutation {

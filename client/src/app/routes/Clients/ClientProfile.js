@@ -91,10 +91,10 @@ const ClientProfile = props => {
   if (displayInvoiceTracker) {
     buttonText = "Content Tracker";
     //checking for if clientName matches (previously fields.clientName)
-    tracker = <InvoiceTracker clientName={"clientName"} />;
+    tracker = <InvoiceTracker clientId={clientId} />;
   } else {
     buttonText = "Invoices";
-    tracker = <ClientTracker clientName={"clientName"} />;
+    tracker = <ClientTracker clientId={clientId} />;
   }
 
   return (
