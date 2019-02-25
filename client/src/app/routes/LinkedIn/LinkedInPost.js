@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { withRouter } from "react-router-dom";
-
-import { client } from "../../../utils/Contentful/client";
 
 import styled from "styled-components";
 import { Row, Col } from "reactstrap";
@@ -11,6 +9,12 @@ import moment from "moment";
 import { D3 } from "../../components/Typography/DisplayText";
 import { H4 } from "../../components/Typography/HeaderText";
 import { Paragraph } from "../../components/Typography/ParapgraphText";
+
+import GetClientSingleLinkedInPost from "../../../containers/GetClientSingleLinkedInPost";
+
+import DocumentShowing from "../../components/Logic/LinkedInPost/DocumentShowing";
+import QuestionShowing from "../../components/Logic/LinkedInPost/QuestionShowing";
+import LinkedInURLShowing from "../../components/Logic/LinkedInPost/LinkedInUrlShowing";
 
 //Styles
 const Container = styled.div`
@@ -68,152 +72,88 @@ const Document = styled.div`
 `;
 
 const LinkedInPost = props => {
-  const [post, setPost] = useState({});
-  const [writer, setWriter] = useState({});
-  const [editor, setEditor] = useState({});
-  const [question, setQuestion] = useState({});
-
-  useEffect(() => {
-    fetchLinkedInPost();
-    fetchWriter();
-    fetchEditor();
-    fetchQuestion();
-  }, {});
-
-  const fetchLinkedInPost = async () => {
-    const response = await client.getEntry(props.match.params.linkedinpostid);
-    setPost(response.fields);
-  };
-
-  const fetchQuestion = async () => {
-    const response = await client.getEntry(props.match.params.linkedinpostid);
-    setQuestion(response.fields.question.fields);
-  };
-
-  const fetchWriter = async () => {
-    const res = await client.getEntry(props.match.params.linkedinpostid);
-    setWriter(res.fields.writer.fields);
-  };
-
-  const fetchEditor = async () => {
-    const res = await client.getEntry(props.match.params.linkedinpostid);
-    setEditor(res.fields.editor.fields);
-  };
-
-  function DocumentShowing() {
-    if (post.documentUrl === undefined) {
-      return <Paragraph>Document not added.</Paragraph>;
-    } else {
-      return (
-        <a href={`${post.documentUrl}`} target="_blank">
-          <Paragraph>{post.documentUrl}</Paragraph>
-        </a>
-      );
-    }
-  }
-
-  function QuestionShowing() {
-    if (post.answerUrl === undefined) {
-      return (
-        <div>
-          <Paragraph>{question.question}</Paragraph>
-        </div>
-      );
-    } else {
-      return (
-        <a href={`${post.answerUrl}`} target="_blank">
-          <Paragraph>{question.question}</Paragraph>
-        </a>
-      );
-    }
-  }
-
-  function LinkedInURLShowing() {
-    if (post.linkedInUrl === undefined) {
-      return (
-        <div>
-          <Paragraph>Content not posted yet.</Paragraph>
-        </div>
-      );
-    } else {
-      return (
-        <a href={`${post.linkedInUrl}`} target="_blank">
-          <Paragraph>{post.linkedInUrl}</Paragraph>
-        </a>
-      );
-    }
-  }
+  const linkedInPostId = props.match.params.linkedinpostid;
 
   return (
-    <div>
-      <div style={BackgroundHead}>
-        <Document>
-          <Container>
-            <Header>
-              <Row>
-                <Col sm="12" lg="9">
-                  <D3>{post.postTitle}</D3>
-                  <Status>
-                    <H4>
-                      Status:{" "}
-                      <span
-                        style={{
-                          color:
-                            post.status === "Question Sent"
-                              ? "#9106e8"
-                              : post.status === "In Writing"
-                              ? "#00db62"
-                              : post.status === "In Editing"
-                              ? "#dea700"
-                              : post.status === "In Client Review"
-                              ? "#e03404"
-                              : post.status === "Ready for Post"
-                              ? "#01a6ff"
-                              : post.status === "Posted"
-                              ? "#ff9900"
-                              : post.status === "Not Posting"
-                              ? "#000000"
-                              : "#5a5f66"
-                        }}
-                      >
-                        &#x25C9; {post.status}
-                      </span>
-                    </H4>
-                  </Status>
-                </Col>
-                <Col sm="12" lg="3">
-                  <PostDate>
-                    <H4>Post Date:</H4>
-                    <Paragraph>
-                      {moment(post.postDate).calendar(null, {
-                        sameDay: "[Today]",
-                        lastDay: "[Yesterday]",
-                        lastWeek: "[Last] dddd",
-                        sameElse: "MMM Do YYYY, h:mm:ss a"
-                      })}
-                    </Paragraph>
-                  </PostDate>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <H4 style={M40}>Question URL:</H4>
-                  <QuestionShowing />
-                  <H4 style={M30}>Document URL:</H4>
-                  <DocumentShowing />
-                  <H4 style={M40}>LinkedIn Post URL:</H4>
-                  <LinkedInURLShowing />
-                  <H4 style={M40}>Writer:</H4>
-                  <Paragraph>{writer.fullName}</Paragraph>
-                  <H4 style={M30}>Editor:</H4>
-                  <Paragraph>{editor.fullName}</Paragraph>
-                </Col>
-              </Row>
-            </Header>
-          </Container>
-        </Document>
-      </div>
-    </div>
+    <GetClientSingleLinkedInPost linkedInPostId={linkedInPostId}>
+      {data => {
+        const fields = data.getClientSingleLinkedInPost;
+        return (
+          <div style={BackgroundHead}>
+            <Document>
+              <Container>
+                <Header>
+                  <Row>
+                    <Col sm="12" lg="9">
+                      <D3>{fields.postTitle}</D3>
+                      <Status>
+                        <H4>
+                          Status:{" "}
+                          <span
+                            style={{
+                              color:
+                                fields.status === "Question Sent"
+                                  ? "#9106e8"
+                                  : fields.status === "In Writing"
+                                  ? "#00db62"
+                                  : fields.status === "In Editing"
+                                  ? "#dea700"
+                                  : fields.status === "In Client Review"
+                                  ? "#e03404"
+                                  : fields.status === "Ready for Post"
+                                  ? "#01a6ff"
+                                  : fields.status === "Posted"
+                                  ? "#ff9900"
+                                  : fields.status === "Not Posting"
+                                  ? "#000000"
+                                  : "#5a5f66"
+                            }}
+                          >
+                            &#x25C9; {fields.status}
+                          </span>
+                        </H4>
+                      </Status>
+                    </Col>
+                    <Col sm="12" lg="3">
+                      <PostDate>
+                        <H4>Post Date:</H4>
+                        <Paragraph>
+                          {moment(fields.postDate).calendar(null, {
+                            sameDay: "[Today]",
+                            lastDay: "[Yesterday]",
+                            lastWeek: "[Last] dddd",
+                            sameElse: "MMM Do YYYY, h:mm:ss a"
+                          })}
+                        </Paragraph>
+                      </PostDate>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <H4 style={M40}>
+                        Question (Answer The Question In This Document):
+                      </H4>
+                      <QuestionShowing
+                        answerUrl={fields.answerUrl}
+                        question={fields.question}
+                      />
+                      <H4 style={M30}>Post Document:</H4>
+                      <DocumentShowing documentUrl={fields.documentUrl} />
+                      <H4 style={M40}>LinkedIn Post URL:</H4>
+                      <LinkedInURLShowing linkedInUrl={fields.linkedInUrl} />
+                      <H4 style={M40}>Writer:</H4>
+                      <Paragraph>{fields.writer}</Paragraph>
+                      <H4 style={M30}>Editor:</H4>
+                      <Paragraph>{fields.writer}</Paragraph>
+                    </Col>
+                  </Row>
+                </Header>
+              </Container>
+            </Document>
+          </div>
+        );
+      }}
+    </GetClientSingleLinkedInPost>
   );
 };
 

@@ -24,12 +24,9 @@ const resolvers = {
       });
       const posts = response.items;
       const graphqlPosts = posts.map(contentfulPosttoGraphqlPost);
-      const clientPosts = graphqlPosts.filter(
-        post => post.clientId !== undefined && post.clientId === id
-      );
-      return clientPosts;
+      return graphqlPosts;
     },
-    linkedInPost: async (_, { id }, context) => {
+    getClientSingleLinkedInPost: async (_, { id }, context) => {
       const contentfulClient = context.contentfulClient;
       const response = await contentfulClient.getEntry(id);
       const graphQlLinkedInPosts = contentfulPosttoGraphqlPost(response);
@@ -77,7 +74,6 @@ const resolvers = {
         content_type: "writer"
       });
       const writers = response.items;
-      console.log(writers);
       const graphqlWriters = writers.map(contentfulWritertoGraphqlWriter);
       return graphqlWriters;
     },

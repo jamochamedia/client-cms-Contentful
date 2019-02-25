@@ -4,7 +4,7 @@ import React from "react";
 import { D5 } from "../Typography/DisplayText";
 import { H4 } from "../Typography/HeaderText";
 
-import ProgressBar from "../Utils/ProgressBar";
+import ProgressBar from "../Measurement/ProgressBar";
 
 const Card = styled.div`
   height: 105px;
