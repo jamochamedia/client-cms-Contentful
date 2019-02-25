@@ -41,7 +41,9 @@ const typeDefs = gql`
     answerUrl: String
     documentUrl: String
     writer: String
+    writerId: String
     editor: String
+    editorId: String
     postDate: String
   }
 

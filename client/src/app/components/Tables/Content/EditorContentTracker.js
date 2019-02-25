@@ -71,9 +71,21 @@ const EditorContentTracker = props => {
                     Cell: cell => (
                       <a
                         style={color}
-                        href={`/writers/${cell.original.writer}`}
+                        href={`/writers/${cell.original.writerId}`}
                       >
                         <Paragraph>{cell.original.writer}</Paragraph>
+                      </a>
+                    )
+                  },
+                  {
+                    Header: <H5>Editor</H5>,
+                    headerClassName: "table-subheader",
+                    Cell: cell => (
+                      <a
+                        style={color}
+                        href={`/writers/${cell.original.editorId}`}
+                      >
+                        <Paragraph>{cell.original.editor}</Paragraph>
                       </a>
                     )
                   },

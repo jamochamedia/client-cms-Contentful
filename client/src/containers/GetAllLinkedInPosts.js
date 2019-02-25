@@ -14,7 +14,9 @@ const query = gql`
       documentUrl
       status
       writer
+      writerId
       editor
+      editorId
       postDate
     }
   }
