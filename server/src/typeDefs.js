@@ -72,6 +72,7 @@ const typeDefs = gql`
     getAllQuestions: [Question!]!
     getClientSingleLinkedInPost(id: String!): LinkedInPost!
     getClient(id: String!): Client!
+    getAuth0Client(id: String!): Client!
     getClientLinkedInPosts(id: String!): [LinkedInPost!]!
     getAllInvoices: [Invoice!]!
     getClientInvoices(id: String!): [Invoice!]!

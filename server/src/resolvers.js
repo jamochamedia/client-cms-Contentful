@@ -24,7 +24,8 @@ const resolvers = {
       });
       const posts = response.items;
       const graphqlPosts = posts.map(contentfulPosttoGraphqlPost);
-      return graphqlPosts;
+      const filteredPosts = graphqlPosts.filter(post => post.clientId === id);
+      return filteredPosts;
     },
     getClientSingleLinkedInPost: async (_, { id }, context) => {
       const contentfulClient = context.contentfulClient;

@@ -3,7 +3,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 const query = gql`
-  query getClientLinkedInPosts($id: String!) {
+  query GetClientLinkedInPosts($id: String!) {
     getClientLinkedInPosts(id: $id) {
       id
       clientName
