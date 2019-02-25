@@ -18,7 +18,6 @@ const InvoiceHomeTracker = () => {
     <GetAllInvoices>
       {data => {
         const invoices = data.getAllInvoices;
-        console.log(invoices);
         return (
           <ReactTable
             data={invoices}

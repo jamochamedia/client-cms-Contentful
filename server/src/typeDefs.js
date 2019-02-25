@@ -67,7 +67,7 @@ const typeDefs = gql`
 
   type Query {
     getAllClients: [Client!]!
-    linkedInPosts: [LinkedInPost!]!
+    getAllLinkedInPosts: [LinkedInPost!]!
     getAllWriters: [Writer!]!
     getAllQuestions: [Question!]!
     linkedInPost(id: Int!): LinkedInPost!

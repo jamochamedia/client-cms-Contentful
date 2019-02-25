@@ -4,14 +4,17 @@ const contentfulInvoiceToGraphqlInvoice = require("./ContentfulFunctions/content
 
 const resolvers = {
   Query: {
-    linkedInPosts: async (_, __, context) => {
+    getAllLinkedInPosts: async (_, __, context) => {
       const contentfulClient = context.contentfulClient;
       const response = await contentfulClient.getEntries({
         content_type: "linkedInTextPost"
       });
       const posts = response.items;
       const graphqlPosts = posts.map(contentfulPosttoGraphqlPost);
-      return graphqlPosts;
+      const filteredPosts = graphqlPosts.filter(
+        post => post.status !== "Not Posting"
+      );
+      return filteredPosts;
     },
     getClientLinkedInPosts: async (_, { id }, context) => {
       const contentfulClient = context.contentfulClient;
