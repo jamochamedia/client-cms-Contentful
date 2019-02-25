@@ -14,12 +14,11 @@ const typeDefs = gql`
   }
 
   type Writer {
-    id: Int!
-    firstName: String!
-    lastName: String!
-    position: String!
-    linkedInPosts: [LinkedInPost]!
-    linkedInUrl: String!
+    id: String
+    fullName: String
+    position: String
+    linkedInUrl: String
+    description: String
   }
 
   type Editor {
@@ -27,7 +26,6 @@ const typeDefs = gql`
     firstName: String!
     lastName: String!
     position: String!
-    linkedInPosts: [LinkedInPost]!
     linkedInUrl: String!
   }
 

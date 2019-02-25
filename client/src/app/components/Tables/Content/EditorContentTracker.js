@@ -21,7 +21,6 @@ const EditorContentTracker = props => {
     <GetAllLinkedInPosts>
       {data => {
         const posts = data.getAllLinkedInPosts;
-        console.log(posts);
         return (
           <ReactTable
             data={posts}

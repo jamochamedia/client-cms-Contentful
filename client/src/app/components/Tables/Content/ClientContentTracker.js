@@ -25,7 +25,7 @@ const ClientContentTracker = props => {
         return (
           <ReactTable
             data={posts}
-            noDataText="Loading..."
+            noDataText="Oh no! You don't have any content."
             columns={[
               {
                 Header: <H3>Content Tracker</H3>,

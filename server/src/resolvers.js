@@ -1,6 +1,7 @@
 const contentfulClientToGraphqlClient = require("./ContentfulFunctions/contentfulClientToGraphqlClient");
 const contentfulPosttoGraphqlPost = require("./ContentfulFunctions/contentfulPostToGraphqlPost");
 const contentfulInvoiceToGraphqlInvoice = require("./ContentfulFunctions/contentfulInvoiceToGraphqlInvoice");
+const contentfulWritertoGraphqlWriter = require("./ContentfulFunctions/contentfulWritertoGraphqlWriter");
 
 const resolvers = {
   Query: {
@@ -76,8 +77,9 @@ const resolvers = {
         content_type: "writer"
       });
       const writers = response.items;
-      //todo graphql api
-      return writers;
+      console.log(writers);
+      const graphqlWriters = writers.map(contentfulWritertoGraphqlWriter);
+      return graphqlWriters;
     },
     getAllQuestions: async (_, __, context) => {
       const contentfulClient = context.contentfulClient;

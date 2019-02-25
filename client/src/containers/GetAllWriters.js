@@ -4,25 +4,17 @@ import gql from "graphql-tag";
 
 const query = gql`
   {
-    getAllLinkedInPosts {
+    getAllWriters {
       id
-      clientName
-      clientId
-      postTitle
-      question
-      answerUrl
-      documentUrl
-      status
-      writer
-      writerId
-      editor
-      editorId
-      postDate
+      fullName
+      position
+      linkedInUrl
+      description
     }
   }
 `;
 
-const GetAllLinkedInPosts = props => (
+const GetAllWriters = props => (
   <Query query={query}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
@@ -33,4 +25,4 @@ const GetAllLinkedInPosts = props => (
   </Query>
 );
 
-export default GetAllLinkedInPosts;
+export default GetAllWriters;

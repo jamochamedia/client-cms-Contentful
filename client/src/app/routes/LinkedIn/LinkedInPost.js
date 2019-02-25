@@ -144,8 +144,6 @@ const LinkedInPost = props => {
     }
   }
 
-  console.log(post);
-
   return (
     <div>
       <div style={BackgroundHead}>
