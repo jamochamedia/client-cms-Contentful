@@ -114,12 +114,26 @@ const ClientContentTracker = props => {
                   {
                     Header: <H5>WRITER</H5>,
                     headerClassName: "table-subheader",
-                    Cell: cell => <Paragraph>{cell.original.writer}</Paragraph>
+                    Cell: cell => (
+                      <a
+                        style={Post}
+                        href={`/writers/${cell.original.writerId}`}
+                      >
+                        <Paragraph>{cell.original.writer}</Paragraph>
+                      </a>
+                    )
                   },
                   {
                     Header: <H5>Editor</H5>,
                     headerClassName: "table-subheader",
-                    Cell: cell => <Paragraph>{cell.original.editor}</Paragraph>
+                    Cell: cell => (
+                      <a
+                        style={Post}
+                        href={`/writers/${cell.original.editorId}`}
+                      >
+                        <Paragraph>{cell.original.editor}</Paragraph>{" "}
+                      </a>
+                    )
                   }
                 ]
               }

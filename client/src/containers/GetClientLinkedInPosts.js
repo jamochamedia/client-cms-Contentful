@@ -14,7 +14,9 @@ const query = gql`
       answerUrl
       documentUrl
       writer
+      writerId
       editor
+      editorId
       postDate
     }
   }
