@@ -34,7 +34,8 @@ function contentfulClientToGraphqlClient(contentfulClient) {
     linkedInUrl: contentfulClient.fields.linkedInUrl,
     email: contentfulClient.fields.email,
     clientRole: contentfulClient.fields.clientRole,
-    clientDescription: contentfulClient.fields.clientDescription
+    clientDescription: contentfulClient.fields.clientDescription,
+    auth0Id: contentfulClient.fields.auth0Id
   };
 }
 

@@ -1,6 +1,6 @@
 import config from "./config";
-// import localConfig from "./localConfig";
-import hostedConfig from "./hostedConfig";
+import localConfig from "./localConfig";
+// import hostedConfig from "./hostedConfig";
 import { auth0Client, requestedScopes } from "./auth0Client";
 
 //Handles Login
@@ -123,12 +123,21 @@ export function areAuthItemsSet() {
   return false;
 }
 
+//Adds the IdToken to the idToken const
+export function getIdToken() {
+  const idToken = localStorage.getItem("idToken");
+  if (idToken) {
+    return idToken;
+  }
+  return false;
+}
+
 //Logs the user out and removes the idToken, accessToken, scopes, userProfile,
 //userId, auth0Id
 export function logout() {
   auth0Client.logout({
-    // returnTo: localConfig.urls.login,
-    returnTo: hostedConfig.urls.login,
+    returnTo: localConfig.urls.login,
+    // returnTo: hostedConfig.urls.login,
     client_id: config.auth0.client
   });
 

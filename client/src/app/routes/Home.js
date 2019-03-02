@@ -9,7 +9,6 @@ import { areAuthItemsSet } from "../../utils/Auth/Auth";
 import StatsProgress from "../components/Cards/StatsProgress";
 import TeamTracker from "../components/Tables/Writers/Team";
 import ContentReview from "../components/Tables/Content/ContentReview";
-import KeyPeople from "../components/Tables/Analytics/KeyPeople";
 
 const ContentWrapper = styled.div`
   padding: 20px;
@@ -84,15 +83,10 @@ class Home extends Component {
                 </Row>
                 <Row style={m20}>
                   <Col lg="4">
-                    <KeyPeople />
+                    <TeamTracker />
                   </Col>
                   <Col lg="8">
                     <ContentReview />
-                  </Col>
-                </Row>
-                <Row style={m20}>
-                  <Col lg="4">
-                    <TeamTracker />
                   </Col>
                 </Row>
               </ContentWrapper>

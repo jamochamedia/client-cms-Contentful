@@ -11,6 +11,7 @@ const typeDefs = gql`
     clientDescription: String!
     linkedInPosts: [LinkedInPost]!
     billingEmail: String!
+    auth0Id: String
   }
 
   type Writer {
