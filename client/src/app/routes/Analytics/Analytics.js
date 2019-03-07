@@ -1,10 +1,12 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import { Col, Row, Button } from "reactstrap";
+import { Col, Row } from "reactstrap";
 
 import { D3 } from "../../components/Typography/DisplayText";
 import { H3 } from "../../components/Typography/HeaderText";
+
+import GetClientLeadAnalytics from "../../../containers/GetClientLeadAnalytics";
 
 import StatsCard from "../../components/Cards/Stats";
 
@@ -56,88 +58,83 @@ const m10 = {
   marginTop: "10px"
 };
 
-const invoice = {
-  marginBottom: "20px",
-  border: "none",
-  boxShadow: "0 0 2rem 0 rgba(136, 152, 170, 0.15)",
-  float: "right"
-};
-
 const Analytics = props => {
+  const analyticsId = props.match.params.analyticsId;
+
   return (
-    <div>
-      <div style={BackgroundHead}>
-        <Container>
-          <Header>
-            <Row>
-              <Col>
-                {/* <D3 style={white}>{props.clientName}</D3>
+    <GetClientLeadAnalytics analyticsId={analyticsId}>
+      {data => {
+        const fields = data.getClientLeadAnalytics;
+        return (
+          <div>
+            <div style={BackgroundHead}>
+              <Container>
+                <Header>
+                  <Row>
+                    <Col>
+                      {/* <D3 style={white}>{props.clientName}</D3>
             <H3 style={white}>{props.companyName}</H3> */}
-                <D3 style={white}>David Segura</D3>
-                <H3 style={white}>Carbon.io</H3>
-              </Col>
-            </Row>
-          </Header>
-        </Container>
-      </div>
-      <Container>
-        <Content>
-          <Row>
-            <BlockContainer>
-              <Col>
-                <Button style={invoice}>Switch to Content Tracker</Button>
-              </Col>
-            </BlockContainer>
-          </Row>
-          <Row>
-            <Col lg="4" md="6" sm="12">
-              <BlockContainer>
-                <StatsCard
-                  number="635"
-                  title="Sent Requests"
-                  icon={faPaperPlane}
-                />
-              </BlockContainer>
-            </Col>
-            <Col lg="4" md="6" sm="12">
-              <BlockContainer>
-                <StatsCard
-                  number="340"
-                  title="Accepted Connects"
-                  icon={faUserCheck}
-                />
-              </BlockContainer>
-            </Col>
-            <Col lg="4" md="6" sm="12">
-              <BlockContainer>
-                <StatsCard
-                  number="40"
-                  title="Messages Received"
-                  icon={faCommentAlt}
-                />
-              </BlockContainer>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg="8" md="12" style={m10}>
-              <BlockContainer>
-                <FollowUps />
-              </BlockContainer>
-            </Col>
-            <Col lg="4" md="12" style={m10}>
-              <BlockContainer>
-                <LeadFunnelGraph
-                  sent="635"
-                  accepted="340"
-                  responded="40"
-                  leads="20"
-                />
-              </BlockContainer>
-            </Col>
-          </Row>
-        </Content>
-      </Container>
-    </div>
+                      <D3 style={white}>LinkedIn Lead Analytics</D3>
+                      <H3 style={white}>{fields.clientName}</H3>
+                    </Col>
+                  </Row>
+                </Header>
+              </Container>
+            </div>
+            <Container>
+              <Content>
+                <Row>
+                  <Col lg="4" md="6" sm="12">
+                    <BlockContainer>
+                      <StatsCard
+                        number={fields.sentRequests}
+                        title="Sent Requests"
+                        icon={faPaperPlane}
+                      />
+                    </BlockContainer>
+                  </Col>
+                  <Col lg="4" md="6" sm="12">
+                    <BlockContainer>
+                      <StatsCard
+                        number={fields.acceptedRequests}
+                        title="Accepted Connects"
+                        icon={faUserCheck}
+                      />
+                    </BlockContainer>
+                  </Col>
+                  <Col lg="4" md="6" sm="12">
+                    <BlockContainer>
+                      <StatsCard
+                        number={fields.messagesReceived}
+                        title="Messages Received"
+                        icon={faCommentAlt}
+                      />
+                    </BlockContainer>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col lg="8" md="12" style={m10}>
+                    <BlockContainer>
+                      <FollowUps analyticsId={fields.id} />
+                    </BlockContainer>
+                  </Col>
+                  <Col lg="4" md="12" style={m10}>
+                    <BlockContainer>
+                      <LeadFunnelGraph
+                        sent={fields.sentRequests}
+                        accepted={fields.acceptedRequests}
+                        responded={fields.messagesReceived}
+                        leads={fields.qualifiedLeads}
+                      />
+                    </BlockContainer>
+                  </Col>
+                </Row>
+              </Content>
+            </Container>
+          </div>
+        );
+      }}
+    </GetClientLeadAnalytics>
   );
 };
 

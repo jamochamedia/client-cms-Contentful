@@ -11,7 +11,7 @@ const typeDefs = gql`
     clientDescription: String!
     linkedInPosts: [LinkedInPost]!
     billingEmail: String!
-    auth0Id: String
+    auth0Id: String!
   }
 
   type Writer {
@@ -20,6 +20,7 @@ const typeDefs = gql`
     position: String
     linkedInUrl: String
     description: String
+    auth0Id: String
   }
 
   type Editor {
@@ -66,6 +67,29 @@ const typeDefs = gql`
     notes: String
   }
 
+  type LeadAnalytics {
+    id: String!
+    clientName: String!
+    clientId: String!
+    clientRole: String!
+    clientCompany: String!
+    sentRequests: String
+    acceptedRequests: String
+    messagesReceived: String
+    qualifiedLeads: String
+  }
+
+  type FollowUpLead {
+    id: String!
+    analyticsId: String
+    fullName: String
+    companyName: String
+    role: String
+    date: String
+    messageLink: String
+    rating: Int
+  }
+
   type Query {
     getAllClients: [Client!]!
     getAllLinkedInPosts: [LinkedInPost!]!
@@ -73,25 +97,16 @@ const typeDefs = gql`
     getAllQuestions: [Question!]!
     getClientSingleLinkedInPost(id: String!): LinkedInPost!
     getClient(id: String!): Client!
-    getAuth0Client(id: String!): Client!
+    findUser(id: String!): Client!
+    findAdmin(id: String!): Writer!
     getClientLinkedInPosts(id: String!): [LinkedInPost!]!
     getAllInvoices: [Invoice!]!
     getClientInvoices(id: String!): [Invoice!]!
     getWriter(id: String!): Writer!
-  }
-
-  type Mutation {
-    addLinkedInPost(
-      id: Int!
-      client: Int!
-      title: String!
-      status: String!
-      question: String!
-      url: String!
-      writerId: Int!
-      editorId: Int!
-      date: String!
-    ): LinkedInPost!
+    getAllLeadAnalytics: [LeadAnalytics!]!
+    getClientLeadAnalytics(id: String!): LeadAnalytics!
+    getAllFollowUpLeads: [FollowUpLead!]!
+    getClientFollowUpLeads(id: String!): [FollowUpLead!]!
   }
 `;
 

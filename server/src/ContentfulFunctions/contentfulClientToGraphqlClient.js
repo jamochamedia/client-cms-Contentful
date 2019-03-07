@@ -22,7 +22,8 @@ const exampleClient = {
     email: "rohan@orca.financial",
     clientRole: "CEO",
     clientDescription:
-      "Helping Millennials Take Control of their Finances | Featured on Forbes, Thrive Global, and Huffington Post"
+      "Helping Millennials Take Control of their Finances | Featured on Forbes, Thrive Global, and Huffington Post",
+    analytics: { sys: [Object], fields: [Object] }
   }
 };
 

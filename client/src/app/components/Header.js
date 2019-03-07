@@ -12,6 +12,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { logout, areAuthItemsSet, userHasScopes } from "../../utils/Auth/Auth";
+import FindUser from "../../containers/FindUser";
+import FindAdmin from "../../containers/FindAdmin";
 
 const NavStyle = {
   backgroundColor: "#292f36"
@@ -40,6 +42,7 @@ class Header extends React.Component {
     });
   }
   render() {
+    const auth0Id = localStorage.getItem("userId");
     return (
       <Navbar style={NavStyle} dark expand="md">
         <Container fluid>
@@ -56,105 +59,72 @@ class Header extends React.Component {
           )}
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              {userHasScopes(["role:editor"]) && (
+            {areAuthItemsSet() && (
+              <Nav className="ml-auto" navbar>
+                {userHasScopes(["role:editor"]) && (
+                  <NavItem>
+                    <NavLink
+                      style={white}
+                      target="_blank"
+                      href="https://app.contentful.com/spaces/le3jnclmcpxu/home"
+                    >
+                      Contentful
+                    </NavLink>
+                  </NavItem>
+                )}
                 <NavItem>
-                  <NavLink
-                    style={white}
-                    target="_blank"
-                    href="https://app.contentful.com/spaces/le3jnclmcpxu/home"
-                  >
-                    Contentful
-                  </NavLink>
+                  {userHasScopes(["53jNSEKtqgYamEeo6uu6Oo"]) && (
+                    <NavLink
+                      style={white}
+                      href="/analytics/34s2vNk5DClxyjZZSBvFGM"
+                    >
+                      <FontAwesomeIcon icon="chart-area" /> Analytics
+                    </NavLink>
+                  )}
                 </NavItem>
-              )}
-              <NavItem>
-                {/* Mehak Admin Account */}
-                {userHasScopes(["4NEqNfnEs8gG4guQQ6Wgcy"]) && (
-                  <NavLink style={white} href="/writers/4NEqNfnEs8gG4guQQ6Wgcy">
-                    <FontAwesomeIcon icon="user" /> Profile
-                  </NavLink>
+                {userHasScopes(["role:editor"]) ? (
+                  <FindAdmin auth0Id={auth0Id}>
+                    {data => {
+                      const fields = data.findAdmin;
+                      return (
+                        <NavItem>
+                          <NavLink style={white} href={"/writers/" + fields.id}>
+                            <FontAwesomeIcon icon="user" /> Profile
+                          </NavLink>
+                        </NavItem>
+                      );
+                    }}
+                  </FindAdmin>
+                ) : (
+                  <FindUser auth0Id={auth0Id}>
+                    {data => {
+                      const fields = data.findUser;
+                      return (
+                        <NavItem>
+                          <NavLink style={white} href={"/clients/" + fields.id}>
+                            <FontAwesomeIcon icon="user" /> Profile
+                          </NavLink>
+                        </NavItem>
+                      );
+                    }}
+                  </FindUser>
                 )}
-                {/* Conner Admin Account */}
-                {userHasScopes(["3sHD788PTtKGNDdOJHkTHe"]) && (
-                  <NavLink style={white} href="/writers/3sHD788PTtKGNDdOJHkTHe">
-                    <FontAwesomeIcon icon="user" /> Profile
-                  </NavLink>
-                )}
-                {/* Chelsea Editor Account */}
-                {userHasScopes(["7y0Unz69pK8sgaq62EeUuy"]) && (
-                  <NavLink style={white} href="/writers/7y0Unz69pK8sgaq62EeUuy">
-                    <FontAwesomeIcon icon="user" /> Profile
-                  </NavLink>
-                )}
-                {/* Mackenna Editor Account */}
-                {userHasScopes(["5hierVX3jwgzOFlUPM31GL"]) && (
-                  <NavLink style={white} href="/writers/5hierVX3jwgzOFlUPM31GL">
-                    <FontAwesomeIcon icon="user" /> Profile
-                  </NavLink>
-                )}
-                {/* Mehak Client Account */}
-                {userHasScopes(["53jNSEKtqgYamEeo6uu6Oo"]) && (
-                  <NavLink style={white} href="/clients/53jNSEKtqgYamEeo6uu6Oo">
-                    <FontAwesomeIcon icon="user" /> Profile
-                  </NavLink>
-                )}
-                {/* Conner Client Account */}
-                {userHasScopes(["1zhOIWfDabdYvtqwMZLyl4"]) && (
-                  <NavLink style={white} href="/writers/1zhOIWfDabdYvtqwMZLyl4">
-                    <FontAwesomeIcon icon="user" /> Profile
-                  </NavLink>
-                )}
-                {/* Dan Bender Client Account */}
-                {userHasScopes(["4oHSTjxscUIG08eSisWwWk"]) && (
-                  <NavLink style={white} href="/clients/4oHSTjxscUIG08eSisWwWk">
-                    <FontAwesomeIcon icon="user" /> Profile
-                  </NavLink>
-                )}
-                {/* Shane Metcalf Client Account */}
-                {userHasScopes(["5tnX4vbyCWwaCIaQOcqksm"]) && (
-                  <NavLink style={white} href="/clients/5tnX4vbyCWwaCIaQOcqksm">
-                    <FontAwesomeIcon icon="user" /> Profile
-                  </NavLink>
-                )}
-                {/* Sandeep Bhanote and Brendan Phelan Client Account */}
-                {userHasScopes(["72GtLvYYiAYU6qiG2iciok"]) && (
-                  <NavLink style={white} href="/clients/72GtLvYYiAYU6qiG2iciok">
-                    <FontAwesomeIcon icon="user" /> Profile
-                  </NavLink>
-                )}
-                {/* Philip Papendieck Client Account */}
-                {userHasScopes(["4rzRmPYf6oMuoMoiOSGQk2"]) && (
-                  <NavLink style={white} href="/clients/4rzRmPYf6oMuoMoiOSGQk2">
-                    <FontAwesomeIcon icon="user" /> Profile
-                  </NavLink>
-                )}
-                {/* David Segura Client Account */}
-                {userHasScopes(["7bkfT8NgnCsAu2w8iQS8w0"]) && (
-                  <NavLink style={white} href="/clients/7bkfT8NgnCsAu2w8iQS8w0">
-                    <FontAwesomeIcon icon="user" /> Profile
-                  </NavLink>
-                )}
-                {/* Rohan Thakkar Client Account */}
-                {userHasScopes(["4vnHRFO9bOUC2s0uIauYEa"]) && (
-                  <NavLink style={white} href="/clients/4vnHRFO9bOUC2s0uIauYEa">
-                    <FontAwesomeIcon icon="user" /> Profile
-                  </NavLink>
-                )}
-              </NavItem>
-              <NavItem style={NavLinkStyle}>
-                {areAuthItemsSet() && (
+                <NavItem style={NavLinkStyle}>
                   <NavLink style={white} onClick={() => logout()}>
                     <FontAwesomeIcon icon="sign-in-alt" /> Logout
                   </NavLink>
-                )}
-                {!areAuthItemsSet() && (
+                </NavItem>
+              </Nav>
+            )}
+            {!areAuthItemsSet() && (
+              <Nav className="ml-auto" navbar>
+                <NavItem style={NavLinkStyle}>
                   <NavLink style={white} href="/login">
                     <FontAwesomeIcon icon="sign-in-alt" /> Login
                   </NavLink>
-                )}
-              </NavItem>
-            </Nav>
+                </NavItem>
+              </Nav>
+            )}
           </Collapse>
         </Container>
       </Navbar>

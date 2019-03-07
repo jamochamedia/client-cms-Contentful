@@ -28,7 +28,8 @@ function contentfulWritertoGraphqlWriter(contentfulClient) {
     fullName: contentfulClient.fields.fullName,
     position: contentfulClient.fields.position,
     linkedInUrl: contentfulClient.fields.linkedInUrl,
-    description: contentfulClient.fields.description
+    description: contentfulClient.fields.description,
+    auth0Id: contentfulClient.fields.auth0Id
   };
 }
 

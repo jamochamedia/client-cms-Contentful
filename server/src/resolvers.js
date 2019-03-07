@@ -2,6 +2,8 @@ const contentfulClientToGraphqlClient = require("./ContentfulFunctions/contentfu
 const contentfulPosttoGraphqlPost = require("./ContentfulFunctions/contentfulPostToGraphqlPost");
 const contentfulInvoiceToGraphqlInvoice = require("./ContentfulFunctions/contentfulInvoiceToGraphqlInvoice");
 const contentfulWritertoGraphqlWriter = require("./ContentfulFunctions/contentfulWritertoGraphqlWriter");
+const contentfulLAtoGraphqlLA = require("./ContentfulFunctions/contentfulLAtoGraphqlLA");
+const contentfulLeadtoGraphqlLead = require("./ContentfulFunctions/contentfulLeadtoGraphqlLead");
 
 const resolvers = {
   Query: {
@@ -48,6 +50,28 @@ const resolvers = {
       const graphQlClient = contentfulClientToGraphqlClient(response);
       return graphQlClient;
     },
+    findUser: async (_, { id }, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntries({
+        content_type: "clientIdentifier"
+      });
+      const clients = response.items;
+      const graphqlClients = clients.map(contentfulClientToGraphqlClient);
+      const filteredClient = graphqlClients.filter(
+        client => client.auth0Id === id
+      );
+      return filteredClient[0];
+    },
+    findAdmin: async (_, { id }, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntries({
+        content_type: "writer"
+      });
+      const admins = response.items;
+      const graphqlAdmins = admins.map(contentfulWritertoGraphqlWriter);
+      const filteredAdmin = graphqlAdmins.filter(admin => admin.auth0Id === id);
+      return filteredAdmin[0];
+    },
     getAllInvoices: async (_, __, context) => {
       const contentfulClient = context.contentfulClient;
       const response = await contentfulClient.getEntries({
@@ -92,6 +116,42 @@ const resolvers = {
       const question = response.items;
       //todo graphql api
       return question;
+    },
+    getAllLeadAnalytics: async (_, __, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntries({
+        content_type: "leadAnalytics"
+      });
+      const leadAnalytics = response.items;
+      const graphqlLeadAnalytics = leadAnalytics.map(contentfulLAtoGraphqlLA);
+      return graphqlLeadAnalytics;
+    },
+    getClientLeadAnalytics: async (_, { id }, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntry(id);
+      const grapqhlLA = contentfulLAtoGraphqlLA(response);
+      return grapqhlLA;
+    },
+    getAllFollowUpLeads: async (_, __, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntries({
+        content_type: "followUpLeads"
+      });
+      const leads = response.items;
+      const graphqlLeads = leads.map(contentfulLeadtoGraphqlLead);
+      return graphqlLeads;
+    },
+    getClientFollowUpLeads: async (_, { id }, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntries({
+        content_type: "followUpLeads"
+      });
+      const leads = response.items;
+      const graphqlLeads = leads.map(contentfulLeadtoGraphqlLead);
+      const filteredLeads = graphqlLeads.filter(
+        lead => lead.analyticsId === id
+      );
+      return filteredLeads;
     }
   }
 };

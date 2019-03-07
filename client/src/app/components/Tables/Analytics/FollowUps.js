@@ -1,106 +1,101 @@
-import React, { Component } from "react";
+import React from "react";
 import moment from "moment";
 
 import "../../../../App.css";
 import { H3, H5 } from "../../Typography/HeaderText";
 import { Paragraph } from "../../Typography/ParapgraphText";
-import { client } from "../../../../utils//Contentful/client";
+
+import GetClientFollowUpLeads from "../../../../containers/GetClientFollowUpLeads";
 
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-const Post = {
-  color: "#292f36"
-};
-
 //Create component
-class FollowUps extends Component {
-  state = {
-    clients: []
-  };
+const FollowUps = props => {
+  const analyticsId = props.analyticsId;
 
-  client = client;
-
-  componentDidMount() {
-    this.fetch().then(this.setPosts);
-  }
-
-  fetch = () =>
-    this.client.getEntries({
-      content_type: "clientIdentifier"
-    });
-
-  setPosts = response => {
-    this.setState({
-      clients: response.items.map(item => item)
-    });
-  };
-
-  render() {
-    const { clients } = this.state;
-
-    return (
-      <div>
-        <ReactTable
-          data={clients}
-          noDataText="Loading..."
-          columns={[
-            {
-              Header: <H3>Follow Up Leads</H3>,
-              headerClassName: "table-header",
-              columns: [
-                {
-                  Header: <H5>Full Name</H5>,
-                  headerClassName: "table-subheader",
-                  accessor: "Full Name",
-                  Cell: cell => (
-                    <a style={Post} href={`/clients/${cell.original.sys.id}`}>
+  return (
+    <GetClientFollowUpLeads analyticsId={analyticsId}>
+      {data => {
+        const leads = data.getClientFollowUpLeads;
+        return (
+          <ReactTable
+            data={leads}
+            noDataText="Loading..."
+            columns={[
+              {
+                Header: <H3>People to Follow Up With</H3>,
+                headerClassName: "table-header",
+                columns: [
+                  {
+                    Header: <H5>Full Name</H5>,
+                    headerClassName: "table-subheader",
+                    Cell: cell => (
                       <Paragraph>
-                        <b>{cell.value}</b>
+                        <b>{cell.original.fullName}</b>
                       </Paragraph>
-                    </a>
-                  )
-                },
-                {
-                  Header: <H5>DATE</H5>,
-                  headerClassName: "table-subheader",
-                  accessor: "Date",
-                  Cell: cell => (
-                    <div>
+                    )
+                  },
+                  {
+                    Header: <H5>Job Role</H5>,
+                    headerClassName: "table-subheader",
+                    Cell: cell => (
                       <Paragraph>
-                        {moment(cell.value).calendar(null, {
-                          sameDay: "[Today]",
-                          lastDay: "[Yesterday]",
-                          lastWeek: "[Last] dddd",
-                          sameElse: "MMM Do YYYY, h:mm:ss a"
-                        })}
+                        <b>{cell.original.role}</b>
                       </Paragraph>
-                    </div>
-                  )
-                },
-                {
-                  Header: <H5>Message Link</H5>,
-                  headerClassName: "table-subheader",
-                  accessor: "Link",
-                  Cell: cell => <Paragraph>{cell.value}</Paragraph>
-                },
-                {
-                  Header: <H5>Rating</H5>,
-                  headerClassName: "table-subheader",
-                  accessor: "Rating",
-                  Cell: cell => <Paragraph>{cell.value}</Paragraph>
-                }
-              ]
-            }
-          ]}
-          minRows={5}
-          style={{ height: "400px" }}
-          showPagination={false}
-        />
-      </div>
-    );
-  }
-}
+                    )
+                  },
+                  {
+                    Header: <H5>Company Name</H5>,
+                    headerClassName: "table-subheader",
+                    Cell: cell => (
+                      <Paragraph>
+                        <b>{cell.original.companyName}</b>
+                      </Paragraph>
+                    )
+                  },
+                  {
+                    Header: <H5>DATE</H5>,
+                    headerClassName: "table-subheader",
+                    Cell: cell => (
+                      <div>
+                        <Paragraph>
+                          {moment(cell.original.date).calendar(null, {
+                            sameDay: "[Today]",
+                            lastDay: "[Yesterday]",
+                            lastWeek: "[Last] dddd",
+                            sameElse: "MMM Do YYYY"
+                          })}
+                        </Paragraph>
+                      </div>
+                    )
+                  },
+                  {
+                    Header: <H5>Message Link</H5>,
+                    headerClassName: "table-subheader",
+                    Cell: cell => (
+                      <a href={`${cell.original.messageLink}`}>
+                        <Paragraph>{cell.original.messageLink}</Paragraph>
+                      </a>
+                    )
+                  },
+                  {
+                    Header: <H5>Rating</H5>,
+                    headerClassName: "table-subheader",
+                    Cell: cell => <Paragraph>{cell.original.rating}</Paragraph>
+                  }
+                ]
+              }
+            ]}
+            minRows={5}
+            style={{ height: "400px" }}
+            showPagination={false}
+          />
+        );
+      }}
+    </GetClientFollowUpLeads>
+  );
+};
 
 export default FollowUps;

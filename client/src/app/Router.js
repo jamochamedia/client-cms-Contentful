@@ -29,7 +29,7 @@ const Router = () => (
     <Route exact path="/linkedin/:linkedinpostid" component={LinkedInPost} />
     <Route exact path="/writers/:writerid" component={WriterProfile} />
 
-    <Route exact path="/analytics" component={Analytics} />
+    <Route exact path="/analytics/:analyticsId" component={Analytics} />
 
     {/* Clients List */}
     <Route
