@@ -4,6 +4,7 @@ const contentfulInvoiceToGraphqlInvoice = require("./ContentfulFunctions/content
 const contentfulWritertoGraphqlWriter = require("./ContentfulFunctions/contentfulWritertoGraphqlWriter");
 const contentfulLAtoGraphqlLA = require("./ContentfulFunctions/contentfulLAtoGraphqlLA");
 const contentfulLeadtoGraphqlLead = require("./ContentfulFunctions/contentfulLeadtoGraphqlLead");
+const contentfulCAtoGraphqlCA = require("./ContentfulFunctions/contentfulCAtoGraphqlCA");
 
 const resolvers = {
   Query: {
@@ -182,6 +183,28 @@ const resolvers = {
         lead => lead.analyticsId === id
       );
       return filteredLeads;
+    },
+    getAllContentAnalytics: async (_, __, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntries({
+        content_type: "overallContentAnalytics"
+      });
+      const contentAnalytics = response.items;
+      const graphQlCA = contentAnalytics.map(contentfulCAtoGraphqlCA);
+      console.log(graphQlCA);
+      return graphQlCA;
+    },
+    getClientContentAnalytics: async (_, { id }, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntries({
+        content_type: "overallContentAnalytics"
+      });
+      const contentAnalytics = response.items;
+      const graphQlCA = contentAnalytics.map(contentfulCAtoGraphqlCA);
+      const filteredCA = graphQlCA.filter(
+        analytics => analytics.clientAuth0Id === id
+      );
+      return filteredCA;
     }
   }
 };

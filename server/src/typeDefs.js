@@ -84,6 +84,17 @@ const typeDefs = gql`
     qualifiedLeads: String
   }
 
+  type ContentAnalytics {
+    id: String!
+    clientAuth0Id: String!
+    clientName: String!
+    clientId: String!
+    postQuota: String
+    postedPosts: String
+    lifetimeViews: String
+    viewsThisMonth: String
+  }
+
   type FollowUpLead {
     id: String!
     analyticsId: String
@@ -114,6 +125,8 @@ const typeDefs = gql`
     findClientLeadPage(id: String!): LeadAnalytics!
     getAllFollowUpLeads: [FollowUpLead!]!
     getClientFollowUpLeads(id: String!): [FollowUpLead!]!
+    getAllContentAnalytics: [ContentAnalytics!]!
+    getClientContentAnalytics(id: String!): ContentAnalytics!
   }
 `;
 
