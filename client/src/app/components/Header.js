@@ -82,7 +82,7 @@ class Header extends React.Component {
                             style={white}
                             href={"/analytics/" + fields.id}
                           >
-                            <FontAwesomeIcon icon="chart-area" /> Analytics
+                            <FontAwesomeIcon icon="chart-area" /> Sales
                           </NavLink>
                         );
                       }}
@@ -93,6 +93,7 @@ class Header extends React.Component {
                   <FindAdmin auth0Id={auth0Id}>
                     {data => {
                       const fields = data.findAdmin;
+                      console.log(data.findAdmin);
                       return (
                         <NavItem>
                           <NavLink style={white} href={"/writers/" + fields.id}>

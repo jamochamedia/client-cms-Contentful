@@ -71,7 +71,7 @@ class Home extends Component {
                           <StatsProgress
                             number={fields.postedPosts}
                             goal={fields.postQuota}
-                            title="LinkedIn posts this Month"
+                            title="Content Posted this Month"
                             //TODO ADD WIDTH
                             width="30%"
                           />

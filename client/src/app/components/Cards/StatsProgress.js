@@ -22,7 +22,7 @@ function StatsProgress(props) {
     <Card>
       <H4>{props.title}</H4>
       <D5>
-        {props.number} / {props.goal}
+        {props.number} out of {props.goal}
       </D5>
       <ProgressBar width={props.width} />
     </Card>

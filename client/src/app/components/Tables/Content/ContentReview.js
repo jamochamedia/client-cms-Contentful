@@ -5,8 +5,6 @@ import "../../../../App.css";
 import { H3, H5 } from "../../Typography/HeaderText";
 import { Paragraph } from "../../Typography/ParapgraphText";
 
-import { Button } from "reactstrap";
-
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
