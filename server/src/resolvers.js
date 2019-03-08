@@ -91,7 +91,10 @@ const resolvers = {
       });
       const invoices = response.items;
       const graphqlInvoices = invoices.map(contentfulInvoiceToGraphqlInvoice);
-      return graphqlInvoices;
+      const filteredInvoices = graphqlInvoices.filter(
+        invoice => invoice.status !== "paid"
+      );
+      return filteredInvoices;
     },
     getClientInvoices: async (_, { id }, context) => {
       const contentfulClient = context.contentfulClient;
