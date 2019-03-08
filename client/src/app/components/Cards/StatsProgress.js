@@ -17,23 +17,15 @@ const Card = styled.div`
   color: #292f36;
 `;
 
-const Margin = styled.div.attrs({
-  marginBottom: props => props.marginBottom || "10px"
-})`
-  margin-bottom: ${props => props.marginBottom};
-`;
-
 function StatsProgress(props) {
   return (
-    <Margin>
-      <Card>
-        <H4>{props.title}</H4>
-        <D5>
-          {props.number} / {props.goal}
-        </D5>
-        <ProgressBar width={props.width} />
-      </Card>
-    </Margin>
+    <Card>
+      <H4>{props.title}</H4>
+      <D5>
+        {props.number} / {props.goal}
+      </D5>
+      <ProgressBar width={props.width} />
+    </Card>
   );
 }
 

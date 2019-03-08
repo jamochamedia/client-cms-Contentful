@@ -11,7 +11,7 @@ const typeDefs = gql`
     clientDescription: String!
     linkedInPosts: [LinkedInPost]!
     billingEmail: String!
-    auth0Id: String!
+    auth0Id: String
   }
 
   type Writer {
@@ -69,10 +69,13 @@ const typeDefs = gql`
 
   type LeadAnalytics {
     id: String!
+    clientAuth0Id: String!
     clientName: String!
     clientId: String!
     clientRole: String!
     clientCompany: String!
+    postQuota: String
+    postedPosts: String
     sentRequests: String
     acceptedRequests: String
     messagesReceived: String
@@ -105,6 +108,7 @@ const typeDefs = gql`
     getWriter(id: String!): Writer!
     getAllLeadAnalytics: [LeadAnalytics!]!
     getClientLeadAnalytics(id: String!): LeadAnalytics!
+    findClientLeadPage(id: String!): LeadAnalytics!
     getAllFollowUpLeads: [FollowUpLead!]!
     getClientFollowUpLeads(id: String!): [FollowUpLead!]!
   }

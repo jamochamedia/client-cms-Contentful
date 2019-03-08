@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { logout, areAuthItemsSet, userHasScopes } from "../../utils/Auth/Auth";
 import FindUser from "../../containers/FindUser";
 import FindAdmin from "../../containers/FindAdmin";
+import FindClientLeadPage from "../../containers/FindClientLeadPage";
 
 const NavStyle = {
   backgroundColor: "#292f36"
@@ -73,14 +74,16 @@ class Header extends React.Component {
                   </NavItem>
                 )}
                 <NavItem>
-                  {userHasScopes(["53jNSEKtqgYamEeo6uu6Oo"]) && (
-                    <NavLink
-                      style={white}
-                      href="/analytics/34s2vNk5DClxyjZZSBvFGM"
-                    >
-                      <FontAwesomeIcon icon="chart-area" /> Analytics
-                    </NavLink>
-                  )}
+                  <FindClientLeadPage auth0Id={auth0Id}>
+                    {data => {
+                      const fields = data.findClientLeadPage;
+                      return (
+                        <NavLink style={white} href={"/analytics/" + fields.id}>
+                          <FontAwesomeIcon icon="chart-area" /> Analytics
+                        </NavLink>
+                      );
+                    }}
+                  </FindClientLeadPage>
                 </NavItem>
                 {userHasScopes(["role:editor"]) ? (
                   <FindAdmin auth0Id={auth0Id}>

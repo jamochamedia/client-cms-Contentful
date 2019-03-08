@@ -129,8 +129,21 @@ const resolvers = {
     getClientLeadAnalytics: async (_, { id }, context) => {
       const contentfulClient = context.contentfulClient;
       const response = await contentfulClient.getEntry(id);
+      console.log(response);
       const grapqhlLA = contentfulLAtoGraphqlLA(response);
       return grapqhlLA;
+    },
+    findClientLeadPage: async (_, { id }, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntries({
+        content_type: "leadAnalytics"
+      });
+      const leadAnalytics = response.items;
+      const graphqlLeadAnalytics = leadAnalytics.map(contentfulLAtoGraphqlLA);
+      const filteredLeadAnalytics = graphqlLeadAnalytics.filter(
+        client => client.clientAuth0Id === id
+      );
+      return filteredLeadAnalytics[0];
     },
     getAllFollowUpLeads: async (_, __, context) => {
       const contentfulClient = context.contentfulClient;

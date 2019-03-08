@@ -24,8 +24,9 @@ const IconCircle = styled.div`
   width: 50px;
   border-radius: 50px;
   background-color: #292f36;
+  font-size: 20px;
   color: white;
-  padding: 14px 16px;
+  padding: 12px 15px;
 `;
 
 const icon = {
@@ -34,21 +35,19 @@ const icon = {
 
 function StatsCard(props) {
   return (
-    <div>
-      <Card>
-        <Row>
-          <Col xs="9">
-            <D4>{props.number}</D4>
-            <H4>{props.title}</H4>
-          </Col>
-          <Col xs="3">
-            <IconCircle>
-              <FontAwesomeIcon style={icon} icon={props.icon} />
-            </IconCircle>
-          </Col>
-        </Row>
-      </Card>
-    </div>
+    <Card>
+      <Row>
+        <Col xs="9">
+          <D4>{props.number}</D4>
+          <H4>{props.title}</H4>
+        </Col>
+        <Col xs="3">
+          <IconCircle>
+            <FontAwesomeIcon style={icon} icon={props.icon} />
+          </IconCircle>
+        </Col>
+      </Row>
+    </Card>
   );
 }
 
