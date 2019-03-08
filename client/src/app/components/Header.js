@@ -62,7 +62,7 @@ class Header extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             {areAuthItemsSet() && (
               <Nav className="ml-auto" navbar>
-                {userHasScopes(["role:editor"]) && (
+                {userHasScopes(["role:editor"]) ? (
                   <NavItem>
                     <NavLink
                       style={white}
@@ -72,19 +72,23 @@ class Header extends React.Component {
                       Contentful
                     </NavLink>
                   </NavItem>
+                ) : (
+                  <NavItem>
+                    <FindClientLeadPage auth0Id={auth0Id}>
+                      {data => {
+                        const fields = data.findClientLeadPage;
+                        return (
+                          <NavLink
+                            style={white}
+                            href={"/analytics/" + fields.id}
+                          >
+                            <FontAwesomeIcon icon="chart-area" /> Analytics
+                          </NavLink>
+                        );
+                      }}
+                    </FindClientLeadPage>
+                  </NavItem>
                 )}
-                <NavItem>
-                  <FindClientLeadPage auth0Id={auth0Id}>
-                    {data => {
-                      const fields = data.findClientLeadPage;
-                      return (
-                        <NavLink style={white} href={"/analytics/" + fields.id}>
-                          <FontAwesomeIcon icon="chart-area" /> Analytics
-                        </NavLink>
-                      );
-                    }}
-                  </FindClientLeadPage>
-                </NavItem>
                 {userHasScopes(["role:editor"]) ? (
                   <FindAdmin auth0Id={auth0Id}>
                     {data => {
