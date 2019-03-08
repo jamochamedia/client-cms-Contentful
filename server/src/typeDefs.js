@@ -4,6 +4,7 @@ const typeDefs = gql`
   type Client {
     id: String!
     auth0Id: String
+    status: String
     clientName: String!
     companyName: String!
     linkedInUrl: String!

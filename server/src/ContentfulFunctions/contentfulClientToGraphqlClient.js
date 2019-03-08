@@ -30,6 +30,7 @@ const exampleClient = {
 function contentfulClientToGraphqlClient(contentfulClient) {
   return {
     id: contentfulClient.sys.id,
+    status: contentfulClient.fields.status,
     clientName: contentfulClient.fields.clientName,
     companyName: contentfulClient.fields.companyName,
     linkedInUrl: contentfulClient.fields.linkedInUrl,

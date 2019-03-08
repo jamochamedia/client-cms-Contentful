@@ -54,7 +54,10 @@ const resolvers = {
       });
       const clients = response.items;
       const graphqlClients = clients.map(contentfulClientToGraphqlClient);
-      return graphqlClients;
+      const filteredClients = graphqlClients.filter(
+        client => client.status !== "Not Active"
+      );
+      return filteredClients;
     },
     getClient: async (_, { id }, context) => {
       const contentfulClient = context.contentfulClient;

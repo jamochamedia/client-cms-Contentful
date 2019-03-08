@@ -25,7 +25,7 @@ const ClientHomeTracker = () => {
             noDataText="Loading..."
             columns={[
               {
-                Header: <H3>Client List</H3>,
+                Header: <H3>Active Client List</H3>,
                 headerClassName: "table-header",
                 columns: [
                   {
