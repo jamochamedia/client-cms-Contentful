@@ -15,7 +15,7 @@ const resolvers = {
       const posts = response.items;
       const graphqlPosts = posts.map(contentfulPosttoGraphqlPost);
       const filteredPosts = graphqlPosts.filter(
-        post => post.status !== "Not Posting"
+        post => post.status !== "Not Posting" && post.status !== "Posted"
       );
       return filteredPosts;
     },
