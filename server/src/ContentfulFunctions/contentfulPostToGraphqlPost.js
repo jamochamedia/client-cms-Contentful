@@ -51,6 +51,7 @@ function contentfulPostToGraphqlPost(contentfulClient) {
     id: contentfulClient.sys.id,
     clientName: contentfulClient.fields.clientName.fields.clientName,
     clientId: contentfulClient.fields.clientName.sys.id,
+    clientAuth0Id: contentfulClient.fields.clientName.fields.auth0Id,
     postTitle: contentfulClient.fields.postTitle,
     status: contentfulClient.fields.status,
     question: question.fields.question,

@@ -3,6 +3,7 @@ const { gql } = require("apollo-server");
 const typeDefs = gql`
   type Client {
     id: String!
+    auth0Id: String
     clientName: String!
     companyName: String!
     linkedInUrl: String!
@@ -11,16 +12,15 @@ const typeDefs = gql`
     clientDescription: String!
     linkedInPosts: [LinkedInPost]!
     billingEmail: String!
-    auth0Id: String
   }
 
   type Writer {
     id: String
+    auth0Id: String
     fullName: String
     position: String
     linkedInUrl: String
     description: String
-    auth0Id: String
   }
 
   type Editor {
@@ -35,6 +35,7 @@ const typeDefs = gql`
     id: String!
     clientName: String
     clientId: String
+    clientAuth0Id: String
     postTitle: String
     status: String
     question: String
@@ -103,6 +104,7 @@ const typeDefs = gql`
     findUser(id: String!): Client!
     findAdmin(id: String!): Writer!
     getClientLinkedInPosts(id: String!): [LinkedInPost!]!
+    getClientLinkedInPostsForReview(id: String!): [LinkedInPost!]!
     getAllInvoices: [Invoice!]!
     getClientInvoices(id: String!): [Invoice!]!
     getWriter(id: String!): Writer!

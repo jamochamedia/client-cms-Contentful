@@ -35,6 +35,18 @@ const resolvers = {
       const graphQlLinkedInPosts = contentfulPosttoGraphqlPost(response);
       return graphQlLinkedInPosts;
     },
+    getClientLinkedInPostsForReview: async (_, { id }, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntries({
+        content_type: "linkedInTextPost"
+      });
+      const posts = response.items;
+      const graphqlPosts = posts.map(contentfulPosttoGraphqlPost);
+      const filteredPosts = graphqlPosts.filter(
+        post => post.clientAuth0Id === id && post.status === "In Client Review"
+      );
+      return filteredPosts;
+    },
     getAllClients: async (_, __, context) => {
       const contentfulClient = context.contentfulClient;
       const response = await contentfulClient.getEntries({
@@ -129,7 +141,6 @@ const resolvers = {
     getClientLeadAnalytics: async (_, { id }, context) => {
       const contentfulClient = context.contentfulClient;
       const response = await contentfulClient.getEntry(id);
-      console.log(response);
       const grapqhlLA = contentfulLAtoGraphqlLA(response);
       return grapqhlLA;
     },
