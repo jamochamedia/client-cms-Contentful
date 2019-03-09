@@ -5,6 +5,7 @@ const contentfulWritertoGraphqlWriter = require("./ContentfulFunctions/contentfu
 const contentfulLAtoGraphqlLA = require("./ContentfulFunctions/contentfulLAtoGraphqlLA");
 const contentfulLeadtoGraphqlLead = require("./ContentfulFunctions/contentfulLeadtoGraphqlLead");
 const contentfulCAtoGraphqlCA = require("./ContentfulFunctions/contentfulCAtoGraphqlCA");
+const contentfulLIPAtoGraphqlLIPA = require("./ContentfulFunctions/contentfulLIPAtoGraphqlLIPA");
 
 const resolvers = {
   Query: {
@@ -205,6 +206,28 @@ const resolvers = {
         client => client.clientAuth0Id === id
       );
       return filteredCA[0];
+    },
+    getAllLinkedInPostAnalytics: async (_, __, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntries({
+        content_type: "singularContentAnalytics"
+      });
+      const contentAnalytics = response.items;
+      const graphQlCA = contentAnalytics.map(contentfulLIPAtoGraphqlLIPA);
+      console.log(graphQlCA);
+      return graphQlCA;
+    },
+    getClientLinkedInPostAnalytics: async (_, { id }, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntries({
+        content_type: "singularContentAnalytics"
+      });
+      const contentAnalytics = response.items;
+      const graphQlCA = contentAnalytics.map(contentfulLIPAtoGraphqlLIPA);
+      const filteredCA = graphQlCA.filter(
+        client => client.clientAuth0Id === id
+      );
+      return filteredCA;
     }
   }
 };

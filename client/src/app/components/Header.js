@@ -49,13 +49,13 @@ class Header extends React.Component {
       <Navbar style={NavStyle} dark expand="md">
         <Container fluid>
           {userHasScopes(["admin:all"]) ? (
-            <NavbarBrand href="/admin">Jamocha CLS</NavbarBrand>
+            <NavbarBrand href="/admin">JAMOCHA CLS</NavbarBrand>
           ) : (
             [
               userHasScopes(["role:editor"]) ? (
-                <NavbarBrand href="/editor">Jamocha CLS</NavbarBrand>
+                <NavbarBrand href="/editor">JAMOCHA CLS</NavbarBrand>
               ) : (
-                <NavbarBrand href="/">Jamocha CLS</NavbarBrand>
+                <NavbarBrand href="/">JAMOCHA CLS</NavbarBrand>
               )
             ]
           )}
@@ -69,7 +69,7 @@ class Header extends React.Component {
                       const fields = data.getClientContentAnalytics;
                       return (
                         <NavLink style={white} href={"/content/" + fields.id}>
-                          <FontAwesomeIcon icon="pencil-alt" /> Content
+                          CONTENT
                         </NavLink>
                       );
                     }}
@@ -95,7 +95,7 @@ class Header extends React.Component {
                             style={white}
                             href={"/analytics/" + fields.id}
                           >
-                            <FontAwesomeIcon icon="chart-area" /> Sales
+                            SALES
                           </NavLink>
                         );
                       }}
@@ -110,7 +110,7 @@ class Header extends React.Component {
                       return (
                         <NavItem>
                           <NavLink style={white} href={"/writers/" + fields.id}>
-                            <FontAwesomeIcon icon="user" /> Profile
+                            PROFILE
                           </NavLink>
                         </NavItem>
                       );
@@ -123,7 +123,7 @@ class Header extends React.Component {
                       return (
                         <NavItem>
                           <NavLink style={white} href={"/clients/" + fields.id}>
-                            <FontAwesomeIcon icon="user" /> Profile
+                            PROFILE
                           </NavLink>
                         </NavItem>
                       );
@@ -132,7 +132,7 @@ class Header extends React.Component {
                 )}
                 <NavItem style={NavLinkStyle}>
                   <NavLink style={white} onClick={() => logout()}>
-                    <FontAwesomeIcon icon="sign-in-alt" /> Logout
+                    <FontAwesomeIcon icon="sign-in-alt" /> LOGOUT
                   </NavLink>
                 </NavItem>
               </Nav>
@@ -141,7 +141,7 @@ class Header extends React.Component {
               <Nav className="ml-auto" navbar>
                 <NavItem style={NavLinkStyle}>
                   <NavLink style={white} href="/login">
-                    <FontAwesomeIcon icon="sign-in-alt" /> Login
+                    <FontAwesomeIcon icon="sign-in-alt" /> LOGIN
                   </NavLink>
                 </NavItem>
               </Nav>

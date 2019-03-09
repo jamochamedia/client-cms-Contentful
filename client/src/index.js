@@ -32,7 +32,10 @@ import {
   faUserCheck,
   faCommentAlt,
   faChartArea,
-  faPencilAlt
+  faPencilAlt,
+  faBinoculars,
+  faCalendarAlt,
+  faPenSquare
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -49,7 +52,10 @@ library.add(
   faUserCheck,
   faCommentAlt,
   faChartArea,
-  faPencilAlt
+  faPencilAlt,
+  faBinoculars,
+  faCalendarAlt,
+  faPenSquare
 );
 
 const client = new ApolloClient({

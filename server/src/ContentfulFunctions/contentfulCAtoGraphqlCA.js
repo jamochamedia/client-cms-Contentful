@@ -30,7 +30,11 @@ function contentfulCAToGraphqlCA(contentfulClient) {
     clientAuth0Id: contentfulClient.fields.client.fields.auth0Id,
     postQuota: contentfulClient.fields.postQuota,
     postedPosts: contentfulClient.fields.postedPosts,
+    mostRecentPostViews: contentfulClient.fields.mostRecentPostViews,
     lifetimeViews: contentfulClient.fields.lifetimeViews,
+    lifetimeShares: contentfulClient.fields.lifetimeShares,
+    lifetimeComments: contentfulClient.fields.lifetimeComments,
+    lifetimeLikes: contentfulClient.fields.lifetimeLikes,
     viewsThisMonth: contentfulClient.fields.viewsThisMonth
   };
 }

@@ -90,7 +90,7 @@ class Home extends Component {
                     <Stats
                       number="45,000"
                       title="Views on Your Last Post"
-                      icon=""
+                      icon="binoculars"
                     />
                   </Col>
                   <GetClientContentAnalytics auth0Id={auth0Id}>
@@ -101,7 +101,7 @@ class Home extends Component {
                           <Stats
                             number={fields.viewsThisMonth}
                             title="Views This Month"
-                            icon=""
+                            icon="calendar-alt"
                           />
                         </Col>
                       );

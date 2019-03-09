@@ -17,8 +17,8 @@ import {
   faCommentAlt
 } from "@fortawesome/free-solid-svg-icons";
 
-import FollowUps from "../../components/Tables/Analytics/FollowUps";
 import GetClientContentAnalytics from "../../../containers/GetClientContentAnalytics";
+import LinkedInPosts from "../../components/Tables/Analytics/LinkedInPosts";
 
 //Styles
 const Container = styled.div`
@@ -58,7 +58,6 @@ const m10 = {
 
 const ContentAnalytics = props => {
   const auth0Id = localStorage.getItem("userId");
-
   return (
     <GetClientContentAnalytics auth0Id={auth0Id}>
       {data => {
@@ -83,8 +82,8 @@ const ContentAnalytics = props => {
                   <Col lg="4" md="6" sm="12">
                     <BlockContainer>
                       <StatsCard
-                        number={fields.messagesReceived}
-                        title="Most Recent Post"
+                        number={fields.lifetimeLikes}
+                        title="Lifetime Likes"
                         icon={faCommentAlt}
                       />
                     </BlockContainer>
@@ -92,8 +91,8 @@ const ContentAnalytics = props => {
                   <Col lg="4" md="6" sm="12">
                     <BlockContainer>
                       <StatsCard
-                        number={fields.viewsThisMonth}
-                        title="Views This Month"
+                        number={fields.lifetimeComments}
+                        title="Lifetime Comments"
                         icon={faPaperPlane}
                       />
                     </BlockContainer>
@@ -101,8 +100,8 @@ const ContentAnalytics = props => {
                   <Col lg="4" md="6" sm="12">
                     <BlockContainer>
                       <StatsCard
-                        number={fields.lifetimeViews}
-                        title="Lifetime Content Views"
+                        number={fields.lifetimeShares}
+                        title="Lifetime Shares"
                         icon={faUserCheck}
                       />
                     </BlockContainer>
@@ -111,7 +110,7 @@ const ContentAnalytics = props => {
                 <Row>
                   <Col lg="12" style={m10}>
                     <BlockContainer>
-                      <FollowUps analyticsId={fields.id} />
+                      <LinkedInPosts auth0Id={auth0Id} />
                     </BlockContainer>
                   </Col>
                 </Row>

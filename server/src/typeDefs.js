@@ -49,6 +49,20 @@ const typeDefs = gql`
     postDate: String
   }
 
+  type LinkedInPostAnalytics {
+    id: String!
+    clientName: String!
+    clientAuth0Id: String!
+    postTitle: String!
+    postLink: String
+    likes: String
+    comments: String
+    shares: String
+    postViews24: String
+    postViews72: String
+    postViews1Week: String
+  }
+
   type Invoice {
     id: String!
     invoiceId: String!
@@ -92,7 +106,11 @@ const typeDefs = gql`
     postQuota: String
     postedPosts: String
     lifetimeViews: String
+    lifetimeShares: String
+    lifetimeComments: String
+    lifetimeLikes: String
     viewsThisMonth: String
+    mostRecentPostViews: String
   }
 
   type FollowUpLead {
@@ -127,6 +145,8 @@ const typeDefs = gql`
     getClientFollowUpLeads(id: String!): [FollowUpLead!]!
     getAllContentAnalytics: [ContentAnalytics!]!
     getClientContentAnalytics(id: String!): ContentAnalytics!
+    getAllLinkedInPostAnalytics: [LinkedInPostAnalytics!]!
+    getClientLinkedInPostAnalytics(id: String!): [LinkedInPostAnalytics!]!
   }
 `;
 
