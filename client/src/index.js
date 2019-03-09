@@ -31,7 +31,8 @@ import {
   faPaperPlane,
   faUserCheck,
   faCommentAlt,
-  faChartArea
+  faChartArea,
+  faPencilAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -47,7 +48,8 @@ library.add(
   faPaperPlane,
   faUserCheck,
   faCommentAlt,
-  faChartArea
+  faChartArea,
+  faPencilAlt
 );
 
 const client = new ApolloClient({

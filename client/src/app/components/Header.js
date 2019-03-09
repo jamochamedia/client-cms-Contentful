@@ -69,7 +69,7 @@ class Header extends React.Component {
                       const fields = data.getClientContentAnalytics;
                       return (
                         <NavLink style={white} href={"/content/" + fields.id}>
-                          <FontAwesomeIcon icon="chart-area" /> Content
+                          <FontAwesomeIcon icon="pencil-alt" /> Content
                         </NavLink>
                       );
                     }}

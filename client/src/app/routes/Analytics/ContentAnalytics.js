@@ -6,13 +6,10 @@ import { Col, Row } from "reactstrap";
 import { D3 } from "../../components/Typography/DisplayText";
 import { H3 } from "../../components/Typography/HeaderText";
 
-import GetClientLeadAnalytics from "../../../containers/GetClientLeadAnalytics";
-
 import StatsCard from "../../components/Cards/Stats";
 
 import Background from "../../img/profile-background.jpg";
 import styled from "styled-components";
-import LeadFunnelGraph from "../../components/Measurement/LeadFunnelGraph";
 
 import {
   faPaperPlane,
@@ -21,6 +18,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import FollowUps from "../../components/Tables/Analytics/FollowUps";
+import GetClientContentAnalytics from "../../../containers/GetClientContentAnalytics";
 
 //Styles
 const Container = styled.div`
@@ -59,12 +57,12 @@ const m10 = {
 };
 
 const ContentAnalytics = props => {
-  const contentId = props.match.params.contentId;
+  const auth0Id = localStorage.getItem("userId");
 
   return (
-    <GetClientLeadAnalytics analyticsId={contentId}>
+    <GetClientContentAnalytics auth0Id={auth0Id}>
       {data => {
-        const fields = data.getClientLeadAnalytics;
+        const fields = data.getClientContentAnalytics;
         return (
           <div>
             <div style={BackgroundHead}>
@@ -85,8 +83,17 @@ const ContentAnalytics = props => {
                   <Col lg="4" md="6" sm="12">
                     <BlockContainer>
                       <StatsCard
-                        number={fields.sentRequests}
-                        title="Sent Requests"
+                        number={fields.messagesReceived}
+                        title="Most Recent Post"
+                        icon={faCommentAlt}
+                      />
+                    </BlockContainer>
+                  </Col>
+                  <Col lg="4" md="6" sm="12">
+                    <BlockContainer>
+                      <StatsCard
+                        number={fields.viewsThisMonth}
+                        title="Views This Month"
                         icon={faPaperPlane}
                       />
                     </BlockContainer>
@@ -94,36 +101,17 @@ const ContentAnalytics = props => {
                   <Col lg="4" md="6" sm="12">
                     <BlockContainer>
                       <StatsCard
-                        number={fields.acceptedRequests}
-                        title="Accepted Connects"
+                        number={fields.lifetimeViews}
+                        title="Lifetime Content Views"
                         icon={faUserCheck}
-                      />
-                    </BlockContainer>
-                  </Col>
-                  <Col lg="4" md="6" sm="12">
-                    <BlockContainer>
-                      <StatsCard
-                        number={fields.messagesReceived}
-                        title="Messages Received"
-                        icon={faCommentAlt}
                       />
                     </BlockContainer>
                   </Col>
                 </Row>
                 <Row>
-                  <Col lg="8" md="12" style={m10}>
+                  <Col lg="12" style={m10}>
                     <BlockContainer>
                       <FollowUps analyticsId={fields.id} />
-                    </BlockContainer>
-                  </Col>
-                  <Col lg="4" md="12" style={m10}>
-                    <BlockContainer>
-                      <LeadFunnelGraph
-                        sent={fields.sentRequests}
-                        accepted={fields.acceptedRequests}
-                        responded={fields.messagesReceived}
-                        leads={fields.qualifiedLeads}
-                      />
                     </BlockContainer>
                   </Col>
                 </Row>
@@ -132,7 +120,7 @@ const ContentAnalytics = props => {
           </div>
         );
       }}
-    </GetClientLeadAnalytics>
+    </GetClientContentAnalytics>
   );
 };
 
