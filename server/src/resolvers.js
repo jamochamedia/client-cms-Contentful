@@ -45,7 +45,21 @@ const resolvers = {
       const posts = response.items;
       const graphqlPosts = posts.map(contentfulPosttoGraphqlPost);
       const filteredPosts = graphqlPosts.filter(
+        //TODO Add "Question Sent"
         post => post.clientAuth0Id === id && post.status === "In Client Review"
+      );
+      return filteredPosts;
+    },
+    getEditorLinkedInPostsForReview: async (_, { id }, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntries({
+        content_type: "linkedInTextPost"
+      });
+      const posts = response.items;
+      const graphqlPosts = posts.map(contentfulPosttoGraphqlPost);
+      const filteredPosts = graphqlPosts.filter(
+        //TODO Add "In Writing"
+        post => post.writerAuth0Id === id && post.status === "In Editing"
       );
       return filteredPosts;
     },

@@ -59,6 +59,7 @@ function contentfulPostToGraphqlPost(contentfulClient) {
     documentUrl: contentfulClient.fields.documentUrl,
     writer: contentfulClient.fields.writer.fields.fullName,
     writerId: contentfulClient.fields.writer.sys.id,
+    writerAuth0Id: contentfulClient.fields.writer.fields.auth0Id,
     editor: contentfulClient.fields.editor.fields.fullName,
     editorId: contentfulClient.fields.editor.sys.id,
     postDate: contentfulClient.fields.postDate

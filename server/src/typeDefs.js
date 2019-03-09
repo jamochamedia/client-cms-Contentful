@@ -43,6 +43,7 @@ const typeDefs = gql`
     answerUrl: String
     documentUrl: String
     writer: String
+    writerAuth0Id: String
     writerId: String
     editor: String
     editorId: String
@@ -135,6 +136,7 @@ const typeDefs = gql`
     findAdmin(id: String!): Writer!
     getClientLinkedInPosts(id: String!): [LinkedInPost!]!
     getClientLinkedInPostsForReview(id: String!): [LinkedInPost!]!
+    getEditorLinkedInPostsForReview(id: String!): [LinkedInPost!]!
     getAllInvoices: [Invoice!]!
     getClientInvoices(id: String!): [Invoice!]!
     getWriter(id: String!): Writer!
