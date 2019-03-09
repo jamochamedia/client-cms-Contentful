@@ -10,7 +10,7 @@ import StatsProgress from "../components/Cards/StatsProgress";
 import Stats from "../components/Cards/Stats";
 import TeamTracker from "../components/Tables/Writers/Team";
 import ContentReview from "../components/Tables/Content/ContentReview";
-import FindClientLeadPage from "../../containers/FindClientLeadPage";
+import GetClientContentAnalytics from "../../containers/GetClientContentAnalytics";
 
 const ContentWrapper = styled.div`
   padding: 20px;
@@ -55,18 +55,25 @@ class Home extends Component {
         {!areAuthItemsSet() ? (
           <Redirect to="/login" />
         ) : (
-          <FindClientLeadPage auth0Id={auth0Id}>
-            {data => {
-              const fields = data.findClientLeadPage;
-              return (
-                <BgPrimary>
-                  <Container fluid>
-                    <ContentWrapper>
+          <BgPrimary>
+            <Container fluid>
+              <ContentWrapper>
+                <GetClientContentAnalytics auth0Id={auth0Id}>
+                  {data => {
+                    const fields = data.getClientContentAnalytics;
+                    return (
                       <H2 style={white}>
                         <FontAwesomeIcon style={title} icon="home" /> Welcome,{" "}
                         {fields.clientName}!
                       </H2>
-                      <Row>
+                    );
+                  }}
+                </GetClientContentAnalytics>
+                <Row>
+                  <GetClientContentAnalytics auth0Id={auth0Id}>
+                    {data => {
+                      const fields = data.getClientContentAnalytics;
+                      return (
                         <Col lg="4" style={m15}>
                           <StatsProgress
                             number={fields.postedPosts}
@@ -76,36 +83,42 @@ class Home extends Component {
                             width="30%"
                           />
                         </Col>
+                      );
+                    }}
+                  </GetClientContentAnalytics>
+                  <Col lg="4" style={m15}>
+                    <Stats
+                      number="45,000"
+                      title="Views on Your Last Post"
+                      icon=""
+                    />
+                  </Col>
+                  <GetClientContentAnalytics auth0Id={auth0Id}>
+                    {data => {
+                      const fields = data.getClientContentAnalytics;
+                      return (
                         <Col lg="4" style={m15}>
                           <Stats
-                            number={fields.sentRequests}
-                            title="Sent Requests this Month"
-                            icon="paper-plane"
+                            number={fields.viewsThisMonth}
+                            title="Views This Month"
+                            icon=""
                           />
                         </Col>
-                        <Col lg="4" style={m15}>
-                          {/* TODO LINK TO ANALYTICS PAGE */}
-                          <Stats
-                            number={fields.qualifiedLeads}
-                            title="Qualified Sales Leads"
-                            icon="check-square"
-                          />
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col lg="4" style={m20}>
-                          <TeamTracker />
-                        </Col>
-                        <Col lg="8" style={m20}>
-                          <ContentReview />
-                        </Col>
-                      </Row>
-                    </ContentWrapper>
-                  </Container>
-                </BgPrimary>
-              );
-            }}
-          </FindClientLeadPage>
+                      );
+                    }}
+                  </GetClientContentAnalytics>
+                </Row>
+                <Row>
+                  <Col lg="4" style={m20}>
+                    <TeamTracker />
+                  </Col>
+                  <Col lg="8" style={m20}>
+                    <ContentReview />
+                  </Col>
+                </Row>
+              </ContentWrapper>
+            </Container>
+          </BgPrimary>
         )}
       </div>
     );
