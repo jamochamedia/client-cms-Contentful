@@ -10,6 +10,7 @@
     "bootstrap": "^4.1.3",
     "cli-table2": "^0.2.0",
     "contentful": "^7.0.5",
+    "exact-math": "^2.0.0",
     "graphql": "^14.1.1",
     "moment": "^2.23.0",
     "prop-types": "^15.6.2",

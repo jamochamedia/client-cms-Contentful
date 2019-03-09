@@ -12,6 +12,8 @@ import TeamTracker from "../components/Tables/Writers/Team";
 import ContentReview from "../components/Tables/Content/ContentReview";
 import GetClientContentAnalytics from "../../containers/GetClientContentAnalytics";
 
+import exactMath from "exact-math";
+
 const ContentWrapper = styled.div`
   padding: 20px;
 `;
@@ -73,14 +75,17 @@ class Home extends Component {
                   <GetClientContentAnalytics auth0Id={auth0Id}>
                     {data => {
                       const fields = data.getClientContentAnalytics;
+                      const width = exactMath.formula(
+                        `${fields.postedPosts} / ${fields.postQuota} * 100`
+                      );
+                      console.log(width);
                       return (
                         <Col lg="4" style={m15}>
                           <StatsProgress
                             number={fields.postedPosts}
                             goal={fields.postQuota}
                             title="Content Posted this Month"
-                            //TODO ADD WIDTH
-                            width="30%"
+                            width={`${width}%`}
                           />
                         </Col>
                       );
@@ -100,7 +105,7 @@ class Home extends Component {
                         <Col lg="4" style={m15}>
                           <Stats
                             number={fields.viewsThisMonth}
-                            title="Views This Month"
+                            title="Views this Month"
                             icon="calendar-alt"
                           />
                         </Col>

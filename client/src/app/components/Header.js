@@ -69,7 +69,7 @@ class Header extends React.Component {
                       const fields = data.getClientContentAnalytics;
                       return (
                         <NavLink style={white} href={"/content/" + fields.id}>
-                          CONTENT
+                          Content
                         </NavLink>
                       );
                     }}
@@ -95,7 +95,7 @@ class Header extends React.Component {
                             style={white}
                             href={"/analytics/" + fields.id}
                           >
-                            SALES
+                            Sales
                           </NavLink>
                         );
                       }}
@@ -110,7 +110,7 @@ class Header extends React.Component {
                       return (
                         <NavItem>
                           <NavLink style={white} href={"/writers/" + fields.id}>
-                            PROFILE
+                            Profile
                           </NavLink>
                         </NavItem>
                       );
@@ -123,7 +123,7 @@ class Header extends React.Component {
                       return (
                         <NavItem>
                           <NavLink style={white} href={"/clients/" + fields.id}>
-                            PROFILE
+                            Profile
                           </NavLink>
                         </NavItem>
                       );
@@ -132,7 +132,7 @@ class Header extends React.Component {
                 )}
                 <NavItem style={NavLinkStyle}>
                   <NavLink style={white} onClick={() => logout()}>
-                    <FontAwesomeIcon icon="sign-in-alt" /> LOGOUT
+                    <FontAwesomeIcon icon="sign-in-alt" /> Logout
                   </NavLink>
                 </NavItem>
               </Nav>
@@ -141,7 +141,7 @@ class Header extends React.Component {
               <Nav className="ml-auto" navbar>
                 <NavItem style={NavLinkStyle}>
                   <NavLink style={white} href="/login">
-                    <FontAwesomeIcon icon="sign-in-alt" /> LOGIN
+                    <FontAwesomeIcon icon="sign-in-alt" /> Login
                   </NavLink>
                 </NavItem>
               </Nav>
