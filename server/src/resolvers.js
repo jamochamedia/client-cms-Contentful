@@ -202,9 +202,9 @@ const resolvers = {
       const contentAnalytics = response.items;
       const graphQlCA = contentAnalytics.map(contentfulCAtoGraphqlCA);
       const filteredCA = graphQlCA.filter(
-        analytics => analytics.clientAuth0Id === id
+        client => client.clientAuth0Id === id
       );
-      return filteredCA;
+      return filteredCA[0];
     }
   }
 };

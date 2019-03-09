@@ -30,7 +30,6 @@ function contentfulCAToGraphqlCA(contentfulClient) {
     clientAuth0Id: contentfulClient.fields.client.fields.auth0Id,
     postQuota: contentfulClient.fields.postQuota,
     postedPosts: contentfulClient.fields.postedPosts,
-    clientRole: contentfulClient.fields.clientRole,
     lifetimeViews: contentfulClient.fields.lifetimeViews,
     viewsThisMonth: contentfulClient.fields.viewsThisMonth
   };

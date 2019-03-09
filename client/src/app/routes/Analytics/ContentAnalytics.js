@@ -58,11 +58,11 @@ const m10 = {
   marginTop: "10px"
 };
 
-const Analytics = props => {
-  const analyticsId = props.match.params.analyticsId;
+const ContentAnalytics = props => {
+  const contentId = props.match.params.contentId;
 
   return (
-    <GetClientLeadAnalytics analyticsId={analyticsId}>
+    <GetClientLeadAnalytics analyticsId={contentId}>
       {data => {
         const fields = data.getClientLeadAnalytics;
         return (
@@ -72,7 +72,7 @@ const Analytics = props => {
                 <Header>
                   <Row>
                     <Col>
-                      <D3 style={white}>LinkedIn Lead Analytics</D3>
+                      <D3 style={white}>Content Analytics</D3>
                       <H3 style={white}>{fields.clientName}</H3>
                     </Col>
                   </Row>
@@ -136,4 +136,4 @@ const Analytics = props => {
   );
 };
 
-export default withRouter(Analytics);
+export default withRouter(ContentAnalytics);

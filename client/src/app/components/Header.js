@@ -15,6 +15,7 @@ import { logout, areAuthItemsSet, userHasScopes } from "../../utils/Auth/Auth";
 import FindUser from "../../containers/FindUser";
 import FindAdmin from "../../containers/FindAdmin";
 import FindClientLeadPage from "../../containers/FindClientLeadPage";
+import GetClientContentAnalytics from "../../containers/GetClientContentAnalytics";
 
 const NavStyle = {
   backgroundColor: "#292f36"
@@ -48,13 +49,13 @@ class Header extends React.Component {
       <Navbar style={NavStyle} dark expand="md">
         <Container fluid>
           {userHasScopes(["admin:all"]) ? (
-            <NavbarBrand href="/admin">Jamocha CMS</NavbarBrand>
+            <NavbarBrand href="/admin">Jamocha CLS</NavbarBrand>
           ) : (
             [
               userHasScopes(["role:editor"]) ? (
-                <NavbarBrand href="/editor">Jamocha CMS</NavbarBrand>
+                <NavbarBrand href="/editor">Jamocha CLS</NavbarBrand>
               ) : (
-                <NavbarBrand href="/">Jamocha CMS</NavbarBrand>
+                <NavbarBrand href="/">Jamocha CLS</NavbarBrand>
               )
             ]
           )}
@@ -62,6 +63,18 @@ class Header extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             {areAuthItemsSet() && (
               <Nav className="ml-auto" navbar>
+                <NavItem>
+                  <GetClientContentAnalytics auth0Id={auth0Id}>
+                    {data => {
+                      const fields = data.getClientContentAnalytics;
+                      return (
+                        <NavLink style={white} href={"/content/" + fields.id}>
+                          <FontAwesomeIcon icon="chart-area" /> Content
+                        </NavLink>
+                      );
+                    }}
+                  </GetClientContentAnalytics>
+                </NavItem>
                 {userHasScopes(["role:editor"]) ? (
                   <NavItem>
                     <NavLink

@@ -16,6 +16,7 @@ import AuthHandler from "../app/components/Auth/AuthHandler";
 import Login from "./routes/Auth/Login";
 import Verify from "./routes/Auth/Verify";
 import Analytics from "./routes/Analytics/Analytics";
+import ContentAnalytics from "./routes/Analytics/ContentAnalytics";
 
 const Router = () => (
   <Switch>
@@ -30,6 +31,7 @@ const Router = () => (
     <Route exact path="/writers/:writerid" component={WriterProfile} />
 
     <Route exact path="/analytics/:analyticsId" component={Analytics} />
+    <Route exact path="/content/:contentId" component={ContentAnalytics} />
 
     {/* Clients List */}
     <Route
