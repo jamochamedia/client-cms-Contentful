@@ -47,6 +47,7 @@ const typeDefs = gql`
     writerId: String
     editor: String
     editorId: String
+    editorAuth0Id: String
     postDate: String
   }
 

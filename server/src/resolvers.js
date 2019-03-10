@@ -45,8 +45,9 @@ const resolvers = {
       const posts = response.items;
       const graphqlPosts = posts.map(contentfulPosttoGraphqlPost);
       const filteredPosts = graphqlPosts.filter(
-        //TODO Add "Question Sent"
-        post => post.clientAuth0Id === id && post.status === "In Client Review"
+        post =>
+          (post.clientAuth0Id === id && post.status === "In Client Review") ||
+          (post.clientAuth0Id === id && post.status === "Question Sent")
       );
       return filteredPosts;
     },
@@ -58,8 +59,13 @@ const resolvers = {
       const posts = response.items;
       const graphqlPosts = posts.map(contentfulPosttoGraphqlPost);
       const filteredPosts = graphqlPosts.filter(
-        //TODO Add "In Writing"
-        post => post.writerAuth0Id === id && post.status === "In Editing"
+        post =>
+          (post.writerAuth0Id === id && post.status === "In Editing") ||
+          (post.writerAuth0Id === id && post.status === "In Writing") ||
+          (post.writerAuth0Id === id && post.status === "Back to Writing") ||
+          (post.editorAuth0Id === id && post.status === "In Editing") ||
+          (post.editorAuth0Id === id && post.status === "In Writing") ||
+          (post.editorAuth0Id === id && post.status === "Back to Writing")
       );
       return filteredPosts;
     },
