@@ -4,7 +4,7 @@ import { D4 } from "../Typography/DisplayText";
 import { H3, H4 } from "../Typography/HeaderText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-//TODO: WORK ON STYLES
+//TODO: Fix Styles
 const ProfileContainer = styled.div`
   width: 100%;
   min-height: 350px;
