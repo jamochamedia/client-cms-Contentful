@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { H2 } from "../../components/Typography/HeaderText";
 
 import EditorContentTracker from "../../components/Tables/Content/EditorContentTracker";
+import EditorContentReview from "../../components/Tables/Content/EditorContentReview";
 import WriterTacker from "../../components/Tables/Writers/WriterTracker";
 import ClientList from "../../components/Tables/Clients/ClientList";
 
@@ -42,6 +43,7 @@ const mr20 = {
 
 class Home extends Component {
   render() {
+    const auth0Id = localStorage.getItem("userId");
     return (
       <div>
         {!areAuthItemsSet() ? (
@@ -53,8 +55,11 @@ class Home extends Component {
                 <H2 style={white}>
                   <FontAwesomeIcon style={mr20} icon="home" /> Editor Dashboard
                 </H2>
-                <EditorContentTracker />
+                <EditorContentReview auth0Id={auth0Id} />
                 <Row>
+                  <Col lg="12" style={m20}>
+                    <EditorContentTracker />
+                  </Col>
                   <Col lg="6" style={m20}>
                     <ClientList />
                   </Col>
