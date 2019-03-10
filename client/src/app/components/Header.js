@@ -104,22 +104,7 @@ class Header extends React.Component {
                     </FindClientLeadPage>
                   </NavItem>
                 )}
-                {userHasScopes(["admin:all"]) && (
-                  <FindAdmin auth0Id={auth0Id}>
-                    {data => {
-                      const fields = data.findAdmin;
-                      return (
-                        <NavItem>
-                          <NavLink style={white} href={"/writers/" + fields.id}>
-                            Profile
-                          </NavLink>
-                        </NavItem>
-                      );
-                    }}
-                  </FindAdmin>
-                )}
                 {userHasScopes(["role:editor"]) && (
-                  //TODO Add Editor Mapping
                   <FindAdmin auth0Id={auth0Id}>
                     {data => {
                       const fields = data.findAdmin;
