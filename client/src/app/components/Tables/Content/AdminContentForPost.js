@@ -8,25 +8,25 @@ import moment from "moment";
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-import GetEditorLinkedInPostsForReview from "../../../../containers/GetEditorLinkedInPostsForReview";
+import GetAdminLinkedInPostsForPost from "../../../../containers/GetAdminLinkedInPostsForPost";
 
 const color = {
   color: "#292f36"
 };
 
 //Create component
-const EditorContentTracker = props => {
+const AdminContentForPost = props => {
   return (
-    <GetEditorLinkedInPostsForReview writerAuth0Id={props.auth0Id}>
+    <GetAdminLinkedInPostsForPost>
       {data => {
-        const posts = data.getEditorLinkedInPostsForReview;
+        const posts = data.getAdminLinkedInPostsForPost;
         return (
           <ReactTable
             data={posts}
             noDataText="You Have No Posts to Review"
             columns={[
               {
-                Header: <H3>Content For Your Immediate Review</H3>,
+                Header: <H3>Content Ready for Post</H3>,
                 headerClassName: "table-header",
                 columns: [
                   {
@@ -61,18 +61,6 @@ const EditorContentTracker = props => {
                           })}
                         </Paragraph>
                       </div>
-                    )
-                  },
-                  {
-                    Header: <H5>WRITER</H5>,
-                    headerClassName: "table-subheader",
-                    Cell: cell => (
-                      <a
-                        style={color}
-                        href={`/writers/${cell.original.writerId}`}
-                      >
-                        <Paragraph>{cell.original.writer}</Paragraph>
-                      </a>
                     )
                   },
                   {
@@ -148,8 +136,8 @@ const EditorContentTracker = props => {
           />
         );
       }}
-    </GetEditorLinkedInPostsForReview>
+    </GetAdminLinkedInPostsForPost>
   );
 };
 
-export default EditorContentTracker;
+export default AdminContentForPost;

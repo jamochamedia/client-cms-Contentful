@@ -69,6 +69,18 @@ const resolvers = {
       );
       return filteredPosts;
     },
+    getAdminLinkedInPostsForPost: async (_, __, context) => {
+      const contentfulClient = context.contentfulClient;
+      const response = await contentfulClient.getEntries({
+        content_type: "linkedInTextPost"
+      });
+      const posts = response.items;
+      const graphqlPosts = posts.map(contentfulPosttoGraphqlPost);
+      const filteredPosts = graphqlPosts.filter(
+        post => post.status === "Ready for Post"
+      );
+      return filteredPosts;
+    },
     getAllClients: async (_, __, context) => {
       const contentfulClient = context.contentfulClient;
       const response = await contentfulClient.getEntries({

@@ -138,6 +138,7 @@ const typeDefs = gql`
     getClientLinkedInPosts(id: String!): [LinkedInPost!]!
     getClientLinkedInPostsForReview(id: String!): [LinkedInPost!]!
     getEditorLinkedInPostsForReview(id: String!): [LinkedInPost!]!
+    getAdminLinkedInPostsForPost: [LinkedInPost!]!
     getAllInvoices: [Invoice!]!
     getClientInvoices(id: String!): [Invoice!]!
     getWriter(id: String!): Writer!
