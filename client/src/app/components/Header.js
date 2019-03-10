@@ -63,18 +63,20 @@ class Header extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             {areAuthItemsSet() && (
               <Nav className="ml-auto" navbar>
-                <NavItem>
-                  <GetClientContentAnalytics auth0Id={auth0Id}>
-                    {data => {
-                      const fields = data.getClientContentAnalytics;
-                      return (
-                        <NavLink style={white} href={"/content/" + fields.id}>
-                          Content
-                        </NavLink>
-                      );
-                    }}
-                  </GetClientContentAnalytics>
-                </NavItem>
+                {!userHasScopes(["role:editor"]) && (
+                  <NavItem>
+                    <GetClientContentAnalytics auth0Id={auth0Id}>
+                      {data => {
+                        const fields = data.getClientContentAnalytics;
+                        return (
+                          <NavLink style={white} href={"/content/" + fields.id}>
+                            Content
+                          </NavLink>
+                        );
+                      }}
+                    </GetClientContentAnalytics>
+                  </NavItem>
+                )}
                 {userHasScopes(["role:editor"]) ? (
                   <NavItem>
                     <NavLink
@@ -102,11 +104,10 @@ class Header extends React.Component {
                     </FindClientLeadPage>
                   </NavItem>
                 )}
-                {userHasScopes(["role:editor"]) ? (
+                {userHasScopes(["admin:all"]) && (
                   <FindAdmin auth0Id={auth0Id}>
                     {data => {
                       const fields = data.findAdmin;
-                      console.log(data.findAdmin);
                       return (
                         <NavItem>
                           <NavLink style={white} href={"/writers/" + fields.id}>
@@ -116,7 +117,23 @@ class Header extends React.Component {
                       );
                     }}
                   </FindAdmin>
-                ) : (
+                )}
+                {userHasScopes(["role:editor"]) && (
+                  //TODO Add Editor Mapping
+                  <FindAdmin auth0Id={auth0Id}>
+                    {data => {
+                      const fields = data.findAdmin;
+                      return (
+                        <NavItem>
+                          <NavLink style={white} href={"/writers/" + fields.id}>
+                            Profile
+                          </NavLink>
+                        </NavItem>
+                      );
+                    }}
+                  </FindAdmin>
+                )}
+                {!userHasScopes(["role:editor"]) && (
                   <FindUser auth0Id={auth0Id}>
                     {data => {
                       const fields = data.findUser;
