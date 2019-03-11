@@ -132,7 +132,7 @@ export function getIdToken() {
   return false;
 }
 
-//Logs the user out and removes the idToken, accessToken, scopes, userProfile,
+//Logs the user out & removes the idToken, accessToken, scopes, userProfile,
 //userId, auth0Id
 export function logout() {
   auth0Client.logout({
