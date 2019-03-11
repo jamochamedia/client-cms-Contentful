@@ -1,8 +1,15 @@
-const { ApolloServer } = require("apollo-server");
+const { ApolloServer } = require("apollo-server-express");
 const contentful = require("contentful");
+const express = require("express");
 
 const typeDefs = require("./typeDefs");
 const resolvers = require("./resolvers");
+
+const app = express();
+app.use(express.static("public"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "public", "index.html"));
+});
 
 const contentfulClient = contentful.createClient({
   space: "le3jnclmcpxu",
@@ -21,6 +28,7 @@ const server = new ApolloServer({
   }
 });
 
-server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
-  console.log(`🚀 Server is ready at ${url}`);
-});
+server.applyMiddleware({ app });
+
+app.listen({ port: process.env.PORT || 4000 }),
+  () => console.log(`🚀 Server is ready at ${server.url}`);

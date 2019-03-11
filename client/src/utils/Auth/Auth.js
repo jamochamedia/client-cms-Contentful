@@ -1,6 +1,6 @@
 import config from "./config";
-// import localConfig from "./localConfig";
-import hostedConfig from "./hostedConfig";
+import localConfig from "./localConfig";
+// import hostedConfig from "./hostedConfig";
 import { auth0Client, requestedScopes } from "./auth0Client";
 
 //Handles Login
@@ -136,8 +136,8 @@ export function getIdToken() {
 //userId, auth0Id
 export function logout() {
   auth0Client.logout({
-    // returnTo: localConfig.urls.login,
-    returnTo: hostedConfig.urls.login,
+    returnTo: localConfig.urls.login,
+    // returnTo: hostedConfig.urls.login,
     client_id: config.auth0.client
   });
 
