@@ -33,7 +33,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && mv build ../server/src/",
+    "build": "react-scripts build",
+    "now-build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

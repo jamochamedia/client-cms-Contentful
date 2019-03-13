@@ -6,7 +6,7 @@ export const requestedScopes = "openid profile";
 export const auth0Client = new Auth0.WebAuth({
   domain: config.auth0.domain,
   clientID: config.auth0.client,
-  redirectUri: config.auth0.redirectUri,
+  redirectUri: `${window.location.origin}${config.auth0.redirectUri}`,
   audience: config.auth0.audience,
   responseType: "token id_token",
   scope: requestedScopes
