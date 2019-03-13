@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "jamocha-monorepo",
+  "alias": "jamocha-staging.now.sh",
   "builds": [
     { "src": "/server/src/server.js", "use": "@now/node-server" },
     {
