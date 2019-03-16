@@ -4,7 +4,7 @@ import React from "react";
 import { D5 } from "../Typography/DisplayText";
 import { H4 } from "../Typography/HeaderText";
 
-import ProgressBar from "../Measurement/ProgressBar";
+// import ProgressBar from "../Measurement/ProgressBar";
 
 const Card = styled.div`
   height: 105px;
@@ -17,14 +17,19 @@ const Card = styled.div`
   color: #292f36;
 `;
 
+const M20 = {
+  marginTop: "10px",
+  marginBottom: "5px"
+};
+
 function StatsProgress(props) {
   return (
     <Card>
-      <H4>{props.title}</H4>
+      <H4 style={M20}>{props.title}</H4>
       <D5>
         {props.number} out of {props.goal}
       </D5>
-      <ProgressBar width={props.width} />
+      {/* <ProgressBar width={props.width} /> */}
     </Card>
   );
 }
