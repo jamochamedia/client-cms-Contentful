@@ -12,8 +12,6 @@ import TeamTracker from "../components/Tables/Writers/Team";
 import ContentReview from "../components/Tables/Content/ContentReview";
 import GetClientContentAnalytics from "../../containers/GetClientContentAnalytics";
 
-import exactMath from "exact-math";
-
 const ContentWrapper = styled.div`
   padding: 20px;
 `;
