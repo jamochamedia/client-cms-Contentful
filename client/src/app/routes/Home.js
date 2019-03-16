@@ -75,17 +75,12 @@ class Home extends Component {
                   <GetClientContentAnalytics auth0Id={auth0Id}>
                     {data => {
                       const fields = data.getClientContentAnalytics;
-                      const width = exactMath.formula(
-                        `${fields.postedPosts} / ${fields.postQuota} * 100`
-                      );
-                      console.log(width);
                       return (
                         <Col lg="4" style={m15}>
                           <StatsProgress
                             number={fields.postedPosts}
                             goal={fields.postQuota}
                             title="Content Posted this Month"
-                            width={`${width}%`}
                           />
                         </Col>
                       );
