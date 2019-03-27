@@ -84,13 +84,20 @@ class Home extends Component {
                       );
                     }}
                   </GetClientContentAnalytics>
-                  <Col lg="4" style={m15}>
-                    <Stats
-                      number="45,000"
-                      title="Views on Your Last Post"
-                      icon="binoculars"
-                    />
-                  </Col>
+                  <GetClientContentAnalytics auth0Id={auth0Id}>
+                    {data => {
+                      const fields = data.getClientContentAnalytics;
+                      return (
+                        <Col lg="4" style={m15}>
+                          <Stats
+                            number={fields.mostRecentPostViews}
+                            title="Views on Your Last Post"
+                            icon="binoculars"
+                          />
+                        </Col>
+                      );
+                    }}
+                  </GetClientContentAnalytics>
                   <GetClientContentAnalytics auth0Id={auth0Id}>
                     {data => {
                       const fields = data.getClientContentAnalytics;

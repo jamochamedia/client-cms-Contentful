@@ -70,25 +70,7 @@ const LinkedInPosts = props => {
                     )
                   },
                   {
-                    Header: <H5>VIEWS (24 HOURS)</H5>,
-                    headerClassName: "table-subheader",
-                    Cell: cell => (
-                      <Paragraph>
-                        <b>{cell.original.postViews24}</b>
-                      </Paragraph>
-                    )
-                  },
-                  {
-                    Header: <H5>VIEWS (72 HOURS)</H5>,
-                    headerClassName: "table-subheader",
-                    Cell: cell => (
-                      <Paragraph>
-                        <b>{cell.original.postViews72}</b>
-                      </Paragraph>
-                    )
-                  },
-                  {
-                    Header: <H5>VIEWS (FIRST WEEK)</H5>,
+                    Header: <H5>VIEWS (Updated on Friday)</H5>,
                     headerClassName: "table-subheader",
                     Cell: cell => (
                       <Paragraph>
